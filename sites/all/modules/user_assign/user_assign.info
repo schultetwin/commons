@@ -1,0 +1,6 @@
+name = User Assign
+description = Module that allows user assignment via user reference fields
+package = Other
+version = 6.x-1.x-dev
+core = 6.x
+php =

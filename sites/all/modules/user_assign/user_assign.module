@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * A module for another time. Not needed for 7.
+ */
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function user_assign_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    case 'content_field_edit_form':
+      $form['user_assign'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('User Assign Settings'),
+        '#description' => t('Enable or disable user assign'),
+      );
+      $form['user_assign']['user_assign_enable'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Enable User Assign'),
+        '#default_value' => 0,
+      );
+      break;
+  }
+}

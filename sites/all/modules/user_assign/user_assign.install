@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * Implementation of hook_schema().
+ */
+function user_assign_schema() {
+  $schema['user_assignments'] = array(
+    'description' => t('List of users and assigned nodes'),
+    'fields' => array(
+      'aid' => array(
+        'description' => t('For the assignment'),
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => t('Node id of the referenced node'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'field_name' => array(
+        'description' => t('Node\'s may multiple fields, so field name'),
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'uid' => array(
+        'description' => t('Uid of assigned User'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'response' => array(
+        'description' => t('Listing of the response from the user'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+    ),
+    'indexes' => array('nid', 'field_name', 'uid'),
+    'unique keys' => array(),
+    'primary key' => array('aid'),
+  );
+}
+
+/**
+ * Implementation of hook_install()
+ */
+function user_assign_install() {
+  drupal_install_schema('user_assign');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function user_assign_uninstall() {
+  drupal_uninstall_schema('user_assign');
+}

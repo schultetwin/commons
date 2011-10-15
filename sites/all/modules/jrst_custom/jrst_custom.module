@@ -1,0 +1,75 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ *
+ * Defines custom plugins for feed tamper, pulling them into this module
+ */
+function jrst_custom_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'feeds_tamper') {
+    return 'plugins';
+  }
+  else if ($module == 'mailhandler' && $plugin == 'commands_plugin') {
+    return 'plugins/MailhandlerCommands';
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ *
+ * Removes text from e-mail address in form that tells user how the email address will be private.
+ * Make sure the taxonomy form in the group is not in a vertical tab
+ */
+function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    case 'user_profile_form':
+    case 'user_register':
+      $form['account']['mail']['#description'] = t('A valid e-mail address. All e-mails will be sent to this address');
+      break;
+    case 'group_node_form':
+      $form['taxonomy']['#group'] = FALSE;
+      break;
+
+  }
+}
+
+/**
+ * Implementation of hook_link_alter().
+ *
+ * Remove user_name blog link from blog entries
+ */
+function jrst_custom_link_alter(&$links, $node, $comment = NULL) {
+  if ($node->type == 'blog') {
+    unset($links['blog_usernames_blog']);
+  }
+}
+
+/**
+ * Implementation of hook_link().
+ *
+ * Defines "create new" node link
+ */
+function jrst_custom_link($type, $object, $teaser = FALSE) {
+  if ($type == 'node' && !$teaser && user_access('create ' . $object->type . ' content')) {
+    if (empty($object->og_groups)) {
+      $links['add_new_content'] = array(
+        'title' => t('Create New @type', array('@type' => $object->type)),
+        'href' => 'node/add/' . $object->type,
+      );
+    }
+    else {
+      $links['add_new_content'] = array(
+        'title' => t('Create New @type', array('@type' => $object->type)),
+        'href' => 'node/add/' . $object->type,
+        'query' => 'gids[0]=' . implode('+', $object->og_groups),
+      );
+      
+    }
+  }
+  return $links;
+}

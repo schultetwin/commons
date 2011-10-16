@@ -6,6 +6,51 @@
  */
 
 /**
+ * Implementation of hook_menu().
+ *
+ * Provides a one time link for denying user reference
+ * Highly based on user module one time login
+ */
+function jrst_custom_menu() {
+  // Args, nid, timestamp, hashed password (salted),
+  // password_hash a security flaw?
+  $items['userref_response/%/%/%/%/%'] = array(
+    'title' => 'Request Response',
+    'page callback' => 'jrst_custom_userref_response',
+    'page arguments' => array(1,2,3,4),
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function jrst_custom_userref_response($nid, $uid, $field, $timestamp, $hashed_password, $value = NULL) {
+  global $user;
+  // If user isn't logged in, they need to be
+  if (!$user->uid) {
+    drupal_set_message(t('You must log in before responding to your assignment'));
+    drupal_goto( 'user/login',drupal_get_destination() );
+  }
+  else if ($user->uid != $uid) {
+    drupal_set_message(t('This acceptance link is for a different user, this error has been logged'), 'warning');
+    watchdog(
+      'jrst_custom_userref',
+      '@uid tried to accept/deny a user reference for @nid with link for someone else',
+      array('@uid' => $user->uid, '@nid' => $nid)
+    );
+    drupal_goto();
+  }
+  $node = node_load($nid);
+  // Make sure node still exists
+  if ($node->nid) {
+    // @todo Completed this check
+    $field = content_fields($field, $node->type);
+    // Check that field is of type user reference, just to be sure
+    // someone doesn't get lucky
+  }
+
+}
+/**
  * Implements hook_ctools_plugin_directory().
  *
  * Defines custom plugins for feed tamper, pulling them into this module
@@ -34,9 +79,25 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     case 'group_node_form':
       $form['taxonomy']['#group'] = FALSE;
       break;
+    case 'article_node_form':
+      array_unshift($form['#validate'], 'jrst_custom_quick_hack');
+      array_unshift($form['#submit'], 'jrst_custom_quick_hack');
+      break;
 
   }
 }
+
+/**
+ * Terrible, terrible quick hack. Comment driven, during some point, changes this value to a
+ * boolean. (Can't find where though, so of a gun, spent 3 hours or so, finally just posted a
+ * bug. Needs to be fixed.
+ *
+ * @todo - Fix comment_driven so that we don't need this.
+ */
+function jrst_custom_quick_hack($form, &$form_state) {
+  $form_state['values']['field_article_resubmit'][0]['value'] = (int) $form_state['values']['field_article_resubmit'][0]['value'];
+}
+
 
 /**
  * Implementation of hook_link_alter().

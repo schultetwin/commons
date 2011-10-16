@@ -127,6 +127,430 @@ function journal_article_jrst_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_driven:enforce_new_revision';
+  $strongarm->value = 1;
+
+  $export['comment_driven:enforce_new_revision'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_driven:inspect_links';
+  $strongarm->value = 1;
+
+  $export['comment_driven:inspect_links'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_driven:node_form_bellow';
+  $strongarm->value = 0;
+
+  $export['comment_driven:node_form_bellow'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_driven:theme_support';
+  $strongarm->value = 'default';
+
+  $export['comment_driven:theme_support'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_driven:type:article:driven_props';
+  $strongarm->value = array(
+    'enabled' => 1,
+    'cck' => array(
+      'field_article_decision' => array(
+        'enabled' => 1,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_resubmit' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_status' => array(
+        'enabled' => 1,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_decision_date' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_editor' => array(
+        'enabled' => 1,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_editor_projection' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_assoc_editor' => array(
+        'enabled' => 1,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_issue' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_author' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_eb_reviewer' => array(
+        'enabled' => 1,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_coauthor' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+          'driven_cck_producer_consumer' => array(
+            'in_out' => 'none',
+            'roles' => array(
+              1 => 0,
+              2 => 0,
+              6 => 0,
+              3 => 0,
+              4 => 0,
+              9 => 0,
+              7 => 0,
+              8 => 0,
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_eb_confirm' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_available_date' => array(
+        'enabled' => FALSE,
+      ),
+      'field_article_manuscript_upload' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_scholarone_id' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_previous_article' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_wiley_id' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_special_issue' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_type' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_submitted_date' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_preprod_author' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'field_article_country' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+    ),
+    'node' => array(
+      'title' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'body_field:bundled' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'options:status' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'options:promote' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'options:sticky' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'comment_settings:comment' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'author:name' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'author:date' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+    ),
+    'workflow' => array(
+      'workflow:' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'workflow:bundled_schedule' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+      'workflow:workflow_comment' => array(
+        'enabled' => 0,
+        'behaviors' => array(
+          'driven_acp' => array(
+            'acp' => 'grant_all_roles',
+            'roles' => array(
+              5 => 0,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  $export['comment_driven:type:article:driven_props'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_driven:type:article:settings';
+  $strongarm->value = array(
+    'empty_comment' => 1,
+    'fieldset:collapsed' => 0,
+    'fieldset:title' => 'Driven Article',
+    'live_render' => '0',
+  );
+
+  $export['comment_driven:type:article:settings'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_article';
   $strongarm->value = '1';
 
@@ -173,34 +597,6 @@ function journal_article_jrst_strongarm() {
   $strongarm->value = '1';
 
   $export['comment_subject_field_issue'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_upload_article';
-  $strongarm->value = '1';
-
-  $export['comment_upload_article'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_upload_images_article';
-  $strongarm->value = 'none';
-
-  $export['comment_upload_images_article'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_upload_images_issue';
-  $strongarm->value = 'none';
-
-  $export['comment_upload_images_issue'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_upload_issue';
-  $strongarm->value = '0';
-
-  $export['comment_upload_issue'] = $strongarm;
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;

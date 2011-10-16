@@ -64,6 +64,22 @@ function journal_article_jrst_user_default_permissions() {
     ),
   );
 
+  // Exported permission: drive ALL properties through comments (for EVERY content type!)
+  $permissions['drive ALL properties through comments (for EVERY content type!)'] = array(
+    'name' => 'drive ALL properties through comments (for EVERY content type!)',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: drive webform properties through comments
+  $permissions['drive webform properties through comments'] = array(
+    'name' => 'drive webform properties through comments',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
   // Exported permission: edit any article content
   $permissions['edit any article content'] = array(
     'name' => 'edit any article content',
@@ -353,6 +369,14 @@ function journal_article_jrst_user_default_permissions() {
   // Exported permission: import mail_impor feeds
   $permissions['import mail_impor feeds'] = array(
     'name' => 'import mail_impor feeds',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: inspect property changes
+  $permissions['inspect property changes'] = array(
+    'name' => 'inspect property changes',
     'roles' => array(
       '0' => 'site admin',
     ),

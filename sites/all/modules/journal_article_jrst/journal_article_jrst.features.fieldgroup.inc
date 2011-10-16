@@ -49,14 +49,15 @@ function journal_article_jrst_fieldgroup_default_groups() {
     ),
     'weight' => '32',
     'fields' => array(
-      '0' => 'field_article_scholarone_id',
-      '1' => 'field_article_previous_article',
-      '2' => 'field_article_wiley_id',
-      '3' => 'field_article_special_issue',
-      '4' => 'field_article_type',
-      '5' => 'field_article_submitted_date',
-      '6' => 'field_article_preprod_author',
-      '7' => 'field_article_country',
+      '0' => 'field_article_manuscript_upload',
+      '1' => 'field_article_scholarone_id',
+      '2' => 'field_article_previous_article',
+      '3' => 'field_article_wiley_id',
+      '4' => 'field_article_special_issue',
+      '5' => 'field_article_type',
+      '6' => 'field_article_submitted_date',
+      '7' => 'field_article_preprod_author',
+      '8' => 'field_article_country',
     ),
   );
 
@@ -106,7 +107,8 @@ function journal_article_jrst_fieldgroup_default_groups() {
       '0' => 'field_article_editor',
       '1' => 'field_article_editor_projection',
       '2' => 'field_article_assoc_editor',
-      '3' => 'field_article_available_date',
+      '3' => 'field_article_eb_reviewer',
+      '4' => 'field_article_available_date',
     ),
   );
 

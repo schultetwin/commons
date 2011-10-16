@@ -14,12 +14,15 @@ function user_assign_form_alter(&$form, &$form_state, $form_id) {
         '#type' => 'fieldset',
         '#title' => t('User Assign Settings'),
         '#description' => t('Enable or disable user assign'),
+        '#weight' => 1,
       );
       $form['user_assign']['user_assign_enable'] = array(
         '#type' => 'checkbox',
         '#title' => t('Enable User Assign'),
         '#default_value' => 0,
       );
+      $form['submit']['#weight'] = 2;
+      $form['#submit'][] = 'user_assign_field_form_submit';
       break;
   }
 }

@@ -6,9 +6,9 @@
 function jrst_base_views_default_views() {
   $views = array();
 
-  // Exported view: fronpage
+  // Exported view: frontpage_jrst
   $view = new view;
-  $view->name = 'frontpage';
+  $view->name = 'frontpage_jrst';
   $view->description = 'Main Content of Frontpage';
   $view->tag = 'JRST';
   $view->view_php = '';
@@ -242,8 +242,8 @@ function jrst_base_views_default_views() {
     'weight' => 0,
     'name' => 'navigation',
   ));
-  $views[$view->name] = $view;
 
+  $views[$view->name] = $view;
 
   // Exported view: jrst_hot_discuscussions
   $view = new view;

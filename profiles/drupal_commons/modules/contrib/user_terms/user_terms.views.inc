@@ -82,3 +82,19 @@ function user_terms_views_handlers() {
     ),
   );
 }
+
+/**
+ * Implementation of hook_views_plugins
+ */
+function user_terms_views_plugins() {
+  return array(
+    'argument default' => array(
+      'user_terms_tid' => array(
+        'title' => t('Taxonomy Term ID Users Terms'),
+        'handler' => 'user_terms_plugin_argument_default_taxonomy_tid',
+        'path' => drupal_get_path('module', 'user_terms'),
+        'parent' => 'fixed',
+      ),
+    ),
+  );
+}

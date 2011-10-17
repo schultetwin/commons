@@ -14,7 +14,7 @@ function journal_article_jrst_ctools_plugin_api() {
   elseif ($module == "feeds_tamper" && $api == "feeds_tamper_default") {
     return array("version" => 2);
   }
-  elseif ($module == "mailhandler" && $api == "default_mailhandler_mailbox") {
+  elseif ($module == "mailhandler" && $api == "mailhandler_mailbox") {
     return array("version" => 1);
   }
   elseif ($module == "strongarm" && $api == "strongarm") {

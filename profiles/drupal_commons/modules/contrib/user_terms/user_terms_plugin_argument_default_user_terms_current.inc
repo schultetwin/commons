@@ -10,13 +10,12 @@ class user_terms_plugin_argument_default_user_terms_current extends views_plugin
     $options = parent::option_definition();
 
     $options['limit'] = array('default' => FALSE);
-    $options['vids'] = array('default' => NULL);
+    $options['vids'] = array('default' => array());
 
     return $options;
   }
 
   function argument_form(&$form, &$form_state) {
-    //parent::argument_form($form, $form_state);
     $form[$this->option_name]['limit'] = array(
       '#type' => 'checkbox',
       '#title' => t('Limit terms by vocabulary'),
@@ -36,19 +35,21 @@ class user_terms_plugin_argument_default_user_terms_current extends views_plugin
     }
 
     $form[$this->option_name]['vids'] = array(
-      '#prefix' => '<div><div id="edit-options-vids">',
+      '#prefix' => '<div><div id="edit-options-default-argument-user-terms-current-vids">',
       '#suffix' => '</div></div>',
       '#type' => 'checkboxes',
       '#title' => t('Vocabularies'),
       '#options' => $options,
       '#default_value' => isset($this->argument->options[$this->option_name]['vids']) ? $this->argument->options[$this->option_name]['vids'] : array(),
-      '#process' => array('expand_checkboxes', 'views_process_dependency'),
+      '#process' => array('views_process_dependency', 'expand_checkboxes'),
       '#dependency' => array(
         'radio:options[default_action]' => array('default'),
-        'radio:options[default_argument_type]' => array($this->id)
+        'radio:options[default_argument_type]' => array($this->id),
+        'edit-options-default-argument-user-terms-current-limit' => array(TRUE),
       ),
-      '#dependency_count' => 2,
+      '#dependency_count' => 3,
     );
+
   }
 
   function options_submit(&$form, &$form_state, &$options) {
@@ -60,6 +61,7 @@ class user_terms_plugin_argument_default_user_terms_current extends views_plugin
   function get_argument() {
     $uid = parent::get_argument();
     $user = user_load($uid);
+
     if (!empty($user->user_terms)) {
       if (!empty($this->argument->options[$this->option_name]['limit'])) {
         $tids = array();

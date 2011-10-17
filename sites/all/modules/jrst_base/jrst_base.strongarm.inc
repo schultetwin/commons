@@ -22,15 +22,8 @@ function jrst_base_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'content_schema_version';
-  $strongarm->value = 6009;
-
-  $export['content_schema_version'] = $strongarm;
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'date_db_tz_support';
-  $strongarm->value = TRUE;
+  $strongarm->value = FALSE;
 
   $export['date_db_tz_support'] = $strongarm;
   $strongarm = new stdClass;

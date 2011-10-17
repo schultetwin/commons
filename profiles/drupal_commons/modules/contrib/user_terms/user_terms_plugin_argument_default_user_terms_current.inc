@@ -5,7 +5,8 @@
  *   Taxonomy tid default argument.
  */
 
-class user_terms_plugin_argument_default_taxonomy_tid extends views_plugin_argument_default {
+class user_terms_plugin_argument_default_user_terms_current extends views_plugin_argument_default_current_user {
+
   function option_definition() {
     $options = parent::option_definition();
 
@@ -52,9 +53,10 @@ class user_terms_plugin_argument_default_taxonomy_tid extends views_plugin_argum
     $options['vids'] = array_filter($options['vids']);
   }
 
+
   function get_argument() {
-    global $user;
-    $user = user_load($user->uid);
+    $uid = parent::get_argument();
+    $user = user_load($uid);
     if (!empty($user->user_terms)) {
       if (!empty($this->options['limit'])) {
         $tids = array();

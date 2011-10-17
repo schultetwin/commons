@@ -89,11 +89,17 @@ function user_terms_views_handlers() {
 function user_terms_views_plugins() {
   return array(
     'argument default' => array(
-      'user_terms_tid' => array(
-        'title' => t('Taxonomy Term ID Users Terms'),
-        'handler' => 'user_terms_plugin_argument_default_taxonomy_tid',
+      'user_terms_tid_current' => array(
+        'title' => t('Taxonomy Terms From Current User'),
+        'handler' => 'user_terms_plugin_argument_default_user_terms_current',
         'path' => drupal_get_path('module', 'user_terms'),
-        'parent' => 'fixed',
+        'parent' => 'current_user',
+      ),
+      'user_terms_tid' => array(
+        'title' => t('Taxonomy Term ID From User URL'),
+        'handler' => 'user_terms_plugin_argument_default_user_terms_tid',
+        'path' => drupal_get_path('module', 'user_terms'),
+        'parent' => 'user',
       ),
     ),
   );

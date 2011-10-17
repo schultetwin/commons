@@ -4,6 +4,7 @@
  */
 
 class user_terms_plugin_argument_default_user_terms_current extends views_plugin_argument_default_current_user {
+  var $option_name = 'default_argument_user_terms_current';
 
   function option_definition() {
     $options = parent::option_definition();
@@ -14,15 +15,18 @@ class user_terms_plugin_argument_default_user_terms_current extends views_plugin
     return $options;
   }
 
-  function options_form(&$form, &$form_state) {
-    $form['limit'] = array(
+  function argument_form(&$form, &$form_state) {
+    //parent::argument_form($form, $form_state);
+    $form[$this->option_name]['limit'] = array(
       '#type' => 'checkbox',
       '#title' => t('Limit terms by vocabulary'),
-      '#default_value'=> $this->options['limit'],
-      '#process' => array('expand_checkboxes', 'views_process_dependency'),
+      '#default_value'=> !empty($this->argument->options[$this->option_name]['limit']),
+      '#process' => array('views_process_dependency'),
       '#dependency' => array(
-        'edit-options-argument-default-taxonomy-tid-node' => array(1),
+        'radio:options[default_action]' => array('default'),
+        'radio:options[default_argument_type]' => array($this->id)
       ),
+       '#dependency_count' => 2,
     );
 
     $options = array();
@@ -31,18 +35,19 @@ class user_terms_plugin_argument_default_user_terms_current extends views_plugin
       $options[$voc->vid] = check_plain($voc->name);
     }
 
-    $form['vids'] = array(
+    $form[$this->option_name]['vids'] = array(
       '#prefix' => '<div><div id="edit-options-vids">',
       '#suffix' => '</div></div>',
       '#type' => 'checkboxes',
       '#title' => t('Vocabularies'),
       '#options' => $options,
-      '#default_value' => $this->options['vids'],
+      '#default_value' => isset($this->argument->options[$this->option_name]['vids']) ? $this->argument->options[$this->option_name]['vids'] : array(),
       '#process' => array('expand_checkboxes', 'views_process_dependency'),
       '#dependency' => array(
-        //'edit-options-argument-default-taxonomy-tid-limit' => array(1),
-        'edit-options-argument-default-taxonomy-tid-node' => array(1),
+        'radio:options[default_action]' => array('default'),
+        'radio:options[default_argument_type]' => array($this->id)
       ),
+      '#dependency_count' => 2,
     );
   }
 
@@ -56,11 +61,11 @@ class user_terms_plugin_argument_default_user_terms_current extends views_plugin
     $uid = parent::get_argument();
     $user = user_load($uid);
     if (!empty($user->user_terms)) {
-      if (!empty($this->options['limit'])) {
+      if (!empty($this->argument->options[$this->option_name]['limit'])) {
         $tids = array();
         // filter by vid
         foreach ($user->user_terms as $tid => $term) {
-          if (!empty($this->options['vids'][$term->vid])) {
+          if (!empty($this->argument->options[$this->option_name]['vids'][$term['vid']])) {
             $tids[] = $tid;
           }
         }
@@ -73,4 +78,3 @@ class user_terms_plugin_argument_default_user_terms_current extends views_plugin
     }
   }
 }
-

@@ -435,7 +435,7 @@ $node_field[0][\'value\'] = $output;',
     'active' => '1',
     'text_processing' => '0',
     'max_length' => '',
-    'allowed_values' => 'Special Reject
+    'allowed_values' => 'Special Reject (Without External Review)
 Special Accept
 Reject
 Revise and Resubmit
@@ -453,10 +453,21 @@ Accept
       ),
       'default_value_php' => NULL,
       'label' => 'Decision',
-      'weight' => '30',
+      'weight' => '56',
       'description' => 'This marks the previous decision of the node, not it\'s current status.',
       'type' => 'optionwidgets_select',
       'module' => 'optionwidgets',
+      'roles' => array(
+        '1' => 0,
+        '2' => 0,
+        '6' => 0,
+        '3' => 0,
+        '4' => 0,
+        '9' => 0,
+        '7' => 0,
+        '8' => 0,
+        '5' => 0,
+      ),
     ),
   );
 
@@ -524,7 +535,7 @@ Accept
       'year_range' => '-3:+3',
       'label_position' => 'above',
       'label' => 'Decision Date',
-      'weight' => '33',
+      'weight' => '59',
       'description' => '',
       'type' => 'date_popup',
       'module' => 'date',
@@ -1124,10 +1135,83 @@ Not for JRST',
         '5' => 0,
       ),
       'label' => 'Resubmit',
-      'weight' => '31',
+      'weight' => '57',
       'description' => 'Specifies that this article is a resubmit',
       'type' => 'optionwidgets_onoff',
       'module' => 'optionwidgets',
+    ),
+  );
+
+  // Exported field: field_article_reviewer
+  $fields['article-field_article_reviewer'] = array(
+    'field_name' => 'field_article_reviewer',
+    'type_name' => 'article',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_article_reviewer][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Reviewer',
+      'weight' => '42',
+      'description' => 'Name of the reviewer for this article',
+      'type' => 'text_textfield',
+      'module' => 'text',
+      'roles' => array(
+        '1' => 0,
+        '2' => 0,
+        '6' => 0,
+        '3' => 0,
+        '4' => 0,
+        '9' => 0,
+        '7' => 0,
+        '8' => 0,
+        '5' => 0,
+      ),
     ),
   );
 
@@ -1323,7 +1407,7 @@ Production',
         '5' => 0,
       ),
       'label' => 'Status',
-      'weight' => '32',
+      'weight' => '58',
       'description' => '',
       'type' => 'optionwidgets_select',
       'module' => 'optionwidgets',
@@ -1886,6 +1970,7 @@ Production',
   t('Previous Submission');
   t('Publication date');
   t('Resubmit');
+  t('Reviewer');
   t('ScholarOne ID');
   t('Special Issue');
   t('Status');

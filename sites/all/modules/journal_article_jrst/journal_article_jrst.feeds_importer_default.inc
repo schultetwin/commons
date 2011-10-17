@@ -48,7 +48,8 @@ editor_rec
 resubmit
 prev_id
 decision
-decision_date',
+decision_date
+reviewer',
         'command_plugin' => array(
           'MailhandlerCommandsHeaders' => 'MailhandlerCommandsHeaders',
           'MailhandlerCommandsJRST' => 'MailhandlerCommandsJRST',
@@ -173,6 +174,11 @@ decision_date',
           21 => array(
             'source' => 'assoc_editor',
             'target' => 'field_article_assoc_editor:uid',
+            'unique' => FALSE,
+          ),
+          22 => array(
+            'source' => 'reviewer',
+            'target' => 'field_article_reviewer',
             'unique' => FALSE,
           ),
         ),

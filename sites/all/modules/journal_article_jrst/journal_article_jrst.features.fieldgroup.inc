@@ -108,7 +108,8 @@ function journal_article_jrst_fieldgroup_default_groups() {
       '1' => 'field_article_editor_projection',
       '2' => 'field_article_assoc_editor',
       '3' => 'field_article_eb_reviewer',
-      '4' => 'field_article_available_date',
+      '4' => 'field_article_reviewer',
+      '5' => 'field_article_available_date',
     ),
   );
 

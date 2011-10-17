@@ -1,5 +1,6 @@
-Mailhandler 6.x-2.x, 2011-09-11
+Mailhandler 6.x-2.x, 2011-10-16
 -------------------------------
+#1283198 by Dane Powell: Fixed broken mailbox exports.
 #1260106 by jeffvanh, Dane Powell: Added option to ignore failed authentication.
 #1191722 by Dane Powell: Added cc and bcc addresses as mapping sources.
 #1265818 by narayanis, Dane Powell: Added weights to parser plugins.

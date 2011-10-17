@@ -236,6 +236,216 @@ return array("node" => $node);',
         ),
         '#version' => 6003,
       ),
+      'rules_send_mail_when_eb_reviewer_assigned' => array(
+        '#type' => 'rule',
+        '#set' => 'event_node_update',
+        '#label' => 'Send mail when eb reviewer assigned',
+        '#active' => 1,
+        '#weight' => '0',
+        '#categories' => array(
+          '0' => 'JRST',
+          'jrst_base' => 'jrst_base',
+        ),
+        '#status' => 'default',
+        '#conditions' => array(
+          '0' => array(
+            '#type' => 'condition',
+            '#settings' => array(
+              'type' => array(
+                'article' => 'article',
+              ),
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#name' => 'rules_condition_content_is_type',
+            '#info' => array(
+              'label' => 'Updated content is Article',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'module' => 'Node',
+            ),
+            '#weight' => -4,
+          ),
+          '3' => array(
+            '#weight' => -1,
+            '#info' => array(
+              'label' => 'Check if content workflow state is (creation), Review',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Node',
+                ),
+              ),
+              'module' => 'Workflow',
+            ),
+            '#name' => 'workflow_check_state',
+            '#settings' => array(
+              'state' => array(
+                '1' => '1',
+                '2' => '2',
+              ),
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#type' => 'condition',
+          ),
+          '1' => array(
+            '#type' => 'condition',
+            '#settings' => array(
+              'field_name' => 'field_article_eb_reviewer',
+              '#argument map' => array(
+                'node' => 'node',
+                'node_unchanged' => 'node_unchanged',
+              ),
+            ),
+            '#name' => 'content_rules_field_changed',
+            '#info' => array(
+              'label' => 'Updated content\'s field \'field_article_eb_reviewer\' has been changed',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content containing changes',
+                ),
+                'node_unchanged' => array(
+                  'type' => 'node',
+                  'label' => 'Content not containing changes',
+                ),
+              ),
+              'module' => 'CCK',
+            ),
+            '#weight' => 0,
+          ),
+          '2' => array(
+            '#weight' => 0,
+            '#info' => array(
+              'label' => 'Updated content\'s field \'field_article_eb_confirm\' has value',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'eval input' => array(
+                '0' => 'code',
+              ),
+              'module' => 'CCK',
+            ),
+            '#name' => 'content_rules_field_has_value',
+            '#settings' => array(
+              'field_name' => 'field_article_eb_confirm',
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+              'value' => array(
+                '0' => array(
+                  'value' => 0,
+                ),
+              ),
+              'code' => '',
+              'vars' => array(),
+              '#eval input' => array(
+                'token_rules_input_evaluator' => array(
+                  'code' => array(
+                    '0' => ':global',
+                  ),
+                ),
+              ),
+            ),
+            '#type' => 'condition',
+          ),
+        ),
+        '#actions' => array(
+          '0' => array(
+            '#type' => 'action',
+            '#settings' => array(
+              'field' => 'field_article_eb_reviewer',
+              '#argument map' => array(
+                'node' => 'node',
+                'referenced_user' => 'referenced_user',
+              ),
+            ),
+            '#name' => 'userreference_rules_action_load',
+            '#info' => array(
+              'label' => 'Load a referenced user',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content containing the user reference field',
+                ),
+              ),
+              'new variables' => array(
+                'referenced_user' => array(
+                  'type' => 'user',
+                  'label' => 'Referenced user',
+                ),
+              ),
+              'module' => 'CCK',
+            ),
+            '#weight' => 0,
+          ),
+          '1' => array(
+            '#weight' => 0,
+            '#info' => array(
+              'label' => 'Send a mail to a user',
+              'arguments' => array(
+                'user' => array(
+                  'type' => 'user',
+                  'label' => 'Recipient',
+                ),
+              ),
+              'module' => 'System',
+              'eval input' => array(
+                '0' => 'subject',
+                '1' => 'message',
+                '2' => 'from',
+              ),
+            ),
+            '#name' => 'rules_action_mail_to_user',
+            '#settings' => array(
+              'from' => '',
+              'subject' => 'EJRST Review Request for [node:title]',
+              'message' => '<?php global $base_url; ?>
+
+Hi [referenced_user:realname],
+
+We have assigned you to review [node:title] for JRST. To download the article, go to <a href="<?php print $base_url;?>/node/[node:nid]"><?php print $base_url;?>/node/[node:nid]</a>. By viewing this page you are accepting your appoint as a reviewer to this article. To reject your appointment, click <a href="<?php print $base_url;?>/node/[node:nid]/reject">here</a>.
+
+Thank you,
+JRST Editors',
+              '#argument map' => array(
+                'user' => 'referenced_user',
+              ),
+              '#eval input' => array(
+                'token_rules_input_evaluator' => array(
+                  'subject' => array(
+                    '0' => 'node',
+                    '1' => ':global',
+                  ),
+                  'message' => array(
+                    '0' => 'referenced_user',
+                    '1' => 'node',
+                    '2' => ':global',
+                  ),
+                  'from' => array(
+                    '0' => ':global',
+                  ),
+                ),
+                'rules_input_evaluator_php' => array(
+                  'message' => array(),
+                ),
+              ),
+            ),
+            '#type' => 'action',
+          ),
+        ),
+        '#version' => 6003,
+      ),
     ),
   );
 }

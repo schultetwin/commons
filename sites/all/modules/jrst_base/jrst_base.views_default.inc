@@ -17,6 +17,25 @@ function jrst_base_views_default_views() {
   $view->api_version = 2;
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('relationships', array(
+    'field_discussion_article_nid' => array(
+      'label' => 'Article',
+      'required' => 0,
+      'delta' => -1,
+      'id' => 'field_discussion_article_nid',
+      'table' => 'node_data_field_discussion_article',
+      'field' => 'field_discussion_article_nid',
+      'relationship' => 'none',
+    ),
+    'vid' => array(
+      'label' => 'node',
+      'required' => 0,
+      'id' => 'vid',
+      'table' => 'term_node',
+      'field' => 'vid',
+      'relationship' => 'field_discussion_article_nid',
+    ),
+  ));
   $handler->override_option('fields', array(
     'title' => array(
       'label' => '',
@@ -85,7 +104,7 @@ function jrst_base_views_default_views() {
       'exposed' => FALSE,
       'order' => 'DESC',
       'identifier' => 'unsorted',
-      'granularity' => 'second',
+      'granularity' => 'day',
       'id' => 'last_updated',
       'table' => 'node_comment_statistics',
       'field' => 'last_updated',
@@ -93,6 +112,35 @@ function jrst_base_views_default_views() {
       'override' => array(
         'button' => 'Override',
       ),
+    ),
+    'php' => array(
+      'exposed' => FALSE,
+      'order' => 'DESC',
+      'identifier' => 'unsorted',
+      'use_php_setup' => 0,
+      'php_setup' => '',
+      'php_sort' => '',
+      'sql_sort' => 'global $user;
+$user = user_load($user->uid);
+$args = implode(\',\', array_keys($user->user_terms));
+$order = \'(SELECT COUNT(*) FROM {node} n
+LEFT JOIN {term_node} tn ON n.vid = tn.vid
+WHERE node_node_data_field_discussion_article.nid = n.nid AND tn.tid IN (\' . $args . \')
+GROUP BY n.nid) \' . strtoupper($handler->options[\'order\']);
+return $order;',
+      'id' => 'php',
+      'table' => 'views',
+      'field' => 'php',
+      'relationship' => 'none',
+    ),
+    'comment_count' => array(
+      'exposed' => FALSE,
+      'order' => 'DESC',
+      'identifier' => 'unsorted',
+      'id' => 'comment_count',
+      'table' => 'node_comment_statistics',
+      'field' => 'comment_count',
+      'relationship' => 'none',
     ),
   ));
   $handler->override_option('filters', array(
@@ -274,20 +322,18 @@ function jrst_base_views_default_views() {
   $handler->override_option('sorts', array(
     'php' => array(
       'exposed' => FALSE,
-      'order' => 'unsorted',
+      'order' => 'DESC',
       'identifier' => 'unsorted',
       'use_php_setup' => 0,
       'php_setup' => '',
-      'php_sort' => '$args = explode(\'+\', $view->args[0]);
+      'php_sort' => '',
+      'sql_sort' => '$args = explode(\'+\', $view->args[0]);
 $args = implode(\', \', $args);
-$clause = \'SELECT COUNT(term_data.tid) FROM {term_data} term_data WHERE term_data.tid IN (\' . $args . \') AND term_data.tid IN (SELECT term_node.tid FROM {term_node} term_node WHERE term_node.nid = %d)\';
-
-$nid = $row1->nid;
-
-$result1 = db_result(db_query($clause, $row1->nid));
-$result2 = db_result(db_query($clause, $row2->nid));
-return ($result1 < $result2) ? -1 : (($result1 = $result2) ? 0 : 1);',
-      'sql_sort' => '',
+$order = \'(SELECT COUNT(*) FROM {node} n
+LEFT JOIN {term_node} tn ON n.vid = tn.vid
+WHERE node.nid = n.nid AND tn.tid IN (\' . $args . \')
+GROUP BY n.nid) \' . strtoupper($handler->options[\'order\']);
+return $order;',
       'id' => 'php',
       'table' => 'views',
       'field' => 'php',
@@ -319,7 +365,7 @@ return ($result1 < $result2) ? -1 : (($result1 = $result2) ? 0 : 1);',
       'wildcard_substitution' => 'All',
       'title' => '',
       'breadcrumb' => '',
-      'default_argument_type' => 'php',
+      'default_argument_type' => 'user_terms_tid_current',
       'default_argument' => '',
       'validate_type' => 'taxonomy_term',
       'validate_fail' => 'not found',
@@ -337,6 +383,7 @@ return ($result1 < $result2) ? -1 : (($result1 = $result2) ? 0 : 1);',
         '6' => 0,
         '3' => 0,
         '4' => 0,
+        '9' => 0,
         '7' => 0,
         '8' => 0,
         '5' => 0,
@@ -345,22 +392,7 @@ return ($result1 < $result2) ? -1 : (($result1 = $result2) ? 0 : 1);',
       'default_options_div_prefix' => '',
       'default_argument_fixed' => '',
       'default_argument_user' => 0,
-      'default_argument_php' => 'global $user;
-$query = "SELECT tid FROM {term_user} WHERE uid = %d";
-$result = db_query($query, $user->uid);
-if ($result) {
-  $terms = array();
-  while ($term = db_fetch_array($result)) {
-    $terms[] = $term[\'tid\'];
-  }
-  if ($terms) {
-    $termargs = implode("+", $terms);
-    return $termargs;
-  }
-}
-else {
-  return FALSE;
-}',
+      'default_argument_php' => '',
       'validate_argument_node_type' => array(
         'blog' => 0,
         'poll' => 0,
@@ -371,11 +403,10 @@ else {
         'article' => 0,
         'issue' => 0,
         'podcast' => 0,
-        'field' => 0,
-        'node_type' => 0,
         'group' => 0,
         'notice' => 0,
         'page' => 0,
+        'webform' => 0,
       ),
       'validate_argument_node_access' => 0,
       'validate_argument_nid_type' => 'nid',
@@ -403,6 +434,28 @@ else {
       'validate_argument_php' => '',
       'override' => array(
         'button' => 'Override',
+      ),
+      'default_argument_user_terms' => 'cuid',
+      'default_argument_user_terms_tid' => 0,
+      'limit' => 1,
+      'vids' => array(
+        '3' => 3,
+        '4' => 4,
+        '5' => 5,
+        '6' => 6,
+        '2' => 0,
+        '1' => 0,
+      ),
+      'default_argument_user_terms_current' => array(
+        'limit' => 1,
+        'vids' => array(
+          '3' => 3,
+          '4' => 4,
+          '5' => 5,
+          '6' => 6,
+          '2' => 0,
+          '1' => 0,
+        ),
       ),
     ),
   ));
@@ -441,6 +494,7 @@ else {
     'type' => 'none',
   ));
   $handler->override_option('title', 'Recently Updated');
+  $handler->override_option('items_per_page', 5);
   $handler->override_option('style_plugin', 'list');
   $handler->override_option('style_options', array(
     'grouping' => 'field_discussion_article_nid',
@@ -598,7 +652,7 @@ else {
       'wildcard_substitution' => 'All',
       'title' => '',
       'breadcrumb' => '',
-      'default_argument_type' => 'php',
+      'default_argument_type' => 'user_terms_tid',
       'default_argument' => '',
       'validate_type' => 'taxonomy_term',
       'validate_fail' => 'not found',
@@ -616,6 +670,7 @@ else {
         '6' => 0,
         '3' => 0,
         '4' => 0,
+        '9' => 0,
         '7' => 0,
         '8' => 0,
         '5' => 0,
@@ -650,11 +705,10 @@ else {
         'article' => 0,
         'issue' => 0,
         'podcast' => 0,
-        'field' => 0,
-        'node_type' => 0,
         'group' => 0,
         'notice' => 0,
         'page' => 0,
+        'webform' => 0,
       ),
       'validate_argument_node_access' => 0,
       'validate_argument_nid_type' => 'nid',

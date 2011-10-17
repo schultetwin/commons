@@ -54,7 +54,7 @@ function mailhandler_schema() {
       'identifier' => 'mailbox',
       'api' => array(
         'owner' => 'mailhandler',
-        'api' => 'default_mailhandler_mailbox',
+        'api' => 'mailhandler_mailbox',
         'minimum_version' => 1,
         'current_version' => 1,
       ),

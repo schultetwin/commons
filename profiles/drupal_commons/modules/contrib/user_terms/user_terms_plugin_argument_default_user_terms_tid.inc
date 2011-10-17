@@ -108,12 +108,12 @@ class user_terms_plugin_argument_default_user_terms_tid extends views_plugin_arg
     }
 
     if (isset($uid) && $uid != 0) {
-      $user = user_load($uid);
-      if (!empty($user->user_terms)) {
+      $account = user_load($uid);
+      if (!empty($account->user_terms)) {
         if (!empty($this->argument->options[$this->option_name]['limit'])) {
           $tids = array();
           // filter by vid
-          foreach ($user->user_terms as $tid => $term) {
+          foreach ($account->user_terms as $tid => $term) {
             if (!empty($this->argument->options[$this->option_name]['vids'][$term['vid']])) {
               $tids[] = $tid;
             }
@@ -122,7 +122,7 @@ class user_terms_plugin_argument_default_user_terms_tid extends views_plugin_arg
         }
         // Return all tids.
         else {
-          return implode("+", array_keys($user->user_terms));
+          return implode("+", array_keys($account->user_terms));
         }
       }
     }

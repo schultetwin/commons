@@ -236,6 +236,316 @@ return array("node" => $node);',
         ),
         '#version' => 6003,
       ),
+      'rules_article_has_been_accepted' => array(
+        '#type' => 'rule',
+        '#set' => 'event_node_update',
+        '#label' => 'Article has been accepted',
+        '#active' => 1,
+        '#weight' => '-3',
+        '#categories' => array(
+          '0' => 'JRST',
+          'jrst_base' => 'jrst_base',
+        ),
+        '#status' => 'default',
+        '#conditions' => array(
+          '0' => array(
+            '#weight' => -6,
+            '#info' => array(
+              'label' => 'Updated content is published',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'module' => 'Node',
+            ),
+            '#name' => 'rules_condition_content_is_published',
+            '#settings' => array(
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#type' => 'condition',
+          ),
+          '1' => array(
+            '#type' => 'condition',
+            '#settings' => array(
+              'type' => array(
+                'article' => 'article',
+              ),
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#name' => 'rules_condition_content_is_type',
+            '#info' => array(
+              'label' => 'Updated content is Article',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'module' => 'Node',
+            ),
+            '#weight' => -3,
+          ),
+          '2' => array(
+            '#weight' => 0,
+            '#info' => array(
+              'label' => 'Check if content workflow state is (creation), EB Review, Review, Decision',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Node',
+                ),
+              ),
+              'module' => 'Workflow',
+            ),
+            '#name' => 'workflow_check_state',
+            '#settings' => array(
+              'state' => array(
+                '1' => '1',
+                '5' => '5',
+                '2' => '2',
+                '6' => '6',
+              ),
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#type' => 'condition',
+          ),
+          '3' => array(
+            '#weight' => 0,
+            '#type' => 'condition',
+            '#settings' => array(
+              'field_name' => 'field_article_decision',
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+              'value' => array(
+                '0' => array(
+                  'value' => 'Accept',
+                ),
+              ),
+              'code' => '',
+              'vars' => array(),
+              '#eval input' => array(
+                'token_rules_input_evaluator' => array(
+                  'code' => array(
+                    '0' => ':global',
+                  ),
+                  'value|0|value' => array(
+                    '0' => ':global',
+                  ),
+                ),
+              ),
+            ),
+            '#name' => 'content_rules_field_has_value',
+            '#info' => array(
+              'label' => 'Updated content\'s field \'field_article_decision\' has value',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'eval input' => array(
+                '0' => 'code',
+                '1' => 'value|0|value',
+              ),
+              'module' => 'CCK',
+            ),
+          ),
+        ),
+        '#actions' => array(
+          '0' => array(
+            '#weight' => 0,
+            '#info' => array(
+              'module' => 'Workflow',
+              'arguments' => array(
+                'node' => array(
+                  'label' => 'Content',
+                  'type' => 'node',
+                ),
+              ),
+              'label' => 'Change workflow state of content to new state',
+              'base' => 'rules_core_action_execute',
+              'action_name' => 'workflow_select_given_state_action',
+              'configurable' => TRUE,
+            ),
+            '#name' => 'rules_core_workflow_select_given_state_action',
+            '#settings' => array(
+              'target_sid' => '4',
+              'state_name' => 'Published',
+              'force' => 1,
+              'workflow_comment' => 'User manually updated article decision, so %title to %state.',
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#type' => 'action',
+          ),
+        ),
+        '#version' => 6003,
+      ),
+      'rules_decision_is_made' => array(
+        '#type' => 'rule',
+        '#set' => 'event_node_update',
+        '#label' => 'Decision is made',
+        '#active' => 1,
+        '#weight' => '0',
+        '#categories' => array(
+          '0' => 'JRST',
+          'jrst_base' => 'jrst_base',
+        ),
+        '#status' => 'default',
+        '#conditions' => array(
+          '0' => array(
+            '#type' => 'condition',
+            '#settings' => array(
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#name' => 'rules_condition_content_is_published',
+            '#info' => array(
+              'label' => 'Updated content is published',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'module' => 'Node',
+            ),
+            '#weight' => -7,
+          ),
+          '1' => array(
+            '#weight' => -5,
+            '#info' => array(
+              'label' => 'Updated content is Article',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'module' => 'Node',
+            ),
+            '#name' => 'rules_condition_content_is_type',
+            '#settings' => array(
+              'type' => array(
+                'article' => 'article',
+              ),
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#type' => 'condition',
+          ),
+          '3' => array(
+            '#type' => 'condition',
+            '#settings' => array(
+              'state' => array(
+                '1' => '1',
+                '5' => '5',
+                '2' => '2',
+              ),
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#name' => 'workflow_check_state',
+            '#info' => array(
+              'label' => 'Check if content workflow state is (creation), EB Review, Review',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Node',
+                ),
+              ),
+              'module' => 'Workflow',
+            ),
+            '#weight' => -2,
+          ),
+          '2' => array(
+            '#negate' => 1,
+            '#weight' => 5,
+            '#info' => array(
+              'label' => 'Updated content\'s field \'field_article_decision\' has value',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'eval input' => array(
+                '0' => 'code',
+                '1' => 'value|0|value',
+              ),
+              'module' => 'CCK',
+            ),
+            '#name' => 'content_rules_field_has_value',
+            '#settings' => array(
+              'field_name' => 'field_article_decision',
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+              'value' => array(
+                '0' => array(
+                  'value' => '',
+                ),
+              ),
+              'code' => '',
+              'vars' => array(),
+              '#eval input' => array(
+                'token_rules_input_evaluator' => array(
+                  'code' => array(
+                    '0' => ':global',
+                  ),
+                  'value|0|value' => array(
+                    '0' => ':global',
+                  ),
+                ),
+              ),
+            ),
+            '#type' => 'condition',
+          ),
+        ),
+        '#actions' => array(
+          '0' => array(
+            '#weight' => 0,
+            '#info' => array(
+              'module' => 'Workflow',
+              'arguments' => array(
+                'node' => array(
+                  'label' => 'Content',
+                  'type' => 'node',
+                ),
+              ),
+              'label' => 'Change workflow state of content to new state',
+              'base' => 'rules_core_action_execute',
+              'action_name' => 'workflow_select_given_state_action',
+              'configurable' => TRUE,
+            ),
+            '#name' => 'rules_core_workflow_select_given_state_action',
+            '#settings' => array(
+              'target_sid' => '6',
+              'state_name' => 'Decision',
+              'force' => 1,
+              'workflow_comment' => 'Decision detected, so assigning %title to %state.',
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#type' => 'action',
+          ),
+        ),
+        '#version' => 6003,
+      ),
       'rules_send_mail_when_eb_reviewer_assigned' => array(
         '#type' => 'rule',
         '#set' => 'event_node_update',

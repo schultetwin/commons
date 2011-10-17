@@ -1,6 +1,6 @@
 ; $Id: fusion_starter.info 7101 2010-04-08 06:51:41Z chris $
 
-name = JRST Theme 
+name = JRST Theme is this it? 
 description = Built of the Commons origin theme.
 base theme = commons_roots
 core = 6.x

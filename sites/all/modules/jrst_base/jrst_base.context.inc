@@ -64,6 +64,12 @@ function jrst_base_context_default_contexts() {
           'region' => 'sidebar_last',
           'weight' => 0,
         ),
+        'block-3' => array(
+          'module' => 'block',
+          'delta' => 3,
+          'region' => 'content_bottom',
+          'weight' => 0,
+        ),
       ),
     ),
   );

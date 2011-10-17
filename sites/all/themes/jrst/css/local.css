@@ -1,16 +1,90 @@
+/* @override http://irmse.ejrst.net/sites/all/themes/jrst/css/local.css */
+
 /* $Id: local-sample.css 6555 2010-02-24 20:21:15Z chris $ */
 
 /****************************/
 /* LOCAL CSS                */
 /****************************/
 
-/* Put your custom CSS and CSS overrides in this file and  */
-/* rename it local.css.  By restricting your CSS changes   */
-/* to local.css, your changes will not be overwritten when */
-/* upgrading to a new version of this theme.  You can also */
-/* use a local-rtl.css file for the equivalent in RTL.     */
+/* Custom overrides of base theme for IRMSE */
+a, a:link, a:visited{
+	color: maroon;
+}
 
-/* Steps to activate local.css:                       */
-/* 1. Add your custom CSS to this file                */
-/* 2. Rename this file to local.css                   */
-/* 3. Clear cached data at admin/settings/performance */
+.node .inner .links li > a{
+	color: maroon;
+}
+.nav-group{
+	background-color: #333;
+}
+.header-group{
+	background-color: maroon;
+}
+
+#logo img {
+}
+
+.header-region.block{
+	color: silver;
+}
+
+.header-region.block a{
+	color: white;
+}
+
+.header-region .view-user-meta .views-field-name span.username a{
+	color: white;
+}
+
+.header-site-info.block{
+	margin-bottom: 5px;
+}
+
+.primary-menu-inner ul.sf-menu a,.primary-menu-inner ul.sf-menu a:visited {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+.contextual-search-wrapper .contextual-search-launcher, .contextual-search-processed .contextual-search-wrapper ul.contextual-search-list li a {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+h1 {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+h1.title{
+	color: maroon;
+}
+
+h2 {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	font-variant: small-caps;
+	font-weight: bold;
+}
+
+.sidebar-last .block h2.block-title, .sidebar-first .block h2.block-title {
+	font-size: 1.4em;
+	background-color: #F0e0e0;
+}
+
+.sidebar-last .block .inner, .sidebar-first .block .inner {
+	border-color: #a08080;
+}
+
+body {
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.font-size-12 {
+	font-size: 85%;
+}
+
+.submitted {
+	background-color: #eee;
+	border-color: #a08080;
+}
+
+.footer {
+	background-color: #555;
+	background-image: none;
+}

@@ -1422,6 +1422,8 @@ EB Reviewer: [field_article_eb_reviewer_uid]',
     'type' => 'none',
   ));
   $handler->override_option('title', 'Master Article List');
+  $handler->override_option('empty', 'No Manuscripts Found');
+  $handler->override_option('empty_format', '1');
   $handler->override_option('use_pager', '1');
   $handler->override_option('style_plugin', 'table');
   $handler->override_option('style_options', array(
@@ -1495,11 +1497,11 @@ EB Reviewer: [field_article_eb_reviewer_uid]',
     'name' => 'navigation',
   ));
   $handler->override_option('tab_options', array(
-    'type' => 'none',
-    'title' => '',
-    'description' => '',
-    'weight' => 0,
-    'name' => 'navigation',
+    'type' => 'normal',
+    'title' => 'Manuscript Tracking',
+    'description' => 'List of Manuscripts',
+    'weight' => '0',
+    'name' => 'primary-links',
   ));
   $handler = $view->new_display('page', '"My" Articles', 'page_2');
   $handler->override_option('relationships', array(
@@ -2086,22 +2088,6 @@ EB Reviewer: [field_article_eb_reviewer_uid]',
     'title' => 'Abandoned',
     'description' => '',
     'weight' => '2',
-    'name' => 'navigation',
-  ));
-  $handler->override_option('tab_options', array(
-    'type' => 'none',
-    'title' => '',
-    'description' => '',
-    'weight' => 0,
-    'name' => 'navigation',
-  ));
-  $handler = $view->new_display('page', 'Page', 'page_4');
-  $handler->override_option('path', 'manuscripts');
-  $handler->override_option('menu', array(
-    'type' => 'none',
-    'title' => '',
-    'description' => '',
-    'weight' => 0,
     'name' => 'navigation',
   ));
   $handler->override_option('tab_options', array(

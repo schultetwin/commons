@@ -30,12 +30,13 @@ class MailhandlerCommandsJRST extends MailhandlerCommandsDefault {
         // Looks like a name: value pair
         $commands[$i] = explode(': ', $line, 2);
         if ($commands[$i][0] == 'document_title') {
-          $next_line = $lines[$i+1];
-          $nl_words = explode(' ', $next_line);
-          if (!drupal_substr($nl_words[0], -1) == ':' && !isset($endcommands)) {
-            $commands[$i][1] .= ' ' . $next_line;
-            unset($lines[$i+1]);
+          $nl_words = explode(' ', $lines[$i+1]);
+          while(drupal_substr($nl_words[0], -1) != ':') {
+            // Append the next line to the title, then remove it
+            $commands[$i][1] .= ' ' . $lines[$i+1];
+            // Increment i, then explode the next line.
             $i++;
+            $nl_words = explode(' ', $lines[$i+1]);
           }
         }
       }
@@ -46,6 +47,6 @@ class MailhandlerCommandsJRST extends MailhandlerCommandsDefault {
       }
     }
     $message['origbody'] = implode("\n", array_slice($lines, $endcommands));
-    $this->commands = $commands;
+    $this->commands = array_values($commands);
   }
 }

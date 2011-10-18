@@ -243,6 +243,8 @@ function jrst_custom_profile_views_default_views() {
     'type' => 'none',
   ));
   $handler->override_option('title', 'My Discussions');
+  $handler->override_option('empty', 'You aren\'t following anything in this category!');
+  $handler->override_option('empty_format', '1');
   $handler->override_option('use_more', 0);
   $handler->override_option('use_more_always', 0);
   $handler->override_option('style_plugin', 'list');
@@ -290,7 +292,7 @@ function jrst_custom_profile_views_default_views() {
   ));
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
-  $handler = $view->new_display('block', 'Block', 'block_3');
+  $handler = $view->new_display('block', 'Discussions Followed by user', 'block_3');
   $handler->override_option('filters', array(
     'status' => array(
       'operator' => '=',

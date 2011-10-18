@@ -1,4 +1,7 @@
-/* @override http://irmse.ejrst.net/sites/all/themes/jrst/css/local.css */
+/* @override 
+	http://irmse.ejrst.net/sites/all/themes/jrst/css/local.css
+	http://dev.ejrst.net/sites/all/themes/jrst/css/local.css
+*/
 
 /* $Id: local-sample.css 6555 2010-02-24 20:21:15Z chris $ */
 
@@ -89,23 +92,43 @@ body {
 	background-image: none;
 }
 
-/* For follow link, to beautify it*/
-.jrst-notification-follow a.flag {
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
-  background: #9fc748;
-  padding: 0.643em 1.5em;
-  font-size: 1.077em;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-.jrst-notification-follow a:hover.flag {
-  background: black;
+.contextual-search-wrapper .contextual-search-launcher, .contextual-search-processed .contextual-search-wrapper ul.contextual-search-list {
+	font-size: .9em;
+	height: 16px;
+	padding-top: 3px;
 }
 
-.jrst-notification-follow a.unflag-action {
-  background: #eee;
-  color: #0678BE;
+.node-type-article h1 {
+	font-size: 180%;
+}
+
+.node .inner .terms ul li, .node .inner .links ul li{
+	background: none;
+	padding: 0px 5px 0px 5px;
+	font: .9em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+.node .inner ul{
+	padding-left: 0;
+}
+
+.node .inner .terms .first{
+	padding-left: 0;
+}
+
+ul.tabs.primary, #content-tabs{
+	margin-bottom: 10px;
+}
+
+legend{
+	font: .9em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	color: maroon;
+}
+
+.header-region-inner .imagecache-user_picture_meta{
+	display: none;
+}
+
+.header-region-inner span.username{
+	margin-bottom: 10px;
 }

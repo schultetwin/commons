@@ -11,6 +11,7 @@
  * Provides a one time link for denying user reference
  * Highly based on user module one time login
  */
+/**
 function jrst_custom_menu() {
   // Args, nid, timestamp, hashed password (salted),
   // password_hash a security flaw?
@@ -23,6 +24,7 @@ function jrst_custom_menu() {
 
   return $items;
 }
+ */
 
 /**
  * Implementation of hook_block().

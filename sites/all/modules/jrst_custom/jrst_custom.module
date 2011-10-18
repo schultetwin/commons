@@ -67,7 +67,7 @@ function jrst_custom_flag_default_flags() {
     'unflag_short' => 'Following',
     'unflag_long' => 'Unfollow',
     'unflag_message' => '',
-    'show_on_page' => TRUE,
+    'show_on_page' => FALSE,
     'show_on_teaser' => FALSE,
     'show_on_form' => FALSE,
     'status' => TRUE,

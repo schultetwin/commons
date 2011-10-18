@@ -391,6 +391,291 @@ return array("node" => $node);',
         ),
         '#version' => 6003,
       ),
+      'rules_auto_follow_by_author' => array(
+        '#type' => 'rule',
+        '#set' => 'event_node_presave',
+        '#label' => 'Auto Follow By Author',
+        '#active' => 1,
+        '#weight' => '0',
+        '#categories' => array(
+          '0' => 'JRST',
+          'jrst_base' => 'jrst_base',
+        ),
+        '#status' => 'default',
+        '#conditions' => array(
+          '0' => array(
+            '#weight' => 0,
+            '#negate' => 1,
+            '#info' => array(
+              'label' => 'Article Has No Author',
+              'label callback' => FALSE,
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'eval input' => array(
+                '0' => 'code',
+                '1' => 'value|0|uid',
+              ),
+              'module' => 'CCK',
+            ),
+            '#name' => 'content_rules_field_has_value',
+            '#settings' => array(
+              'field_name' => 'field_article_author',
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+              'value' => array(
+                '0' => array(
+                  'uid' => '',
+                ),
+              ),
+              'code' => '',
+              'vars' => array(),
+              '#eval input' => array(
+                'token_rules_input_evaluator' => array(
+                  'code' => array(
+                    '0' => ':global',
+                  ),
+                  'value|0|uid' => array(
+                    '0' => ':global',
+                  ),
+                ),
+              ),
+            ),
+            '#type' => 'condition',
+          ),
+        ),
+        '#actions' => array(
+          '0' => array(
+            '#type' => 'action',
+            '#settings' => array(
+              'field' => 'field_article_author',
+              '#argument map' => array(
+                'node' => 'node',
+                'referenced_user' => 'article_author',
+              ),
+            ),
+            '#name' => 'userreference_rules_action_load',
+            '#info' => array(
+              'label' => 'Load referenced Author',
+              'label callback' => FALSE,
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content containing the user reference field',
+                ),
+              ),
+              'new variables' => array(
+                'article_author' => array(
+                  'label' => 'Article Author',
+                  'label callback' => FALSE,
+                  'type' => 'user',
+                ),
+              ),
+              'module' => 'CCK',
+            ),
+            '#weight' => 0,
+          ),
+          '1' => array(
+            '#weight' => 0,
+            '#info' => array(
+              'label' => 'Flag saved content, under "Follow/Unfollow"',
+              'base' => 'flag_rules_action_flag',
+              'label callback' => 'flag_rules_action_flag_label',
+              'arguments' => array(
+                'flag' => array(
+                  'type' => 'flag',
+                  'label' => 'Flag',
+                  'flag_type' => 'node',
+                ),
+                'object' => array(
+                  'type' => 'node',
+                  'label' => 'Flagged content',
+                ),
+                'flagging_user' => array(
+                  'type' => 'user',
+                  'label' => 'User on whose behalf to flag',
+                  'description' => 'For non-global flags, this is the user on whose behalf to flag the object. In addition, if checked below, the access permissions to the flag are checked against this user.',
+                ),
+              ),
+              'module' => 'Flag',
+            ),
+            '#name' => 'flag_rules_action_flag_node',
+            '#settings' => array(
+              'flag' => 'follow',
+              'permission_check' => 1,
+              '#argument map' => array(
+                'object' => 'node',
+                'flagging_user' => 'article_author',
+              ),
+            ),
+            '#type' => 'action',
+          ),
+        ),
+        '#version' => 6003,
+      ),
+      'rules_auto_follow_by_comment' => array(
+        '#type' => 'rule',
+        '#set' => 'event_comment_insert',
+        '#label' => 'Auto Follow By Comment',
+        '#active' => 1,
+        '#weight' => '0',
+        '#categories' => array(
+          '0' => 'JRST',
+          'jrst_base' => 'jrst_base',
+        ),
+        '#status' => 'default',
+        '#conditions' => array(
+          '0' => array(
+            '#settings' => array(
+              'flag' => 'follow',
+              '#argument map' => array(
+                'object' => 'node',
+                'user' => 'comment_author',
+              ),
+            ),
+            '#type' => 'condition',
+            '#name' => 'flag_rules_condition_flagged_node',
+            '#info' => array(
+              'label' => 'Flag "Follow/Unfollow" is flagged, for commented content',
+              'base' => 'flag_rules_condition_flagged',
+              'label callback' => 'flag_rules_condition_flagged_label',
+              'arguments' => array(
+                'flag' => array(
+                  'type' => 'flag',
+                  'label' => 'Flag',
+                  'flag_type' => 'node',
+                ),
+                'object' => array(
+                  'type' => 'node',
+                  'label' => 'Flagged content',
+                ),
+                'user' => array(
+                  'type' => 'user',
+                  'label' => 'User on whose behalf to check',
+                  'description' => 'For non-global flags, this is the user on whose behalf the flag is checked.',
+                ),
+              ),
+              'module' => 'Flag',
+            ),
+            '#weight' => 0,
+            '#negate' => 1,
+          ),
+        ),
+        '#actions' => array(
+          '0' => array(
+            '#weight' => 0,
+            '#info' => array(
+              'label' => 'Flag commented content, under "Follow/Unfollow"',
+              'base' => 'flag_rules_action_flag',
+              'label callback' => 'flag_rules_action_flag_label',
+              'arguments' => array(
+                'flag' => array(
+                  'type' => 'flag',
+                  'label' => 'Flag',
+                  'flag_type' => 'node',
+                ),
+                'object' => array(
+                  'type' => 'node',
+                  'label' => 'Flagged content',
+                ),
+                'flagging_user' => array(
+                  'type' => 'user',
+                  'label' => 'User on whose behalf to flag',
+                  'description' => 'For non-global flags, this is the user on whose behalf to flag the object. In addition, if checked below, the access permissions to the flag are checked against this user.',
+                ),
+              ),
+              'module' => 'Flag',
+            ),
+            '#name' => 'flag_rules_action_flag_node',
+            '#settings' => array(
+              'flag' => 'follow',
+              'permission_check' => 1,
+              '#argument map' => array(
+                'object' => 'node',
+                'flagging_user' => 'comment_author',
+              ),
+            ),
+            '#type' => 'action',
+          ),
+        ),
+        '#version' => 6003,
+      ),
+      'rules_auto_follow_by_creation' => array(
+        '#type' => 'rule',
+        '#set' => 'event_node_insert',
+        '#label' => 'Auto Follow By Creation',
+        '#active' => 1,
+        '#weight' => '0',
+        '#categories' => array(
+          '0' => 'JRST',
+          'jrst_base' => 'jrst_base',
+        ),
+        '#status' => 'default',
+        '#conditions' => array(
+          '0' => array(
+            '#type' => 'condition',
+            '#settings' => array(
+              '#argument map' => array(
+                'node' => 'node',
+              ),
+            ),
+            '#name' => 'rules_condition_content_is_new',
+            '#info' => array(
+              'label' => 'Created content is new',
+              'arguments' => array(
+                'node' => array(
+                  'type' => 'node',
+                  'label' => 'Content',
+                ),
+              ),
+              'module' => 'Node',
+            ),
+            '#weight' => 0,
+          ),
+        ),
+        '#actions' => array(
+          '0' => array(
+            '#weight' => 0,
+            '#info' => array(
+              'label' => 'Flag created content, under "Follow/Unfollow"',
+              'base' => 'flag_rules_action_flag',
+              'label callback' => 'flag_rules_action_flag_label',
+              'arguments' => array(
+                'flag' => array(
+                  'type' => 'flag',
+                  'label' => 'Flag',
+                  'flag_type' => 'node',
+                ),
+                'object' => array(
+                  'type' => 'node',
+                  'label' => 'Flagged content',
+                ),
+                'flagging_user' => array(
+                  'type' => 'user',
+                  'label' => 'User on whose behalf to flag',
+                  'description' => 'For non-global flags, this is the user on whose behalf to flag the object. In addition, if checked below, the access permissions to the flag are checked against this user.',
+                ),
+              ),
+              'module' => 'Flag',
+            ),
+            '#name' => 'flag_rules_action_flag_node',
+            '#settings' => array(
+              'flag' => 'follow',
+              'permission_check' => 1,
+              '#argument map' => array(
+                'object' => 'node',
+                'flagging_user' => 'author',
+              ),
+            ),
+            '#type' => 'action',
+          ),
+        ),
+        '#version' => 6003,
+      ),
       'rules_decision_is_made' => array(
         '#type' => 'rule',
         '#set' => 'event_node_update',

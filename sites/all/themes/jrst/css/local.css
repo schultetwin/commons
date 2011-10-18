@@ -89,3 +89,23 @@ body {
 	background-image: none;
 }
 
+/* For follow link, to beautify it*/
+.jrst-notification-follow a.flag {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background: #9fc748;
+  padding: 0.643em 1.5em;
+  font-size: 1.077em;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+.jrst-notification-follow a:hover.flag {
+  background: black;
+}
+
+.jrst-notification-follow a.unflag-action {
+  background: #eee;
+  color: #0678BE;
+}

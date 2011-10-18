@@ -33,6 +33,8 @@ features[] = favicon
 features[] = primary_links
 features[] = secondary_links
 
+scripts[] = js/jrst_script.js
+
 ; Default theme settings
 settings[theme_grid] = grid16-960
 settings[theme_grid_options][] = grid16-960

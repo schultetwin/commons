@@ -42,5 +42,6 @@ function jrst_admin_context_default_contexts() {
   t('Blocks for Admins');
   t('JRST');
 
+  $export['jrst_front_page_admin'] = $context;
   return $export;
 }

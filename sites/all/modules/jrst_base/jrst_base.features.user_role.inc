@@ -21,6 +21,11 @@ function jrst_base_user_default_roles() {
     'name' => 'authenticated user',
   );
 
+  // Exported role: eb_member
+  $roles['eb_member'] = array(
+    'name' => 'eb_member',
+  );
+
   // Exported role: editor
   $roles['editor'] = array(
     'name' => 'editor',

@@ -43,6 +43,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
 
       return $blocks;
     case 'view':
+      $block = array();
       switch ($delta) {
         case 'follow_block':
           $output = '<div class="jrst-notification-follow">';
@@ -51,8 +52,8 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           $block['content'] = $output;
           break;
         case 'import_now':
+	  $block['subject'] = t('Import Now');
           $block['content'] = l(t('Import Now'), 'import/mail_impor');
-          $block['subject'] = t('Import Now');
 
           break;
         return $block;
@@ -198,3 +199,4 @@ function jrst_custom_link($type, $object, $teaser = FALSE) {
   }
   return $links;
 }
+

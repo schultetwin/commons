@@ -1,6 +1,8 @@
 core = "6.x"
 dependencies[] = "context"
+dependencies[] = "jrst_custom"
 description = "Jrst Admin Features"
+features[context][] = "jrst_front_page_admin"
 features[context][] = "jrst_misc"
 features[ctools][] = "context:context:3"
 name = "JRST Admin"

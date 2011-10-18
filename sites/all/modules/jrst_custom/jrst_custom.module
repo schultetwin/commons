@@ -34,6 +34,10 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
         'info' => t('Follow/Unfollow Block'),
         'cache' => BLOCK_NO_CACHE,
       );
+      $blocks['import_now'] = array(
+        'info' => t('JRST: Import Now'),
+        'cache' => BLOCK_CACHE_PER_ROLE,
+      );
 
       return $blocks;
     case 'view':
@@ -43,8 +47,13 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           $output .= flag_create_link('follow', arg(1));
           $output .= '</div>';
           $block['content'] = $output;
+          break;
+        case 'import_now':
+          $block['content'] = l(t('Import Now'), '/import/mail_impor');
+          $block['subject'] = t('Import Now');
 
-          return $block;
+          break;
+        return $block;
       }
   }
 }

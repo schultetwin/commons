@@ -1,0 +1,115 @@
+<?php 
+// $Id: workflow_features.module, 2011/05/30 10:20:23 Stephen.Shi Exp $
+
+/**
+ * Implementation of hook_features_api().
+ */
+function workflow_features_features_api() {
+	return array(
+		'dy_workflow' => array(
+			'name' => t('Workflow'),
+			'default_hook' => 'features_default_workflow',
+			'features_source' => TRUE,
+			'default_file' => FEATURES_DEFAULTS_INCLUDED,	
+			'file' => drupal_get_path('module', 'workflow_features') . '/workflow_features.features.inc',
+		),
+		'dy_workflow_field' => array(
+			'name' => t('Workflow Field'),
+			'default_hook' => 'features_default_workflowfield',
+			'features_source' => TRUE,
+			'default_file' => FEATURES_DEFAULTS_INCLUDED,	
+			'file' => drupal_get_path('module', 'workflow_features') . '/workflow_features.features.inc',
+		),
+		'dy_workflow_enable' => array(
+			'name' => t('Workflow Module Enable'),
+			'feature_source' => FALSE,
+			'default_hook' => 'enable',
+			'duplicates' => FEATURES_DUPLICATES_ALLOWED,
+			'file' => drupal_get_path('module', 'workflow_features') . '/workflow_features.features.inc',
+		)
+	);
+}
+
+function workflow_features_enable_feature(){
+	//module_load_include('inc', 'features', 'features.export');	
+	if ($defaults = features_get_default('dy_workflow', $module)) {
+		foreach($defaults as $w_name => $states){
+			$wid = '';
+			$wid = db_result(db_query("SELECT wid FROM {workflows} WHERE name = '%s'", $w_name));
+			
+			if(empty($wid)){
+				//TODO: Add new workflow first
+				$workflow = array(
+			    'name' => $w_name,
+			    'options' => serialize(array('comment_log_node' => 1, 'comment_log_tab' => 1)),
+				);
+				drupal_write_record('workflows', $workflow);
+				watchdog('workflow', 'Created workflow %name', array('%name' => $w_name));
+				menu_rebuild();
+
+				if(!empty($workflow['wid'])){
+					foreach($states['type_map'] as $type){
+						db_query("INSERT INTO {workflow_type_map} (type, wid) VALUES ('%s', %d)", $type, $workflow['wid']);	//Add workflow type map
+					}
+					unset($states['type_map']);
+					_dy_workflow_add_new_states($workflow['wid'], $w_name, $states);
+				}
+			}
+		}
+	}
+
+	if($workflow_field_defaults = features_get_default('dy_workflow_field', $module)){
+		foreach($workflow_field_defaults as $w_name => $states){
+			$wid = '';
+			$wid = db_result(db_query("SELECT wid FROM {workflows} WHERE name = '%s'", $w_name));
+		
+			if(!empty($wid)){
+				$current_states = workflow_get_states($wid);
+				$current_sids = array_keys($current_states);
+				$result = db_query("SELECT sid FROM {workflow_fields} WHERE sid IN (%s) GROUP BY sid", count($current_sids)>0 ? implode(',', $current_sids) : 0);
+				while($sid = db_fetch_object($result)){
+					unset($states[$current_states[$sid->sid]]);
+				}
+				
+				_dy_workflow_field_add_new_access($wid, $w_name, $states);
+			}
+		}
+	}
+	
+	if($workflow_field_defaults = features_get_default('workflow_uref_access', $module)){
+		foreach($workflow_field_defaults as $w_name => $states){
+			$wid = '';
+			$wid = db_result(db_query("SELECT wid FROM {workflows} WHERE name = '%s'", $w_name));
+		
+			if(!empty($wid)){
+				$current_states = workflow_get_states($wid);
+				$current_sids = array_keys($current_states);
+				$result = db_query("SELECT sid FROM {workflow_userreference_access} WHERE sid IN (%s) GROUP BY sid", count($current_sids)>0 ? implode(',', $current_sids) : 0);
+				while($sid = db_fetch_object($result)){
+					unset($states[$current_states[$sid->sid]]);
+				}
+				
+				_workflow_uref_access_add_new_access($wid, $w_name, $states);
+			}
+		}
+	}	
+	
+	if($workflow_field_defaults = features_get_default('workflow_trans_access', $module)){
+		foreach($workflow_field_defaults as $w_name => $states){
+			$wid = '';
+			$wid = db_result(db_query("SELECT wid FROM {workflows} WHERE name = '%s'", $w_name));
+		
+			if(!empty($wid)){
+				$current_states = workflow_get_states($wid);
+				$current_sids = array_keys($current_states);
+				$result = db_query("SELECT sid FROM {workflow_transitions_access} WHERE sid IN (%s) GROUP BY sid", count($current_sids)>0 ? implode(',', $current_sids) : 0);
+				while($sid = db_fetch_object($result)){
+					unset($states[$current_states[$sid->sid]]);
+				}
+				
+				_workflow_trans_access_add_new_access($wid, $w_name, $states);
+			}
+		}
+	}		
+	
+}

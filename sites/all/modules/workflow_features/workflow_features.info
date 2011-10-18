@@ -1,0 +1,8 @@
+; $Id: workflow_features.info
+name = "Workflow Features"
+description = "Workflow features"
+dependencies[] = workflow
+dependencies[] = workflow_access
+core = 6.x
+version = "6.x-1.0"
+package = "Workflow"

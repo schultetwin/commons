@@ -51,7 +51,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           $block['content'] = $output;
           break;
         case 'import_now':
-          $block['content'] = l(t('Import Now'), '/import/mail_impor');
+          $block['content'] = l(t('Import Now'), 'import/mail_impor');
           $block['subject'] = t('Import Now');
 
           break;

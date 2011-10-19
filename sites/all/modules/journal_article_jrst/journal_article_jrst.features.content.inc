@@ -1493,7 +1493,8 @@ Production',
     'code' => '$wiley_id = $node->field_article_wiley_id[0][\'value\'];
 if (isset($wiley_id)) {
   $wiley_id = strtolower($wiley_id);
-  $link = \'http://onlinelibrary.wiley.com/journal/10.1002/\' . $wiley_id . \'/abstract\';
+  $wiley_id = substr_replace($wiley_id , \'.\', 3, 0)
+  $link = \'http://onlinelibrary.wiley.com/doi/10.1002/\' . $wiley_id . \'/abstract\';
   $node_field[0][\'value\'] = $link;
 }
 else {
@@ -1509,11 +1510,6 @@ else {
     'widget' => array(
       'default_value' => NULL,
       'default_value_php' => NULL,
-      'label' => 'Wiley Link',
-      'weight' => '41',
-      'description' => '',
-      'type' => 'computed',
-      'module' => 'computed_field',
       'roles' => array(
         '1' => 0,
         '2' => 0,
@@ -1525,6 +1521,11 @@ else {
         '8' => 0,
         '5' => 0,
       ),
+      'label' => 'Wiley Link',
+      'weight' => '41',
+      'description' => '',
+      'type' => 'computed',
+      'module' => 'computed_field',
     ),
   );
 

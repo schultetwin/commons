@@ -82,7 +82,7 @@ function journal_article_jrst_content_default_fields() {
     'field_name' => 'field_article_author',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '41',
+      'weight' => '42',
       'parent' => 'group_article_publish',
       'label' => array(
         'format' => 'inline',
@@ -265,7 +265,7 @@ $node_field[0][\'value\'] = $output;',
     'field_name' => 'field_article_coauthor',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '42',
+      'weight' => '43',
       'parent' => 'group_article_publish',
       'label' => array(
         'format' => 'above',
@@ -1392,8 +1392,8 @@ Production',
     'field_name' => 'field_article_wiley_id',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '49',
-      'parent' => 'group_article_basic',
+      'weight' => '41',
+      'parent' => 'group_article_publish',
       'label' => array(
         'format' => 'inline',
       ),
@@ -1402,7 +1402,7 @@ Production',
         'exclude' => 1,
       ),
       'full' => array(
-        'format' => 'default',
+        'format' => 'jrst_custom_wiley_link',
         'exclude' => 0,
       ),
       '4' => array(
@@ -1443,89 +1443,10 @@ Production',
       ),
       'default_value_php' => NULL,
       'label' => 'Wiley Id',
-      'weight' => '49',
+      'weight' => '41',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_article_wiley_link
-  $fields['article-field_article_wiley_link'] = array(
-    'field_name' => 'field_article_wiley_link',
-    'type_name' => 'article',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'computed',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'computed_field',
-    'active' => '1',
-    'code' => '$wiley_id = $node->field_article_wiley_id[0][\'value\'];
-if (isset($wiley_id)) {
-  $wiley_id = strtolower($wiley_id);
-  $wiley_id = substr_replace($wiley_id , ".", 3, 0);
-  $link = \'http://onlinelibrary.wiley.com/doi/10.1002/\' . $wiley_id . \'/abstract\';
-  $node_field[0][\'value\'] = $link;
-}
-else {
-  $node_field[0][\'value\'] = "";
-}',
-    'display_format' => '$display = \'<a href="\' . $node_field_item[\'value\'] . \'">\' . $node_field_item[\'value\'] . \'</a>\';',
-    'store' => 1,
-    'data_type' => 'varchar',
-    'data_length' => '255',
-    'data_not_NULL' => 0,
-    'data_default' => '',
-    'data_sortable' => 0,
-    'widget' => array(
-      'default_value' => NULL,
-      'default_value_php' => NULL,
-      'roles' => array(
-        '1' => 0,
-        '2' => 0,
-        '6' => 0,
-        '3' => 0,
-        '4' => 0,
-        '9' => 0,
-        '7' => 0,
-        '8' => 0,
-        '5' => 0,
-      ),
-      'label' => 'Wiley Link',
-      'weight' => '41',
-      'description' => '',
-      'type' => 'computed',
-      'module' => 'computed_field',
     ),
   );
 
@@ -1909,7 +1830,6 @@ else {
   t('Type');
   t('Volume');
   t('Wiley Id');
-  t('Wiley Link');
 
   return $fields;
 }

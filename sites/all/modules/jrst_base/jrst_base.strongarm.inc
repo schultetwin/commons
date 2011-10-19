@@ -393,6 +393,7 @@ function jrst_base_strongarm() {
     'og' => TRUE,
     'og_members_block' => TRUE,
     'og_my' => TRUE,
+    'taxonomy_term' => FALSE,
   );
 
   $export['views_defaults'] = $strongarm;

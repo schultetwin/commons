@@ -9,7 +9,10 @@ function jrst_preprocess_node(&$vars) {
     $vars['node_top'] .= '</div>';
   }
 
-  if ($vars['node']->type == 'article') {
+  if ($vars['node']->type == 'article' || $vars['node']->type == 'issue') {
     unset($vars['submitted']);
+  }
+  if ($vars['#node']->type == 'issue' && $vars['#node']->field_issue_special[0]['value']) {
+    $vars['special_date'] = $vars['#node']->field_issue_pub_date[0]['view'];
   }
 }

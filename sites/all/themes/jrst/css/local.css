@@ -196,3 +196,16 @@ legend{
 #view-id-frontpage_jrst-page_1 .view-frontpage-issue-showcase .views-row::after {
   clear: none;
 }
+
+/* Issue Page Theming */
+.content .node-type-issue .field-field-issue-cover {
+  float:right;
+}
+
+.content .node-type-issue .view-article-by-issue {
+  display: inline;
+}
+
+.content .node-type-issue li.views-row::after {
+  clear: none !important;
+}

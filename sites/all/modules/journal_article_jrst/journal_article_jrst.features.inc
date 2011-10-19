@@ -23,6 +23,29 @@ function journal_article_jrst_ctools_plugin_api() {
 }
 
 /**
+ * Implementation of hook_imagecache_default_presets().
+ */
+function journal_article_jrst_imagecache_default_presets() {
+  $items = array(
+    'issue_main_page' => array(
+      'presetname' => 'issue_main_page',
+      'actions' => array(
+        '0' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_scale_and_crop',
+          'data' => array(
+            'width' => '300',
+            'height' => '350',
+          ),
+        ),
+      ),
+    ),
+  );
+  return $items;
+}
+
+/**
  * Implementation of hook_node_info().
  */
 function journal_article_jrst_node_info() {
@@ -44,8 +67,8 @@ function journal_article_jrst_node_info() {
       'description' => t('A issue is a collection of articles published on a somewhat regular schedule'),
       'has_title' => '1',
       'title_label' => t('Title'),
-      'has_body' => '1',
-      'body_label' => t('Issue Overview'),
+      'has_body' => '0',
+      'body_label' => '',
       'min_word_count' => '0',
       'help' => '',
     ),

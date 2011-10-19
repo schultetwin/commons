@@ -72,7 +72,6 @@ class video_helper {
     // Moved to last to recheck incase we changed our extension above.
     $video->flash_player = variable_get('video_extension_' . $video->player . '_flash_player', '');
     $video->html5_player = variable_get('video_extension_' . $video->player . '_html5_player', '');
-
     // Return our object
     return $video;
   }
@@ -102,6 +101,9 @@ class video_helper {
     if (isset($element['imagecache_preset'])) {
       $thumbnail->url = imagecache_create_url($element['imagecache_preset'], $thumbnail->filepath);
       $thumbnail->filepath = imagecache_create_path($element['imagecache_preset'], $thumbnail->filepath);
+    }
+    elseif($thumbnail->filepath == '') {
+      $thumbnail->url = '';
     } else {
       $thumbnail->url = file_create_url($thumbnail->filepath);
     }

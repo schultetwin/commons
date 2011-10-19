@@ -93,6 +93,51 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
 }
 
 /**
+ * Implementation of hook_theme().
+ */
+function jrst_custom_theme() {
+  $theme_functions = array();
+
+  $formatters = array(
+    'jrst_custom_wiley_link',
+  );
+  foreach ($formatters as $formatter) {
+    $theme_functions[$formatter] = array(
+      'arguments' => array('field' => NULL),
+    );
+  }
+
+  return $theme_functions;
+}
+
+function theme_jrst_custom_wiley_link($field) {
+  dsm($field);
+  $wiley_id = $field;
+  if (isset($wiley_id)) {
+    $wiley_id = strtolower($wiley_id);
+    $wiley_id = substr_replace($wiley_id , ".", 3, 0);
+    $link = 'http://onlinelibrary.wiley.com/doi/10.1002/' . $wiley_id . '/abstract';
+    return l($link, $link);
+  }
+  else {
+    $node_field[0]['value'] = "";
+  }
+}
+
+/**
+ * Implementation of hook_field_formatter_info(),.
+ */
+function jrst_custom_field_formatter_info() {
+  return array(
+    'jrst_custom_wiley_link' => array(
+      'label' => t('Wiley Link'),
+      'field types' => array('text'),
+      'multiple values' => CONTENT_HANDLE_MODULE,
+    ),
+  );
+}
+
+/**
  * Implementation of hook_flag_default_flags().
  */
 function jrst_custom_flag_default_flags() {

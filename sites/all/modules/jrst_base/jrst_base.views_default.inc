@@ -130,7 +130,7 @@ function jrst_base_views_default_views() {
         'target' => '',
         'help' => '',
         'trim' => 1,
-        'max_length' => '750',
+        'max_length' => '650',
         'word_boundary' => 1,
         'ellipsis' => 1,
         'html' => 0,
@@ -144,6 +144,24 @@ function jrst_base_views_default_views() {
       'table' => 'node_revisions',
       'field' => 'body',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'field_issue_pub_date_value' => array(
+      'exposed' => FALSE,
+      'order' => 'DESC',
+      'identifier' => 'unsorted',
+      'delta' => -1,
+      'id' => 'field_issue_pub_date_value',
+      'table' => 'node_data_field_issue_pub_date',
+      'field' => 'field_issue_pub_date_value',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
   ));
   $handler->override_option('filters', array(
@@ -178,7 +196,7 @@ function jrst_base_views_default_views() {
       'relationship' => 'none',
     ),
     'field_issue_pub_date_value' => array(
-      'operator' => '=',
+      'operator' => '<=',
       'value' => array(
         'value' => NULL,
         'min' => NULL,
@@ -216,7 +234,43 @@ function jrst_base_views_default_views() {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('items_per_page', 1);
+  $handler->override_option('items_per_page', 5);
+  $handler->override_option('style_plugin', 'slideshow');
+  $handler->override_option('style_options', array(
+    'type' => 'ul',
+    'mode' => 'views_slideshow_singleframe',
+    'views_slideshow_singleframe-prefix' => '',
+    'views_slideshow_singleframe' => array(
+      'timeout' => '5000',
+      'delay' => '0',
+      'speed' => '700',
+      'start_paused' => 1,
+      'fixed_height' => '1',
+      'random' => '0',
+      'pause' => '1',
+      'pause_on_click' => '0',
+      'pause_when_hidden' => 0,
+      'pause_when_hidden_type' => 'full',
+      'amount_allowed_visible' => '',
+      'remember_slide' => 0,
+      'remember_slide_days' => '1',
+      'controls' => '1',
+      'pager' => '2',
+      'pager_type' => 'Numbered',
+      'pager_hover' => '1',
+      'pager_click_to_page' => 0,
+      'image_count' => '0',
+      'items_per_slide' => '1',
+      'effect' => 'scrollHorz',
+      'sync' => '1',
+      'nowrap' => '0',
+      'advanced' => '',
+      'ie' => array(
+        'cleartype' => 'true',
+        'cleartypenobg' => 'false',
+      ),
+    ),
+  ));
   $handler->override_option('row_options', array(
     'inline' => array(
       'field_issue_cover_fid' => 'field_issue_cover_fid',

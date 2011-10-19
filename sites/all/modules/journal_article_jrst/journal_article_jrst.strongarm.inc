@@ -604,13 +604,13 @@ function journal_article_jrst_strongarm() {
   $strongarm->value = array(
     'title' => '31',
     'body_field' => '37',
-    'revision_information' => '42',
-    'author' => '40',
-    'options' => '43',
-    'comment_settings' => '45',
-    'menu' => '41',
+    'revision_information' => '40',
+    'author' => '38',
+    'options' => '41',
+    'comment_settings' => '43',
+    'menu' => '39',
     'taxonomy' => '36',
-    'path' => '44',
+    'path' => '42',
     'workflow' => '30',
   );
 

@@ -1017,6 +1017,7 @@ return arg(1);
   $handler->override_option('title', 'Author Uploads');
   $handler->override_option('footer_format', '3');
   $handler->override_option('footer_empty', 0);
+  $handler->override_option('empty_format', '1');
   $handler->override_option('use_more', 0);
   $handler->override_option('use_more_always', 0);
   $handler->override_option('style_plugin', 'list');
@@ -2998,7 +2999,9 @@ print \'<a href="/node/add/discussion/\' . $node->nid . \'">Create New Discussio
 }
 ?>');
   $handler->override_option('footer_format', '3');
-  $handler->override_option('footer_empty', 0);
+  $handler->override_option('footer_empty', 1);
+  $handler->override_option('empty', 'No Discussions on this article!');
+  $handler->override_option('empty_format', '1');
   $handler->override_option('use_more', 1);
   $handler->override_option('use_more_always', 0);
   $handler->override_option('style_plugin', 'list');

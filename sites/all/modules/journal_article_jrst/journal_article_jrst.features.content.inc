@@ -138,7 +138,7 @@ function journal_article_jrst_content_default_fields() {
       ),
       'default_value_php' => NULL,
       'label' => 'Author',
-      'weight' => '41',
+      'weight' => '42',
       'description' => '',
       'type' => 'userreference_select',
       'module' => 'userreference',
@@ -150,7 +150,7 @@ function journal_article_jrst_content_default_fields() {
     'field_name' => 'field_article_available_date',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '41',
+      'weight' => '43',
       'parent' => 'group_article_editor',
       'label' => array(
         'format' => 'inline',
@@ -322,7 +322,7 @@ $node_field[0][\'value\'] = $output;',
       ),
       'default_value_php' => NULL,
       'label' => 'Co-Authors',
-      'weight' => '42',
+      'weight' => '43',
       'description' => '',
       'type' => 'userreference_autocomplete',
       'module' => 'userreference',
@@ -334,7 +334,7 @@ $node_field[0][\'value\'] = $output;',
     'field_name' => 'field_article_country',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '19',
+      'weight' => '54',
       'parent' => 'group_article_basic',
       'label' => array(
         'format' => 'inline',
@@ -397,7 +397,7 @@ $node_field[0][\'value\'] = $output;',
     'field_name' => 'field_article_decision',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '30',
+      'weight' => '56',
       'parent' => 'group_article_status',
       'label' => array(
         'format' => 'inline',
@@ -452,11 +452,6 @@ Accept
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Decision',
-      'weight' => '56',
-      'description' => 'This marks the previous decision of the node, not it\'s current status.',
-      'type' => 'optionwidgets_select',
-      'module' => 'optionwidgets',
       'roles' => array(
         '1' => 0,
         '2' => 0,
@@ -468,6 +463,11 @@ Accept
         '8' => 0,
         '5' => 0,
       ),
+      'label' => 'Decision',
+      'weight' => '56',
+      'description' => 'This marks the previous decision of the node, not it\'s current status.',
+      'type' => 'optionwidgets_select',
+      'module' => 'optionwidgets',
     ),
   );
 
@@ -476,7 +476,7 @@ Accept
     'field_name' => 'field_article_decision_date',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '33',
+      'weight' => '59',
       'parent' => 'group_article_status',
       'label' => array(
         'format' => 'inline',
@@ -547,13 +547,14 @@ Accept
     'field_name' => 'field_article_eb_reviewer',
     'type_name' => 'article',
     'display_settings' => array(
+      'weight' => '41',
+      'parent' => 'group_article_editor',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',
@@ -605,11 +606,6 @@ Accept
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'EB Reviewer',
-      'weight' => '41',
-      'description' => '',
-      'type' => 'userreference_select',
-      'module' => 'userreference',
       'roles' => array(
         '1' => 0,
         '2' => 0,
@@ -621,6 +617,11 @@ Accept
         '8' => 0,
         '5' => 0,
       ),
+      'label' => 'EB Reviewer',
+      'weight' => '41',
+      'description' => '',
+      'type' => 'userreference_select',
+      'module' => 'userreference',
     ),
   );
 
@@ -688,11 +689,6 @@ Accept
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Editor',
-      'weight' => '38',
-      'description' => '',
-      'type' => 'userreference_select',
-      'module' => 'userreference',
       'roles' => array(
         '1' => 0,
         '2' => 0,
@@ -704,6 +700,11 @@ Accept
         '8' => 0,
         '5' => 0,
       ),
+      'label' => 'Editor',
+      'weight' => '38',
+      'description' => '',
+      'type' => 'userreference_select',
+      'module' => 'userreference',
     ),
   );
 
@@ -843,108 +844,19 @@ Not for JRST',
     ),
   );
 
-  // Exported field: field_article_manuscript_upload
-  $fields['article-field_article_manuscript_upload'] = array(
-    'field_name' => 'field_article_manuscript_upload',
-    'type_name' => 'article',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'filefield',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'filefield',
-    'active' => '1',
-    'list_field' => '0',
-    'list_default' => 1,
-    'description_field' => '0',
-    'filefield_private_downloads' => 1,
-    'filefield_private_content_disposition' => '',
-    'widget' => array(
-      'file_extensions' => 'pdf doc docx',
-      'file_path' => 'manuscript',
-      'progress_indicator' => 'bar',
-      'max_filesize_per_file' => '',
-      'max_filesize_per_node' => '',
-      'insert' => 0,
-      'insert_styles' => array(
-        'auto' => 0,
-        'link' => 0,
-        'image' => 0,
-        'imagecache_Featured' => 0,
-        'imagecache_group_images' => 0,
-        'imagecache_group_images_featured' => 0,
-        'imagecache_group_images_medium' => 0,
-        'imagecache_group_images_showcase' => 0,
-        'imagecache_group_images_thumb' => 0,
-        'imagecache_member_list_image' => 0,
-        'imagecache_profile_pictures' => 0,
-        'imagecache_Small' => 0,
-        'imagecache_user_picture_meta' => 0,
-      ),
-      'insert_default' => 'auto',
-      'insert_class' => '',
-      'insert_width' => '',
-      'label' => 'Manuscript',
-      'weight' => '46',
-      'description' => '',
-      'type' => 'filefield_widget',
-      'module' => 'filefield',
-      'roles' => array(
-        '1' => 0,
-        '2' => 0,
-        '6' => 0,
-        '3' => 0,
-        '4' => 0,
-        '9' => 0,
-        '7' => 0,
-        '8' => 0,
-        '5' => 0,
-      ),
-    ),
-  );
-
   // Exported field: field_article_preprod_author
   $fields['article-field_article_preprod_author'] = array(
     'field_name' => 'field_article_preprod_author',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '18',
+      'weight' => '53',
       'parent' => 'group_article_basic',
       'label' => array(
         'format' => 'inline',
       ),
       'teaser' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',
@@ -1000,7 +912,7 @@ Not for JRST',
     'field_name' => 'field_article_previous_article',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '13',
+      'weight' => '48',
       'parent' => 'group_article_basic',
       'label' => array(
         'format' => 'inline',
@@ -1075,7 +987,7 @@ Not for JRST',
     'field_name' => 'field_article_resubmit',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '31',
+      'weight' => '57',
       'parent' => 'group_article_status',
       'label' => array(
         'format' => 'inline',
@@ -1142,92 +1054,19 @@ Not for JRST',
     ),
   );
 
-  // Exported field: field_article_reviewer
-  $fields['article-field_article_reviewer'] = array(
-    'field_name' => 'field_article_reviewer',
-    'type_name' => 'article',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_article_reviewer][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Reviewer',
-      'weight' => '42',
-      'description' => 'Name of the reviewer for this article',
-      'type' => 'text_textfield',
-      'module' => 'text',
-      'roles' => array(
-        '1' => 0,
-        '2' => 0,
-        '6' => 0,
-        '3' => 0,
-        '4' => 0,
-        '9' => 0,
-        '7' => 0,
-        '8' => 0,
-        '5' => 0,
-      ),
-    ),
-  );
-
   // Exported field: field_article_scholarone_id
   $fields['article-field_article_scholarone_id'] = array(
     'field_name' => 'field_article_scholarone_id',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '12',
+      'weight' => '47',
       'parent' => 'group_article_basic',
       'label' => array(
         'format' => 'inline',
       ),
       'teaser' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',
@@ -1283,7 +1122,7 @@ Not for JRST',
     'field_name' => 'field_article_special_issue',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '15',
+      'weight' => '50',
       'parent' => 'group_article_basic',
       'label' => array(
         'format' => 'inline',
@@ -1344,7 +1183,7 @@ Not for JRST',
     'field_name' => 'field_article_status',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '32',
+      'weight' => '58',
       'parent' => 'group_article_status',
       'label' => array(
         'format' => 'inline',
@@ -1419,7 +1258,7 @@ Production',
     'field_name' => 'field_article_submitted_date',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '17',
+      'weight' => '52',
       'parent' => 'group_article_basic',
       'label' => array(
         'format' => 'inline',
@@ -1490,14 +1329,14 @@ Production',
     'field_name' => 'field_article_type',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '16',
+      'weight' => '51',
       'parent' => 'group_article_basic',
       'label' => array(
         'format' => 'inline',
       ),
       'teaser' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',
@@ -1553,7 +1392,7 @@ Production',
     'field_name' => 'field_article_wiley_id',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '14',
+      'weight' => '49',
       'parent' => 'group_article_basic',
       'label' => array(
         'format' => 'inline',
@@ -1608,6 +1447,84 @@ Production',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_article_wiley_link
+  $fields['article-field_article_wiley_link'] = array(
+    'field_name' => 'field_article_wiley_link',
+    'type_name' => 'article',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'computed',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'computed_field',
+    'active' => '1',
+    'code' => '$wiley_id = $node->field_article_wiley_id[0][\'value\'];
+if (isset($wiley_id)) {
+  $wiley_id = strtolower($wiley_id);
+  $link = \'http://onlinelibrary.wiley.com/journal/10.1002/\' . $wiley_id . \'/abstract\';
+  $node_field[0][\'value\'] = $link;
+}
+else {
+  $node_field[0][\'value\'] = "";
+}',
+    'display_format' => '$display = \'<a href="\' . $node_field_item[\'value\'] . \'">\' . $node_field_item[\'value\'] . \'</a>\';',
+    'store' => 1,
+    'data_type' => 'varchar',
+    'data_length' => '255',
+    'data_not_NULL' => 0,
+    'data_default' => '',
+    'data_sortable' => 0,
+    'widget' => array(
+      'default_value' => NULL,
+      'default_value_php' => NULL,
+      'label' => 'Wiley Link',
+      'weight' => '41',
+      'description' => '',
+      'type' => 'computed',
+      'module' => 'computed_field',
+      'roles' => array(
+        '1' => 0,
+        '2' => 0,
+        '6' => 0,
+        '3' => 0,
+        '4' => 0,
+        '9' => 0,
+        '7' => 0,
+        '8' => 0,
+        '5' => 0,
+      ),
     ),
   );
 
@@ -1982,17 +1899,16 @@ Production',
   t('Editor');
   t('Editor\'s Projection');
   t('Issue');
-  t('Manuscript');
   t('Previous Submission');
   t('Publication date');
   t('Resubmit');
-  t('Reviewer');
   t('ScholarOne ID');
   t('Special Issue');
   t('Status');
   t('Type');
   t('Volume');
   t('Wiley Id');
+  t('Wiley Link');
 
   return $fields;
 }

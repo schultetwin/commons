@@ -436,9 +436,7 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['view field_article_country'] = array(
     'name' => 'view field_article_country',
     'roles' => array(
-      '0' => 'anonymous user',
-      '1' => 'authenticated user',
-      '2' => 'site admin',
+      '0' => 'site admin',
     ),
   );
 

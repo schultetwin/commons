@@ -1020,7 +1020,7 @@ return arg(1);
   $handler->override_option('use_more', 0);
   $handler->override_option('use_more_always', 0);
   $handler->override_option('style_plugin', 'list');
-  $handler = $view->new_display('block', 'Article Discussion Block', 'block_1');
+  $handler = $view->new_display('block', 'Author Uploads', 'block_1');
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
   $handler = $view->new_display('block', 'Author Podcast', 'block_2');

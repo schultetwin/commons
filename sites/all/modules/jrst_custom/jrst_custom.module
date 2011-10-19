@@ -272,3 +272,44 @@ function jrst_custom_link($type, $object, $teaser = FALSE) {
   return $links;
 }
 
+/**
+ * Implements hook_feeds_node_processor_targets_alter().
+ */
+function jrst_custom_feeds_node_processor_targets_alter(&$targets, $content_type) {
+  if ($content_type == 'article') {
+    $targets['workflow_state'] = array(
+      'name' => t('Hack Workflow state'),
+      'description' => t('What editorial state the node is in'),
+      'callback' => 'jrst_custom_workflow_feeds_set_target_sid',
+    );
+  }
+}
+
+function jrst_custom_workflow_feeds_set_target_sid($node, $key, $keyword) {
+  // get possible sid values for this node
+  $keyword = strtolower($keyword);
+  if (!(strpos($keyword, 'editorial') === FALSE)) {
+    $sid = 8;
+  }
+  else if (!(strpos($keyword, 'review') === FALSE)) {
+    $sid = 9;
+  }
+  else if (!(strpos($keyword, 'withdraw') === FALSE)) {
+    $sid = 12;
+  }
+  else {
+    watchdog('jrst_custom', 'Given bad argument @arg for auto workflow assignment', array('@arg' => $keyword));
+    return;
+  }
+
+  $sids = array();
+  $result = db_query("SELECT sid FROM {workflow_states} ws JOIN {workflow_type_map} wtm ON ws.wid = wtm.wid WHERE wtm.type = '%s'", $node->type);
+  while ($state = db_fetch_object($result)) {
+    $sids[] = $state->sid;
+  }
+
+  // make sure this state is allowed for this node before updating
+  if (in_array($sid, $sids)) {
+    $node->workflow = $sid;
+  }
+}

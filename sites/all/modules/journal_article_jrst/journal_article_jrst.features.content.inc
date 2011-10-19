@@ -1047,10 +1047,81 @@ Not for JRST',
         '5' => 0,
       ),
       'label' => 'Resubmit',
-      'weight' => '57',
+      'weight' => '58',
       'description' => 'Specifies that this article is a resubmit',
       'type' => 'optionwidgets_onoff',
       'module' => 'optionwidgets',
+    ),
+  );
+
+  // Exported field: field_article_revision
+  $fields['article-field_article_revision'] = array(
+    'field_name' => 'field_article_revision',
+    'type_name' => 'article',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '0|No
+1|Revision',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'default_value' => array(
+        '0' => array(
+          'value' => NULL,
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Revision',
+      'weight' => '57',
+      'description' => 'Select if this is a revision',
+      'type' => 'optionwidgets_onoff',
+      'module' => 'optionwidgets',
+      'roles' => array(
+        '1' => 0,
+        '2' => 0,
+        '6' => 0,
+        '3' => 0,
+        '4' => 0,
+        '9' => 0,
+        '7' => 0,
+        '8' => 0,
+        '5' => 0,
+      ),
     ),
   );
 
@@ -1174,81 +1245,6 @@ Not for JRST',
       'weight' => '50',
       'description' => '',
       'type' => 'optionwidgets_onoff',
-      'module' => 'optionwidgets',
-    ),
-  );
-
-  // Exported field: field_article_status
-  $fields['article-field_article_status'] = array(
-    'field_name' => 'field_article_status',
-    'type_name' => 'article',
-    'display_settings' => array(
-      'weight' => '58',
-      'parent' => 'group_article_status',
-      'label' => array(
-        'format' => 'inline',
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 1,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '1',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => 'Withdrawn
-Editorial Review
-Review
-Review Revision
-Review Resubmission
-Production',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'roles' => array(
-        '1' => 0,
-        '2' => 0,
-        '6' => 0,
-        '3' => 0,
-        '4' => 0,
-        '7' => 0,
-        '8' => 0,
-        '5' => 0,
-      ),
-      'label' => 'Status',
-      'weight' => '58',
-      'description' => '',
-      'type' => 'optionwidgets_select',
       'module' => 'optionwidgets',
     ),
   );
@@ -1824,9 +1820,9 @@ Production',
   t('Previous Submission');
   t('Publication date');
   t('Resubmit');
+  t('Revision');
   t('ScholarOne ID');
   t('Special Issue');
-  t('Status');
   t('Type');
   t('Volume');
   t('Wiley Id');

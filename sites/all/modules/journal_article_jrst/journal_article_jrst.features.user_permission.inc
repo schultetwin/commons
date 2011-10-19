@@ -240,16 +240,6 @@ function journal_article_jrst_user_default_permissions() {
     ),
   );
 
-  // Exported permission: edit field_article_status
-  $permissions['edit field_article_status'] = array(
-    'name' => 'edit field_article_status',
-    'roles' => array(
-      '0' => 'associate editor',
-      '1' => 'editor',
-      '2' => 'site admin',
-    ),
-  );
-
   // Exported permission: edit field_article_submitted_date
   $permissions['edit field_article_submitted_date'] = array(
     'name' => 'edit field_article_submitted_date',
@@ -523,16 +513,6 @@ function journal_article_jrst_user_default_permissions() {
   // Exported permission: view field_article_special_issue
   $permissions['view field_article_special_issue'] = array(
     'name' => 'view field_article_special_issue',
-    'roles' => array(
-      '0' => 'associate editor',
-      '1' => 'editor',
-      '2' => 'site admin',
-    ),
-  );
-
-  // Exported permission: view field_article_status
-  $permissions['view field_article_status'] = array(
-    'name' => 'view field_article_status',
     'roles' => array(
       '0' => 'associate editor',
       '1' => 'editor',

@@ -204,8 +204,8 @@ function journal_article_jrst_fieldgroup_default_groups() {
     'weight' => '36',
     'fields' => array(
       '0' => 'field_article_decision',
-      '1' => 'field_article_resubmit',
-      '2' => 'field_article_status',
+      '1' => 'field_article_revision',
+      '2' => 'field_article_resubmit',
       '3' => 'field_article_decision_date',
     ),
   );

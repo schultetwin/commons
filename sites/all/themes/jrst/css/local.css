@@ -209,3 +209,32 @@ legend{
 .content .node-type-issue li.views-row::after {
   clear: none !important;
 }
+
+/* Comment driven cleanup */
+.comment-driven-inspect {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+#comments .comment {
+  border: 1px solid maroon;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.node-type-article #comments .comment .comment-driven {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#comments .comment .links {
+  float:right;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  margin-top: 7px;
+}
+
+#driven_node_container .form-item {
+  display: inline-block;
+  margin-left: 15px;
+}

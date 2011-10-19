@@ -16,3 +16,10 @@ function jrst_preprocess_node(&$vars) {
     $vars['special_date'] = $vars['#node']->field_issue_pub_date[0]['view'];
   }
 }
+
+function jrst_preprocess_comment($vars) {
+  if ($vars['node']->type == 'article') {
+    
+
+  }
+}

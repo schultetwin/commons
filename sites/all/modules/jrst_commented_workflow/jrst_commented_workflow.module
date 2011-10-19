@@ -1,0 +1,52 @@
+<?php
+
+
+/**
+ * Implementation of hook_workflow().
+ *
+ * @param $op
+ *   The current workflow operation: 'transition pre' or 'transition post'.
+ * @param $old_state
+ *   The state ID of the current state.
+ * @param  $new_state
+ *   The state ID of the new state.
+ * @param $node
+ *   The node whose workflow state is changing.
+ */
+function jrst_commented_workflow_workflow($op, $old_state, $new_state, $node) {
+  switch ($op) {
+    case 'transition post':
+      $old_workflow = workflow_get_state($old_state);
+      $new_workflow = workflow_get_state($new_state);
+
+      // Let's create a managed object $comment = new stdClass(); // We create a new comment object
+
+      // Impersonating root user, briefly
+      global $user;
+      $original_user = $user;
+      $old_state = session_save_session();
+      session_save_session(FALSE); // D7: use drupal_save_session(FALSE);
+      $user = user_load(array('uid' => 1)); // D7: use user_load(1);
+
+      $form_state = array();
+      $form_state['values']['nid'] = $node->nid; // Node id of comment to attach to
+      $form_state['values']['subject'] = t('Article Workflow Update'); // Comment subject
+      $form_state['values']['author'] = $user->name; // Comment Author. User load will be called on name
+      $form_state['values']['comment'] = t('Status:   @state1  >>  @state2',
+        array('@state1' => $old_workflow['state'], '@state2' => $new_workflow['state']));
+      $form_state['values']['format'] = 'filtered_html';
+      $form_state['values']['status'] =COMMENT_PUBLISHED;
+      $form_state['values']['mail'] = $user->mail;
+
+      $form_state['values']['pid'] = 0; // Needed for some reason
+      $form = array();
+      comment_form_submit($form, $form_state);
+
+      // Back to normal user
+      $user = $original_user;
+      session_save_session($old_state);
+
+
+      break;
+  }
+}

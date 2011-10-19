@@ -1,0 +1,11 @@
+; $Id;
+name = Comment Permissions
+description = Control commenting permissions by role AND by node type.
+core = 6.x
+dependencies[] = comment
+; Information added by drupal.org packaging script on 2009-11-10
+version = "6.x-1.0"
+core = "6.x"
+project = "comment_perm"
+datestamp = "1257892228"
+

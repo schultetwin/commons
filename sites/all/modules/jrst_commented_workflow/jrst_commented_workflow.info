@@ -1,0 +1,7 @@
+; $Id$
+name = JRST Commented Workflow
+description = Creates comments with workflows
+package = Other
+version = 6.x-1.x-dev
+core = 6.x
+php =

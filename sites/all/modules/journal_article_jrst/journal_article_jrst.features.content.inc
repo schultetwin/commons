@@ -1493,7 +1493,7 @@ Production',
     'code' => '$wiley_id = $node->field_article_wiley_id[0][\'value\'];
 if (isset($wiley_id)) {
   $wiley_id = strtolower($wiley_id);
-  $wiley_id = substr_replace($wiley_id , \'.\', 3, 0)
+  $wiley_id = substr_replace($wiley_id , ".", 3, 0);
   $link = \'http://onlinelibrary.wiley.com/doi/10.1002/\' . $wiley_id . \'/abstract\';
   $node_field[0][\'value\'] = $link;
 }

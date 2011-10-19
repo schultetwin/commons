@@ -40,6 +40,10 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
         'info' => t('JRST: Import Now'),
         'cache' => BLOCK_CACHE_PER_ROLE,
       );
+      $blocks['author_center'] = array(
+        'info' => t('JRST: Author Center'),
+        'cache' => BLOCK_NO_CACHE,
+      );
 
       return $blocks;
     case 'view':
@@ -52,12 +56,39 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           $block['content'] = $output;
           break;
         case 'import_now':
-	  $block['subject'] = t('Import Now');
-          $block['content'] = l(t('Import Now'), 'import/mail_impor');
-
+          $block['subject'] = t('Import Now');
+          $block['content'] = l(t('Import Now From Manuscript Central'), 'import/mail_impor');
           break;
-        return $block;
+        case 'author_center':
+          global $user;
+          if (arg(0) == 'node' && is_numeric(arg(1))) {
+            $node = node_load(arg(1));
+            if ($node->type == 'article' && $node->field_article_author[0]['uid'] == $user->uid || user_access('administer nodes')) {
+              $podcast = db_result(db_query('SELECT nid FROM {content_type_podcast} WHERE field_podcast_article_nid = %d', $node->nid));
+
+              if (!is_numeric($podcast)) {
+                $links[] = '<a href="/node/add/podcast/' . $node->nid . '">Upload a Podcast</a>';
+              }
+              else {
+                $links[] = '<a href="/node/' . $podcast . '">View Podcast</a>';
+              }
+
+              $document = db_result(db_query('SELECT nid FROM {content_type_document} WHERE field_document_article_nid = %d', $node->nid));
+
+              $text = t('Upload additional Documents');
+              if (!is_numeric($document)) {
+                $links[] = '<a href="/node/add/document/' . $node->nid . '">' . $text . '</a>';
+              }
+              else {
+                $links[] = '<a href="/node/' . $document . '">' . $text .'</a>';
+              }
+              $block['subject'] = t('Authors Tools');
+              $block['content'] = theme('item_list', $links);
+            }
+          }
+          break;
       }
+      return $block;
   }
 }
 

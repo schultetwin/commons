@@ -24,9 +24,9 @@ function journal_article_jrst_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'block-1' => array(
-          'module' => 'block',
-          'delta' => 1,
+        'jrst_custom-author_center' => array(
+          'module' => 'jrst_custom',
+          'delta' => 'author_center',
           'region' => 'sidebar_last',
           'weight' => 0,
         ),

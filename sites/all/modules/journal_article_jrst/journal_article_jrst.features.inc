@@ -23,16 +23,6 @@ function journal_article_jrst_ctools_plugin_api() {
 }
 
 /**
- * Implementation of hook_enable().
- */
-function journal_article_jrst_enable() {
-  // Import the workflow when enable the module
-  workflow_features_enable_feature();
-
-  return array();
-}
-
-/**
  * Implementation of hook_node_info().
  */
 function journal_article_jrst_node_info() {

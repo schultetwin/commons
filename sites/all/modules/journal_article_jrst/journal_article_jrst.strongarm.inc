@@ -603,13 +603,13 @@ function journal_article_jrst_strongarm() {
   $strongarm->name = 'content_extra_weights_article';
   $strongarm->value = array(
     'title' => '31',
-    'body_field' => '37',
+    'body_field' => '32',
     'revision_information' => '40',
     'author' => '38',
     'options' => '41',
     'comment_settings' => '43',
     'menu' => '39',
-    'taxonomy' => '36',
+    'taxonomy' => '37',
     'path' => '42',
     'workflow' => '30',
   );

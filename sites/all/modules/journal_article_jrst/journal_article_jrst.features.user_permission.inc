@@ -72,14 +72,6 @@ function journal_article_jrst_user_default_permissions() {
     ),
   );
 
-  // Exported permission: drive webform properties through comments
-  $permissions['drive webform properties through comments'] = array(
-    'name' => 'drive webform properties through comments',
-    'roles' => array(
-      '0' => 'site admin',
-    ),
-  );
-
   // Exported permission: edit any article content
   $permissions['edit any article content'] = array(
     'name' => 'edit any article content',

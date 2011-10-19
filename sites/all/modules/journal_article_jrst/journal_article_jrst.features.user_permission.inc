@@ -64,14 +64,6 @@ function journal_article_jrst_user_default_permissions() {
     ),
   );
 
-  // Exported permission: drive ALL properties through comments (for EVERY content type!)
-  $permissions['drive ALL properties through comments (for EVERY content type!)'] = array(
-    'name' => 'drive ALL properties through comments (for EVERY content type!)',
-    'roles' => array(
-      '0' => 'site admin',
-    ),
-  );
-
   // Exported permission: edit any article content
   $permissions['edit any article content'] = array(
     'name' => 'edit any article content',
@@ -216,7 +208,8 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['edit field_article_resubmit'] = array(
     'name' => 'edit field_article_resubmit',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'associate editor',
+      '1' => 'site admin',
     ),
   );
 
@@ -274,7 +267,8 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['edit field_discussion_article'] = array(
     'name' => 'edit field_discussion_article',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -356,20 +350,11 @@ function journal_article_jrst_user_default_permissions() {
     ),
   );
 
-  // Exported permission: inspect property changes
-  $permissions['inspect property changes'] = array(
-    'name' => 'inspect property changes',
-    'roles' => array(
-      '0' => 'site admin',
-    ),
-  );
-
   // Exported permission: view comments for: article
   $permissions['view comments for: article'] = array(
     'name' => 'view comments for: article',
     'roles' => array(
-      '0' => 'authenticated user',
-      '1' => 'site admin',
+      '0' => 'site admin',
     ),
   );
 
@@ -379,8 +364,7 @@ function journal_article_jrst_user_default_permissions() {
     'roles' => array(
       '0' => 'associate editor',
       '1' => 'editor',
-      '2' => 'reviewer',
-      '3' => 'site admin',
+      '2' => 'site admin',
     ),
   );
 

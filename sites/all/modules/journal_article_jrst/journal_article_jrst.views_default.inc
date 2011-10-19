@@ -684,6 +684,7 @@ function journal_article_jrst_views_default_views() {
     '0' => 'full',
   ));
   $handler->override_option('argument_mode', 'nid');
+  $handler->override_option('default_argument', '');
   $handler->override_option('show_title', 0);
 
   $views[$view->name] = $view;

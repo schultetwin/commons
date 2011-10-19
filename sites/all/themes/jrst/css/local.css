@@ -190,3 +190,9 @@ legend{
 #view-id-frontpage_jrst-page_1 .views-slideshow-controls-bottom {
     float:right;
 }
+#view-id-frontpage_jrst-page_1 .view-frontpage-issue-showcase .views-field-title {
+  font-size:1em;
+}
+#view-id-frontpage_jrst-page_1 .view-frontpage-issue-showcase .views-row::after {
+  clear: none;
+}

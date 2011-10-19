@@ -23,17 +23,20 @@
   // Extract the nid of this group
   $journal_nid = $fields['nid']->raw;
 
+  // Don't allow field node to show
+  unset($fields['nid']);
+
   // Load the view that outputs the group's recent content
   if ($journal_nid) {
     static $journal_content_view;
     if (!$journal_content_view) {
-      $group_content_view = views_get_view('frontpage_issue_showcase');
+      $issue_content_view = views_get_view('frontpage_issue_showcase');
     }
-    $display_id = 'block_2';
-    $group_content_view->set_display($display_id);
-    $group_content_view->set_arguments(array($journal_nid));
-    $group_content_view->execute_display($display_id);
-    $group_recent_items = $group_content_view->render();
+    $display_id = 'block_1';
+    $issue_content_view->set_display($display_id);
+    $issue_content_view->set_arguments(array($journal_nid));
+    $issue_content_view->execute_display($display_id);
+    $issue_recent_items = $issue_content_view->render();
   }
 ?>
 
@@ -55,3 +58,7 @@
       <<?php print $field->element_type; ?> class="field-content"><?php print $field->content; ?></<?php print $field->element_type; ?>>
   </<?php print $field->inline_html;?>>
 <?php endforeach; ?>
+
+<?php if ($issue_recent_items): ?>
+  <?php print $issue_recent_items; ?>
+<?php endif; ?>

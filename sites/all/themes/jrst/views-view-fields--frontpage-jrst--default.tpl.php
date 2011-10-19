@@ -19,6 +19,24 @@
  * @ingroup views_templates
  */
 ?>
+<?php
+  // Extract the nid of this group
+  $journal_nid = $fields['nid']->raw;
+
+  // Load the view that outputs the group's recent content
+  if ($journal_nid) {
+    static $journal_content_view;
+    if (!$journal_content_view) {
+      $group_content_view = views_get_view('frontpage_issue_showcase');
+    }
+    $display_id = 'block_2';
+    $group_content_view->set_display($display_id);
+    $group_content_view->set_arguments(array($journal_nid));
+    $group_content_view->execute_display($display_id);
+    $group_recent_items = $group_content_view->render();
+  }
+?>
+
 <?php foreach ($fields as $id => $field): ?>
   <?php if (!empty($field->separator)): ?>
     <?php print $field->separator; ?>

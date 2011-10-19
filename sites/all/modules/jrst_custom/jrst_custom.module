@@ -44,6 +44,10 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
         'info' => t('JRST: Author Center'),
         'cache' => BLOCK_NO_CACHE,
       );
+      $blocks['link_to_profile'] = array(
+        'info' => t('JRST: Link to Profile (For Dashboard)'),
+        'cache' => BLOCK_NO_CACHE,
+      );
 
       return $blocks;
     case 'view':
@@ -59,6 +63,9 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           $block['subject'] = t('Import Now');
           $block['content'] = l(t('Import Now From Manuscript Central'), 'import/mail_impor');
           break;
+        case 'link_to_profile':
+          $block['subject'] = t('My Profile');
+          $block['content'] = l(t('Go to my profile'), 'user');
         case 'author_center':
           global $user;
           if (arg(0) == 'node' && is_numeric(arg(1))) {

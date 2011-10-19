@@ -360,13 +360,17 @@ function jrst_base_views_default_views() {
       'php_setup' => '',
       'php_sort' => '',
       'sql_sort' => 'global $user;
-$user = user_load($user->uid);
-$args = implode(\',\', array_keys($user->user_terms));
-$order = \'(SELECT COUNT(*) FROM {node} n
-LEFT JOIN {term_node} tn ON n.vid = tn.vid
-WHERE node_node_data_field_discussion_article.nid = n.nid AND tn.tid IN (\' . $args . \')
-GROUP BY n.nid) \' . strtoupper($handler->options[\'order\']);
-return $order;',
+if ($user->uid != 0) {
+  $user = user_load($user->uid);
+  if (!empty($user->terms)) {
+    $args = implode(\',\', array_keys($user->user_terms));
+    $order = \'(SELECT COUNT(*) FROM {node} n
+      LEFT JOIN {term_node} tn ON n.vid = tn.vid
+      WHERE node_node_data_field_discussion_article.nid = n.nid AND tn.tid IN (\' . $args . \')
+      GROUP BY n.nid) \' . strtoupper($handler->options[\'order\']);
+    return $order;
+  }
+}',
       'id' => 'php',
       'table' => 'views',
       'field' => 'php',
@@ -631,12 +635,14 @@ return $order;',
       'php_setup' => '',
       'php_sort' => '',
       'sql_sort' => '$args = explode(\'+\', $view->args[0]);
-$args = implode(\', \', $args);
-$order = \'(SELECT COUNT(*) FROM {node} n
-LEFT JOIN {term_node} tn ON n.vid = tn.vid
-WHERE node.nid = n.nid AND tn.tid IN (\' . $args . \')
-GROUP BY n.nid) \' . strtoupper($handler->options[\'order\']);
-return $order;',
+if (!empty($args)) {
+  $args = implode(\', \', $args);
+  $order = \'(SELECT COUNT(*) FROM {node} n
+    LEFT JOIN {term_node} tn ON n.vid = tn.vid
+    WHERE node.nid = n.nid AND tn.tid IN (\' . $args . \')
+    GROUP BY n.nid) \' . strtoupper($handler->options[\'order\']);
+  return $order;
+}',
       'id' => 'php',
       'table' => 'views',
       'field' => 'php',
@@ -709,7 +715,6 @@ return $order;',
         'group' => 0,
         'notice' => 0,
         'page' => 0,
-        'webform' => 0,
       ),
       'validate_argument_node_access' => 0,
       'validate_argument_nid_type' => 'nid',
@@ -719,7 +724,7 @@ return $order;',
         '5' => 5,
         '6' => 6,
         '2' => 0,
-        '1' => 0,
+        '7' => 0,
       ),
       'validate_argument_type' => 'tids',
       'validate_argument_transform' => 0,
@@ -743,12 +748,12 @@ return $order;',
         'node_check' => 0,
         'limit' => 0,
         'vids' => array(
+          '2' => 0,
+          '7' => 0,
           '3' => 0,
           '4' => 0,
-          '2' => 0,
           '5' => 0,
           '6' => 0,
-          '1' => 0,
         ),
       ),
       'limit' => 1,
@@ -768,7 +773,7 @@ return $order;',
           '5' => 5,
           '6' => 6,
           '2' => 0,
-          '1' => 0,
+          '7' => 0,
         ),
       ),
     ),

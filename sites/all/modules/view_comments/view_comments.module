@@ -18,6 +18,7 @@ function view_comments_perm() {
 /**
  * Implementation of hook_nodeapi().
  */
+/*
 function view_comments_preprocess_comment(&$variables, $hook) {
   global $user;
   if (!user_access('view comments for: ' . $variables['node']->type)) {
@@ -26,4 +27,28 @@ function view_comments_preprocess_comment(&$variables, $hook) {
     }
     unset($variables);
   }
+}
+ * 
+ */
+
+/**
+ * Implementation of hook_db_rewrite_sql().
+ */
+function view_comments_db_rewrite_sql($query, $primary_table, $primary_field, $args) {
+  global $user;
+
+  switch ($primary_field) {
+    case 'cid':
+      if ($user->uid != 1 && $primary_table = 'c') {
+        foreach (node_get_types('types') as $nodetype) {
+          if (user_access('view comments for: ' . $nodetype->type)) {
+            $allowed_types[] = "'$nodetype->type'";
+          }
+        }
+        $in_value = implode(',', $allowed_types);
+        $return['join'] = "LEFT JOIN {node} n ON $primary_table.nid = n.nid";
+        $return['where'] = "n.type IN ($in_value)";
+      }
+  }
+  return $return;
 }

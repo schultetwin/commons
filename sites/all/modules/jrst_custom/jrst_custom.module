@@ -77,7 +77,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           $block['content'] = l(t('Go to my profile'), 'user');
         case 'jrst_user_login':
           if ($user->uid == 0) {
-            $block['content'] = l('Login', 'user/login', array('destination' => drupal_get_destination())) .
+            $block['content'] = l('Login', 'user/login', array('query' => drupal_get_destination())) .
           ' / ' . l('Register', 'user/register');
           }
           break;

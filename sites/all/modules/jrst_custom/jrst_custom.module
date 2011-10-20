@@ -94,7 +94,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           }
           break;
         case 'jrst_site_feedback':
-          $block['content'] = l('Site Feedback', 'node/add/webform/201', array('query' => drupal_get_destination()));
+          $block['content'] = l('Site Feedback', 'node/201', array('query' => drupal_get_destination()));
           break;
         case 'author_center':
           global $user;

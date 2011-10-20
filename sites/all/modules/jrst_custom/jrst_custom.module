@@ -59,6 +59,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
 
       return $blocks;
     case 'view':
+      global $user;
       $block = array();
       switch ($delta) {
         case 'follow_block':

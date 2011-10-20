@@ -210,21 +210,12 @@ legend{
   clear: none !important;
 }
 
-/* Comment driven cleanup */
-.comment-driven-inspect {
-  margin-top: 15px;
-  margin-bottom: 10px;
-}
+/* Comment cleanup */
 
 #comments .comment {
   border: 1px solid maroon;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
-}
-
-.node-type-article #comments .comment .comment-driven {
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 #comments .comment .links {
@@ -234,7 +225,7 @@ legend{
   margin-top: 7px;
 }
 
-#driven_node_container .form-item {
-  display: inline-block;
-  margin-left: 15px;
+/* User Login/Register Link */
+#block-jrst_custom-jrst_user_login {
+  margin-top: 40px;
 }

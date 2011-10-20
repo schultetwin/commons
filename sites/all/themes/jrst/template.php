@@ -10,7 +10,7 @@ function jrst_preprocess_node(&$vars) {
   }
   $remove = array('article', 'issue', 'webform');
 
-  if (in_array($vars['#node']->type, $remove)) {
+  if (in_array($vars['type'], $remove)) {
     unset($vars['submitted']);
   }
   if ($vars['#node']->type == 'issue' && $vars['#node']->field_issue_special[0]['value']) {

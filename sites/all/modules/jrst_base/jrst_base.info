@@ -1,7 +1,6 @@
 core = "6.x"
 dependencies[] = "chart"
 dependencies[] = "comment"
-dependencies[] = "comment_upload"
 dependencies[] = "commons_core"
 dependencies[] = "contact"
 dependencies[] = "content"

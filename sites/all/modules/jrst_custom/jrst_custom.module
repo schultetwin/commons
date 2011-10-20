@@ -48,6 +48,14 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
         'info' => t('JRST: Link to Profile (For Dashboard)'),
         'cache' => BLOCK_NO_CACHE,
       );
+      $blocks['update_user_reference'] = array(
+        'info' => t('JRST: Article User Reference'),
+        'cache' => BLOCK_NO_CACHE,
+      );
+      $blocks['jrst_user_login'] = array(
+        'info' => t('JRST: User Login Text'),
+        'cache' => BLOCK_NO_CACHE,
+      );
 
       return $blocks;
     case 'view':
@@ -66,6 +74,12 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
         case 'link_to_profile':
           $block['subject'] = t('My Profile');
           $block['content'] = l(t('Go to my profile'), 'user');
+        case 'jrst_user_login':
+          if ($user->uid == 0) {
+            $block['content'] = l('Login', 'user/login', array('destination' => drupal_get_destination())) .
+          ' / ' . l('Register', 'user/register');
+          }
+          break;
         case 'author_center':
           global $user;
           if (arg(0) == 'node' && is_numeric(arg(1))) {
@@ -219,6 +233,14 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     case 'article_node_form':
       array_unshift($form['#validate'], 'jrst_custom_quick_hack');
       array_unshift($form['#submit'], 'jrst_custom_quick_hack');
+      break;
+    case 'comment_form':
+      $one = 1;
+      if (arg(0) == 'node' && is_numeric(arg(1)) && !(arg(2))) {
+        $node = node_load(arg(1));
+
+      }
+
       break;
 
   }

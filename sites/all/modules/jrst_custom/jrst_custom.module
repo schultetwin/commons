@@ -27,6 +27,13 @@ function jrst_custom_menu() {
  */
 
 /**
+ * Implementation of hook_menu_alter().
+ */
+function jrst_custom_menu_alter(&$items) {
+  $items['user/%user/view']['type'] = MENU_LOCAL_TASK;
+  $items['user/%user/track']['type'] = MENU_CALLBACK;
+}
+/**
  * Implementation of hook_block().
  */
 function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {

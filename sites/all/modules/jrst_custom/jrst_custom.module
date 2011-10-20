@@ -63,6 +63,10 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
         'info' => t('JRST: User Login Text'),
         'cache' => BLOCK_NO_CACHE,
       );
+      $block['jrst_site_feedback'] = array(
+        'info' => t('JRST: Feedback Link'),
+        'cache' => BLOCK_NO_CACHE,
+      );
 
       return $blocks;
     case 'view':
@@ -87,6 +91,9 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
             $block['content'] = l('Login', 'user/login', array('query' => drupal_get_destination())) .
           ' / ' . l('Register', 'user/register');
           }
+          break;
+        case 'jrst_site_feedback':
+          $block['content'] = l('Site Feedback', 'node/add/webform/201', array('query' => drupal_get_destination()));
           break;
         case 'author_center':
           global $user;

@@ -8,8 +8,9 @@ function jrst_preprocess_node(&$vars) {
     $vars['node_top'] .= $flag_link;
     $vars['node_top'] .= '</div>';
   }
+  $remove = array('article', 'issue', 'webform');
 
-  if ($vars['node']->type == 'article' || $vars['node']->type == 'issue') {
+  if (in_array($vars['#node']->type, $remove)) {
     unset($vars['submitted']);
   }
   if ($vars['#node']->type == 'issue' && $vars['#node']->field_issue_special[0]['value']) {

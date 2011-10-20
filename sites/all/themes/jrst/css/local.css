@@ -27,11 +27,15 @@ a, a:link, a:visited{
 #logo img {
 }
 
-.header-region.block{
+.footer-inner {
+	font: 1.1em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+.header-region.block, .footer-inner{
 	color: silver;
 }
 
-.header-region.block a{
+.header-region.block a, .footer-inner a{
 	color: white;
 }
 
@@ -99,7 +103,11 @@ body {
 }
 
 .node-type-article h1 {
-	font-size: 180%;
+	font-size: 170%;
+}
+
+h1.title{
+	font-size: 200%;
 }
 
 .node .inner .terms ul li, .node .inner .links ul li{
@@ -116,7 +124,12 @@ body {
 	padding-left: 0;
 }
 
-ul.tabs.primary, #content-tabs{
+ul.tabs.primary {
+	margin-bottom: 10px;
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+#content-tabs{
 	margin-bottom: 10px;
 }
 
@@ -133,99 +146,14 @@ legend{
 	margin-bottom: 10px;
 }
 
-/* Default slideshows */
-/*#view-id-frontpage_jrst-page_1 h2.block-title {
-	margin-top: 0;
+.slide-article-list .views-field-field-article-preprod-author-value{
+	font-style: italic;
 }
 
-#view-id-frontpage_jrst-page_1 .content .views_slideshow_slide{
-	width: 100%;
-}
-#view-id-frontpage_jrst-page_1 .content .views-row .views-field-field-group-image-fid{
- 	width: 21%;
+.slide-article-list .views-row{
+	margin-top: 10px;
 }
 
-#view-id-frontpage_jrst-page_1 .views-slideshow-controls-top {
-	float: right;
-	margin-top: -30px;
-}*/
-#view-id-frontpage_jrst-page_1 a.views_slideshow_previous,
-#view-id-frontpage_jrst-page_1 a.views_slideshow_next,
-#view-id-frontpage_jrst-page_1 a.views_slideshow_pause,
-#view-id-frontpage_jrst-page_1 a.views_slideshow_play {
-	background: transparent url(../images/slideshow-controls.png) no-repeat 0 0;
-	text-indent: -9999px;
-	text-align: left;
-	width: 20px;
-	margin: 0 0 10px 0;
-	height: 14px;
-	display: block;
-	float: left;
-}
-
-#view-id-frontpage_jrst-page_1 a.views_slideshow_next{
-	background-position: -60px 0;
-}
-#view-id-frontpage_jrst-page_1 a.views_slideshow_pause{
-	background-position: -20px 0;
-	width: 16px;
-	margin: 0 6px;
-}
-#view-id-frontpage_jrst-page_1 a.views_slideshow_play {
-	background-position: -40px 0;
-	width: 14px;
-	margin: 0 7px;
-}
-
-#view-id-frontpage_jrst-page_1 .views-field-field-issue-cover-fid {
-    display:inline;
-    float:left;
-    margin-right:10px;
-}
-
-#view-id-frontpage_jrst-page_1 .views-field-title {
-    font-size:2em;
-}
-
-#view-id-frontpage_jrst-page_1 .views-slideshow-controls-bottom {
-    float:right;
-}
-#view-id-frontpage_jrst-page_1 .view-frontpage-issue-showcase .views-field-title {
-  font-size:1em;
-}
-#view-id-frontpage_jrst-page_1 .view-frontpage-issue-showcase .views-row::after {
-  clear: none;
-}
-
-/* Issue Page Theming */
-.content .node-type-issue .field-field-issue-cover {
-  float:right;
-}
-
-.content .node-type-issue .view-article-by-issue {
-  display: inline;
-}
-
-.content .node-type-issue li.views-row::after {
-  clear: none !important;
-}
-
-/* Comment cleanup */
-
-#comments .comment {
-  border: 1px solid maroon;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-}
-
-#comments .comment .links {
-  float:right;
-  margin-bottom: 3px;
-  margin-right: 5px;
-  margin-top: 7px;
-}
-
-/* User Login/Register Link */
-#block-jrst_custom-jrst_user_login {
-  margin-top: 40px;
+.sidebar-last .block .view-jrst-frontpage-poll .inner{
+	border: none;
 }

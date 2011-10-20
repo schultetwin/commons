@@ -34,7 +34,7 @@ function og_titles_views_api() {
  * @return array of permissions
  */
 function og_titles_perm() {
-  return array('manage own og title');
+  return array('manage all groups titles','manage own og title');
 } // function og_titles_perm
 
 
@@ -60,7 +60,7 @@ function og_titles_menu() {
     'description' => 'Manage custom member titles',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('og_titles_view_titles',2),
-    'access callback' => 'og_titles_is_group_admin',
+    'access callback' => 'og_titles_manage_all_access',
     'access arguments' => array(2),
     'type' => MENU_LOCAL_TASK,
     'weight' => 5,
@@ -82,7 +82,7 @@ function og_titles_menu() {
       'description' => 'Administer titles for this group',
       'page callback' => 'drupal_get_form',
       'page arguments' => array('og_titles_group_settings',1),
-      'access callback' => 'og_titles_is_group_admin',
+      'access callback' => 'og_titles_manage_all_access',
       'access arguments' => array(1),
       'type' => MENU_LOCAL_TASK,
       'weight' => 5,
@@ -93,7 +93,7 @@ function og_titles_menu() {
       'description' => 'Add additional title to this group',
       'page callback' => 'drupal_get_form',
       'page arguments' => array('og_titles_add_title',1),
-      'access callback' => 'og_titles_is_group_admin',
+      'access callback' => 'og_titles_manage_all_access',
       'access arguments' => array(1),
       'type' => MENU_LOCAL_TASK,
       'weight' => 0,
@@ -104,7 +104,7 @@ function og_titles_menu() {
       'desciption' => 'Delete a title by tlid',
       'page callback' => 'og_titles_delete_title',
       'page arguments' => array(1, 4),
-      'access callback' => 'og_titles_is_group_admin',
+      'access callback' => 'og_titles_manage_all_access',
       'access arguments' => array(1),
       'type' => MENU_CALLBACK,
       'weight' => 0,
@@ -506,7 +506,11 @@ function og_titles_delete_title($node, $tlid) {
  *
  *
  */
-function og_titles_is_group_admin($node) {
+function og_titles_manage_all_access($node) {
+  global $user;
+  if ($user->uid == 1) {
+    return TRUE;
+  }
   if (is_numeric($node))  {
     $node = node_load($node);
   }
@@ -514,7 +518,7 @@ function og_titles_is_group_admin($node) {
     return FALSE;
   }
 
-  return og_is_group_admin($node, NULL); 
+  return (user_access('manage all groups titles') || og_is_group_admin($node, NULL));
 } // function og_titles_is_group_admin
 
 /**

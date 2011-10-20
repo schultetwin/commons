@@ -1,8 +1,11 @@
 <?php
-class views_handler_field_og_title extends views_handler_field
-{
-  function options_form(&$form, &$form_state)
-  {
+//$Id$
+
+/**
+ * @class
+ */
+class views_handler_field_og_title extends views_handler_field {
+  function options_form(&$form, &$form_state) {
       parent::options_form($form, $form_state);
       $form['og_titles_manage_link'] = array(
          '#type' => 'radios',
@@ -13,8 +16,7 @@ class views_handler_field_og_title extends views_handler_field
       );
   }
 
-  function render($values)
-  {
+  function render($values) {
     global $user;
 
     //FIXME: will $values->users_uid break? It seems to be handling gracefully so far..

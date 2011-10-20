@@ -1,4 +1,3 @@
-$Id: README,v 1.1.2.5 2009/09/03 17:24:39 mradcliffe Exp $
 
 OG Titles
 
@@ -19,11 +18,11 @@ Usage:
 
    * Clone an og view such as og_members or og_members_block, and add in the member title field.  Or create your own 'member list' view.
       * You will need to add in >>OG TITLES<< relationship or the cloned view will not work. This is a non-trivial issue with Og's og_uid views data.
-			* For each og_titles field, filter, or sort that you use, confirm that you do not use the relationship.
-			* For each og_uid field, filter, or sort that you use, confirm that you >>DO<< use the relationship.
+      * For each og_titles field, filter, or sort that you use, confirm that you do not use the relationship.
+      * For each og_uid field, filter, or sort that you use, confirm that you >>DO<< use the relationship.
    * Group managers can manage member titles by going to og/users/%/titles where % is the group node id.
    * Users with permissions can access their title at og/manage/%/title
-	    * Og Titles provides a view called 'og_my_titles' to replace Og's 'og_my' view. Please disable the latter.
+      * Og Titles provides a view called 'og_my_titles' to replace Og's 'og_my' view. Please disable the latter.
    * Group managers can add/modify/delete titles from a list per group at node/%/titles
    * Site administrators can configure og titles behavior by going to admin/og/og_titles
 

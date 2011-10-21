@@ -355,8 +355,10 @@ function jrst_custom_workflow_feeds_set_target_sid($node, $key, $keyword) {
 function jrst_custom_nodeapi(&$node, $op, $a3 = null, $a4 = null) {
   switch ($op) {
     case 'load':
+    case 'alter':
       if (isset($node->_workflow) && $node->_workflow == '11') {
         $node->comment = 0;
       }
+      break;
   }
 }

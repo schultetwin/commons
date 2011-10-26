@@ -14,14 +14,6 @@ function jrst_base_user_default_permissions() {
     ),
   );
 
-  // Exported permission: access devel information
-  $permissions['access devel information'] = array(
-    'name' => 'access devel information',
-    'roles' => array(
-      '0' => 'site admin',
-    ),
-  );
-
   // Exported permission: access site-wide contact form
   $permissions['access site-wide contact form'] = array(
     'name' => 'access site-wide contact form',

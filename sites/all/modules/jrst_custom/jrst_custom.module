@@ -158,7 +158,7 @@ function theme_jrst_custom_formatter_jrst_custom_wiley_link($element) {
     $wiley_id = strtolower($wiley_id);
     $wiley_id = substr_replace($wiley_id , ".", 3, 0);
     $link = 'http://onlinelibrary.wiley.com/doi/10.1002/' . $wiley_id . '/abstract';
-    return l($element['#item']['value'], $link, array('attributes' => array('target' => '_blank')));
+    return l(t('Link to Wiley - @value', array('@value' => $element['#item']['value'])), $link, array('attributes' => array('target' => '_blank')));
   }
 }
 
@@ -189,7 +189,11 @@ function jrst_custom_flag_default_flags() {
   );
   return $flags;
 }
-
+/**
+ * Function that will eventually allow one time links for "approve/deny" responses
+ * MORE DOCUMENTATION TO COME LATER!!!
+ * FUNCTION IS NOT COMPLETE!!!!
+ */
 function jrst_custom_userref_response($nid, $uid, $field, $timestamp, $hashed_password, $value = NULL) {
   global $user;
   // If user isn't logged in, they need to be
@@ -239,40 +243,17 @@ function jrst_custom_ctools_plugin_directory($module, $plugin) {
  */
 function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
   switch ($form_id) {
+    // Change the description for the email address field here to something more appropriate.
     case 'user_profile_form':
     case 'user_register':
       $form['account']['mail']['#description'] = t('A valid e-mail address. All e-mails will be sent to this address');
       break;
+    // Make sure the taxonomy fieldset on nodes do not appear in a vertical tab
     case 'group_node_form':
       $form['taxonomy']['#group'] = FALSE;
       break;
-    case 'article_node_form':
-      array_unshift($form['#validate'], 'jrst_custom_quick_hack');
-      array_unshift($form['#submit'], 'jrst_custom_quick_hack');
-      break;
-    case 'comment_form':
-      $one = 1;
-      if (arg(0) == 'node' && is_numeric(arg(1)) && !(arg(2))) {
-        $node = node_load(arg(1));
-
-      }
-
-      break;
-
   }
 }
-
-/**
- * Terrible, terrible quick hack. Comment driven, during some point, changes this value to a
- * boolean. (Can't find where though, so of a gun, spent 3 hours or so, finally just posted a
- * bug. Needs to be fixed.
- *
- * @todo - Fix comment_driven so that we don't need this.
- */
-function jrst_custom_quick_hack($form, &$form_state) {
-  $form_state['values']['field_article_resubmit'][0]['value'] = (int) $form_state['values']['field_article_resubmit'][0]['value'];
-}
-
 
 /**
  * Implementation of hook_link_alter().
@@ -288,7 +269,8 @@ function jrst_custom_link_alter(&$links, $node, $comment = NULL) {
 /**
  * Implementation of hook_link().
  *
- * Defines "create new" node link
+ * Defines "create new" node link. This link appears on all node pages, except issues,
+ * and allows users to "create a new <node_type>" by clicking the link
  */
 function jrst_custom_link($type, $object, $teaser = FALSE) {
   if ($type == 'node' && !$teaser && $object->type != 'issue' && user_access('create ' . $object->type . ' content')) {
@@ -312,19 +294,27 @@ function jrst_custom_link($type, $object, $teaser = FALSE) {
 
 /**
  * Implements hook_feeds_node_processor_targets_alter().
+ * 
+ * Allows the workflow state to be set by a field coming from a mail handler
  */
 function jrst_custom_feeds_node_processor_targets_alter(&$targets, $content_type) {
   if ($content_type == 'article') {
     $targets['workflow_state'] = array(
-      'name' => t('Hack Workflow state'),
+      'name' => t('Workflow State (JRST ONLY)'),
       'description' => t('What editorial state the node is in'),
       'callback' => 'jrst_custom_workflow_feeds_set_target_sid',
     );
   }
 }
 
+/*
+ * Callback for jrst_custom_feeds_node_processor_targets_alter
+ * 
+ * Defines custom callback for workflow setting for JRST. Note, workflow based on sid
+ * (dumb), so very specific to this site.
+ */
 function jrst_custom_workflow_feeds_set_target_sid($node, $key, $keyword) {
-  // get possible sid values for this node
+  // get possible sid values for this node or Return error
   $keyword = strtolower($keyword);
   if (!(strpos($keyword, 'editorial') === FALSE)) {
     $sid = 8;
@@ -352,13 +342,16 @@ function jrst_custom_workflow_feeds_set_target_sid($node, $key, $keyword) {
   }
 }
 
-function jrst_custom_nodeapi(&$node, $op, $a3 = null, $a4 = null) {
+/**
+ * Implementation of hook_workflow().
+ */
+function jrst_custom_workflow($op, $old_state, $new_state, $node) {
   switch ($op) {
-    case 'load':
-    case 'alter':
-      if (isset($node->_workflow) && $node->_workflow == '11') {
-        $node->comment = 0;
+    case 'transition post':
+      if ($new_state == 11 && $old_state != $new_state && $node->comment != COMMENT_NODE_DISABLED) {
+        $node->comment = COMMENT_NODE_DISABLED;
+        node_save($node);
       }
-      break;
   }
 }
+

@@ -9,3 +9,12 @@ function project_management_ctools_plugin_api() {
     return array("version" => 1);
   }
 }
+
+/**
+ * Implementation of hook_views_api().
+ */
+function project_management_views_api() {
+  return array(
+    'api' => '2',
+  );
+}

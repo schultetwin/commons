@@ -44,7 +44,7 @@ function jrst_custom_perm() {
  * Implementation of hook_menu().
  */
 function jrst_custom_menu() {
-  $items['project_issue/bulkadd'] = array(
+  $items['tracking/bulkadd'] = array(
     'title' => 'Bulk Issue Add',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('jrst_custom_bulkadd_form'),

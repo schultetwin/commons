@@ -33,6 +33,26 @@ function jrst_custom_menu_alter(&$items) {
   $items['user/%user/view']['type'] = MENU_LOCAL_TASK;
   $items['user/%user/track']['type'] = MENU_CALLBACK;
 }
+
+/**
+ * Implementation of hook_perm().
+ */
+function jrst_custom_perm() {
+  return array('bulk add projects');
+}
+/**
+ * Implementation of hook_menu().
+ */
+function jrst_custom_menu() {
+  $items['project_issue/bulkadd'] = array(
+    'title' => 'Bulk Issue Add',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('jrst_custom_bulkadd_form'),
+    'access arguments' => array('bulk add projects'),
+  );
+
+  return $items;
+}
 /**
  * Implementation of hook_block().
  */
@@ -257,6 +277,11 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     case 'group_node_form':
       $form['taxonomy']['#group'] = FALSE;
       break;
+    case 'project_issue_node_form':
+      $form['project_info']['component']['#default_value'] = 'Code';
+      $form['issue_info']['category']['#default_value'] = 'task';
+      $form['issue_info']['assgined']['#default_value'] = 1;
+      break;
   }
 }
 
@@ -310,6 +335,92 @@ function jrst_custom_feeds_node_processor_targets_alter(&$targets, $content_type
       'callback' => 'jrst_custom_workflow_feeds_set_target_sid',
     );
   }
+}
+/**
+ * Callback form bulkadd form
+ */
+function jrst_custom_bulkadd_form($form_state) {
+  $short_names = array();
+  $options = project_projects_select_options($short_names);
+
+  $form = array();
+  $form['project'] = array(
+    '#title' => t('Project'),
+    '#type' => 'select',
+    '#description' => t('Select which project to put these bugs in'),
+    '#options' => $options,
+    '#required' => TRUE,
+  );
+  $form['issues'] = array(
+    '#title' => t('Issues'),
+    '#type' => 'fieldset',
+    '#description' => t('Batch create issues'),
+    '#tree' => TRUE,
+  );
+  for($i = 0; $i < 10; $i++) {
+    $form['issues'][$i]['title'] = array(
+      '#title' => t('Issue Title'),
+      '#type' => 'textfield',
+    );
+    $form['issues'][$i]['body'] = array(
+      '#title' => t('Issue Body'),
+      '#type' => 'textarea',
+      '#rows' => 5,
+    );
+  }
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  return $form;
+}
+
+function jrst_custom_bulkadd_form_validate($form, &$form_state) {
+  foreach ($form_state['values']['issues'] as $issue) {
+    if (empty($issue['title']) xor empty($issue['body'])) {
+      form_set_error('issue', t('Must set both title and body for field, not just one'));
+    }
+  } 
+}
+
+function jrst_custom_bulkadd_form_submit($form, &$form_state) {
+  require_once("modules/node/node.pages.inc");
+
+  // define the content type of the form you'd like to load
+  $nodeType = 'project_issue';
+  $node = new stdClass();
+  $node->type = $nodeType;
+
+  node_object_prepare($node);
+  $node->uid = $GLOBALS['user']->uid;
+  $node->pid = $form_state['values']['project'];
+  $node->format = FILTER_FORMAT_DEFAULT;
+  $node->language = '';
+  $node->revision = 0;
+  $node->promote = 0;
+  $node->created = time();
+  $node->comment = 2;
+  $node->is_new = TRUE;
+  $node->status = 1;
+  $node->component = 'code';
+  $node->category = 'task';
+  $node->priority = 2;
+  $node->sid = 1;
+  $node->priority = 2;
+  $node->assigned = 1;
+  $count = 0;
+  foreach ($form_state['values']['issues'] as $issue) {
+    if (!empty($issue['title']) && !empty($issue['body'])) {
+      $node->title = $issue['title'];
+      $node->body = $issue['body'];
+      unset($node->nid);
+      node_save($node);
+      if (isset($node->nid)) {
+        $count++;
+      }
+    }
+  }
+  drupal_set_message(t('Successfully created %num nodes', array('%num' => $count)));
 }
 
 /*

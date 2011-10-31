@@ -242,6 +242,11 @@ function jrst_custom_ctools_plugin_directory($module, $plugin) {
  * Make sure the taxonomy form in the group is not in a vertical tab
  */
 function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
+  // Disable vertical tabs on a form.
+  $vtabs = variable_get('vertical_tabs_forms', array());
+  $vtabs['project_issue_node_form'] = FALSE;
+  variable_set('vertical_tabs_forms', $vtabs);
+
   switch ($form_id) {
     // Change the description for the email address field here to something more appropriate.
     case 'user_profile_form':

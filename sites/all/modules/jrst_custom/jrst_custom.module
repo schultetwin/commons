@@ -405,7 +405,7 @@ function jrst_custom_bulkadd_form_submit($form, &$form_state) {
   $node->comment = 2;
   $node->is_new = TRUE;
   $node->status = 1;
-  $node->component = 'code';
+  $node->component = 'Code';
   $node->category = 'task';
   $node->priority = 2;
   $node->sid = variable_get('project_issue_default_state', '1');

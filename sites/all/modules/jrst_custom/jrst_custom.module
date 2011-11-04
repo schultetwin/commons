@@ -414,11 +414,12 @@ function jrst_custom_bulkadd_form_submit($form, &$form_state) {
   $count = 0;
   foreach ($form_state['values']['issues'] as $issue) {
     if (!empty($issue['title']) && !empty($issue['body'])) {
-      $node->title = $issue['title'];
-      $node->body = $issue['body'];
-      unset($node->nid);
-      node_save($node);
-      if (isset($node->nid)) {
+      $newNode = new stdClass;
+      $newNode = $node;
+      $newNode->title = $issue['title'];
+      $newNode->body = $issue['body'];
+      node_save($newNode);
+      if (isset($newNode->nid)) {
         $count++;
       }
     }

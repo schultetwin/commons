@@ -449,7 +449,6 @@ function jrst_custom_site_feedback_settings_form() {
     '#default_value' => variable_get('jrst_custom_default_user_issue_project', 0),
     '#required' => TRUE,
   );
-  dpm($form);
   return system_settings_form($form);
 }
 

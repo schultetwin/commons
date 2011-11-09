@@ -38,7 +38,7 @@ function jrst_custom_menu_alter(&$items) {
  * Implementation of hook_perm().
  */
 function jrst_custom_perm() {
-  return array('bulk add projects');
+  return array('bulk add projects', 'jrst give site feedback');
 }
 /**
  * Implementation of hook_menu().
@@ -57,6 +57,12 @@ function jrst_custom_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('jrst_custom_site_feedback_settings_form'),
     'access arguments' => array('access administration pages'),
+  );
+  $items['feedback/add'] = array(
+    'title' => 'JRST Site Feedback',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('jrst_custom_block_feedback_form'),
+    'access arguments' => array('jrst give site feedback'),
   );
 
   return $items;
@@ -531,6 +537,15 @@ function jrst_custom_block_feedback_form_submit($form, &$form_state) {
   }
   else {
     drupal_set_message(t('Successfully saved feedback. Thank you for your response'));
+  }
+}
+
+function jrst_custom_views_pre_render(&$view) {
+  if ($view->name == 'user_meta') {
+    $text = l(t('Your Feedback'), 'feedback/add', array('query' => drupal_get_destination()));
+    $view->display_handler->set_option('footer', $text);
+    $view->display_handler->set_option('footer_format', '2');
+    $view->display_handler->set_option('footer_empty', 0);
   }
 }
 

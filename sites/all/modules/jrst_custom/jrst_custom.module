@@ -542,7 +542,7 @@ function jrst_custom_block_feedback_form_submit($form, &$form_state) {
 
 function jrst_custom_views_pre_render(&$view) {
   if ($view->name == 'user_meta') {
-    $text = l(t('Your Feedback'), 'feedback/add', array('query' => drupal_get_destination()));
+    $text = l(t('Give Feedback'), 'feedback/add', array('query' => drupal_get_destination()));
     $view->display_handler->set_option('footer', $text);
     $view->display_handler->set_option('footer_format', '2');
     $view->display_handler->set_option('footer_empty', 0);

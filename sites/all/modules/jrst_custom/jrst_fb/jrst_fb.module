@@ -1,0 +1,222 @@
+<?php
+
+/**
+ * Implementation of hook_menu().
+ */
+function jrst_fb_menu() {
+  $items['admin/settings/jrst_fb_settings'] = array(
+    'title' => 'JRST Site Feedback Setup',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('jrst_fb_admin_settings_form'),
+    'access arguments' => array('access administration pages'),
+  );
+  $items['feedback/add'] = array(
+    'title' => 'JRST Site Feedback',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('jrst_fb_feedback_form'),
+    'access arguments' => array('jrst give site feedback'),
+  );
+  $path = db_result(db_query('SELECT path FROM {support_client} WHERE clid = %d', variable_get('jrst_fb_default_client', 0)));
+
+  $items['support/' . $path . '/bulkadd'] = array(
+    'title' => 'Bulk Issue Add',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('jrst_fb_bulkadd_form'),
+    'access arguments' => array('bulk add issues'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function jrst_fb_perm() {
+ return array('jrst give site feedback', 'bulk add issues');
+}
+
+/**
+ * Settings page for site feedback
+ */
+function jrst_fb_admin_settings_form() {
+  $options = array();
+  $result = db_query('SELECT clid, name FROM {support_client} WHERE status = 1 AND parent = 0');
+  while ($client = db_fetch_object($result)) {
+    $options[$client->clid] = $client->name;
+  }
+
+  $form['jrst_fb_default_client'] = array(
+    '#type' => 'select',
+    '#title' => t('Default Client for User Feedback'),
+    '#options' => $options,
+    '#description' => t('Select the default client that user feedback will be put in'),
+    '#default_value' => variable_get('jrst_fb_default_client', 0),
+    '#required' => TRUE,
+  );
+  return system_settings_form($form);
+}
+
+/**
+ * Callback for feedback form in block.
+ */
+function jrst_fb_feedback_form(&$form_state) {
+  $form = array();
+
+  $form['feedback'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Feedback'),
+    '#description' => t('Send us feedback about the site so that we can fix it.'),
+  );
+  $form['feedback']['written_response'] = array(
+    '#type' => 'textarea',
+    '#title' => '', // not title
+    '#rows' => 5,
+    '#cols' => 30,
+  );
+  $form['feedback']['location'] = array(
+    '#type' => 'hidden',
+    '#value' => isset($_GET['q']) ? $_GET['q'] : '<front>',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  return $form;
+}
+
+function jrst_fb_feedback_form_submit($form, &$form_state) {
+  if ($form_state['values']['written_response'] == '') {
+    drupal_set_message(t('Feedback form was empty, no feedback saved.'), 'status');
+    return;
+  }
+  $additional_information = array(
+    "IP Address: " . ip_address(),
+    "User-Agent: " . $_SERVER['HTTP_USER_AGENT'],
+    "Location: " . $form_state['values']['location'],
+  );
+
+  require_once("modules/node/node.pages.inc");
+
+  // define the content type of the form you'd like to load
+  $nodeType = 'support_ticket';
+  $node = new stdClass();
+  $node->type = $nodeType;
+
+  node_object_prepare($node);
+  $node->uid = $GLOBALS['user']->uid;
+  $node->client = variable_get('jrst_fb_default_client', 0);
+  if ($node->client == 0) {
+    drupal_set_message(t('Failed saving feedback, site administrators must setup client'), 'error');
+    watchdog('jrst_fb', 'User tried submitting site feedback before configured. Please configure', WATCHDOG_NOTICE);
+    return;
+  }
+  $node->assigned = 0;
+  $node->priority = 2;
+  $node->state = 1;
+  $node->message_id = '';
+  $node->files = array();
+  $node->format = FILTER_FORMAT_DEFAULT;
+  $node->language = '';
+  $node->revision = 0;
+  $node->promote = 0;
+  $node->created = time();
+  $node->comment = 2;
+  $node->is_new = TRUE;
+  $node->status = 1;
+  $node->title = drupal_substr($form_state['values']['written_response'], 0, 50);
+  $node->body = implode("\n", $additional_information);
+  $node->body .= "\n" . $form_state['values']['written_response'];
+  node_save($node);
+  if (!$node->nid) {
+    drupal_set_message(t('Failed saving feedback. Administers have been notified!'), 'error');
+    watchdog('jrst_custom', 'Failed saving feedback', array(), WATCHDOG_ERROR);
+  }
+  else {
+    drupal_set_message(t('Successfully saved feedback. Thank you for your response'));
+  }
+}
+
+
+/**
+ * Callback form bulkadd form. Allow bulk addition issues.
+ */
+function jrst_fb_bulkadd_form($form_state) {
+
+  $form = array();
+  $form['issues'] = array(
+    '#title' => t('Issues'),
+    '#type' => 'fieldset',
+    '#description' => t('Batch create issues'),
+    '#tree' => TRUE,
+  );
+  for($i = 0; $i < 10; $i++) {
+    $form['issues'][$i]['title'] = array(
+      '#title' => t('Issue Title'),
+      '#type' => 'textfield',
+    );
+    $form['issues'][$i]['body'] = array(
+      '#title' => t('Issue Body'),
+      '#type' => 'textarea',
+      '#rows' => 5,
+    );
+  }
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+  $result = db_result(db_query('SELECT path FROM {support_client} WHERE clid = %d', variable_get('jrst_fb_default_client', 0)));
+  
+  $form['#redirect'] = 'support/' . $result;
+  return $form;
+}
+
+function jrst_fb_bulkadd_form_validate($form, &$form_state) {
+  foreach ($form_state['values']['issues'] as $issue) {
+    if (empty($issue['title']) xor empty($issue['body'])) {
+      form_set_error('issue', t('Must set both title and body for field, not just one'));
+    }
+  }
+}
+
+function jrst_fb_bulkadd_form_submit($form, &$form_state) {
+  require_once("modules/node/node.pages.inc");
+
+  // define the content type of the form you'd like to load
+  $nodeType = 'support_ticket';
+  $node = new stdClass();
+  $node->type = $nodeType;
+
+  node_object_prepare($node);
+  $node->uid = $GLOBALS['user']->uid;
+  $node->client = variable_get('jrst_fb_default_client', 0);
+  $node->assigned = 0;
+  $node->priority = 2;
+  $node->state = 1;
+  $node->message_id = '';
+  $node->format = FILTER_FORMAT_DEFAULT;
+  $node->language = '';
+  $node->revision = 0;
+  $node->promote = 0;
+  $node->created = time();
+  $node->comment = 2;
+  $node->is_new = TRUE;
+  $node->status = 1;
+   // $node->assigned = 1; (Don't auto assign)
+  $count = 0;
+  foreach ($form_state['values']['issues'] as $issue) {
+    if (!empty($issue['title']) && !empty($issue['body'])) {
+      $newNode = new stdClass;
+      $newNode = $node;
+      $newNode->title = $issue['title'];
+      $newNode->body = $issue['body'];
+      node_save($newNode);
+      if (isset($newNode->nid)) {
+        $count++;
+      }
+    }
+  }
+  drupal_set_message(t('Successfully created %num nodes', array('%num' => $count)));
+}

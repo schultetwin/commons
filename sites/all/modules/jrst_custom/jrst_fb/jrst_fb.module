@@ -139,7 +139,7 @@ function jrst_fb_feedback_form_submit($form, &$form_state) {
   $node->comment = 2;
   $node->is_new = TRUE;
   $node->status = 1;
-  $node->title = drupal_substr($form_state['values']['written_response'], 0, 50);
+  $node->title = "User: " . drupal_substr($form_state['values']['written_response'], 0, 50);
   $node->body = implode("\n", $additional_information);
   $node->body .= "\n" . $form_state['values']['written_response'];
   node_save($node);

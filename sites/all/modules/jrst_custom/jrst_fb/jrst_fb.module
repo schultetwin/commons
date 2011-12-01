@@ -91,7 +91,7 @@ function jrst_fb_feedback_form(&$form_state) {
   );
   $form['feedback']['location'] = array(
     '#type' => 'hidden',
-    '#value' => isset($_GET['q']) ? $_GET['q'] : '<front>',
+    '#value' => isset($_REQUEST['destination']) ? $_REQUEST['destination'] : 'Unknown',
   );
   $form['submit'] = array(
     '#type' => 'submit',

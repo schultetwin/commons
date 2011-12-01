@@ -17,7 +17,6 @@ function jrst_fb_menu() {
     'access arguments' => array('jrst give site feedback'),
   );
   $path = db_result(db_query('SELECT path FROM {support_client} WHERE clid = %d', variable_get('jrst_fb_default_client', 0)));
-
   $items['support/' . $path . '/bulkadd'] = array(
     'title' => 'Bulk Issue Add',
     'page callback' => 'drupal_get_form',
@@ -37,6 +36,21 @@ function jrst_fb_perm() {
  return array('jrst give site feedback', 'bulk add issues');
 }
 
+/**
+ * Implementation of hook_views_pre_render().
+ */
+function jrst_fb_views_pre_render(&$view) {
+  if ($view->name == 'user_meta') {
+    $text = l(t('Give Feedback'), 'feedback/add', array('query' => drupal_get_destination()));
+    if (user_access('administer support overview')) {
+      $text .= " | ";
+      $text .= l(t('View Issues'), 'support/tickets/jrst');
+    }
+    $view->display_handler->set_option('footer', $text);
+    $view->display_handler->set_option('footer_format', '2');
+    $view->display_handler->set_option('footer_empty', 0);
+  }
+}
 /**
  * Settings page for site feedback
  */

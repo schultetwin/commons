@@ -285,15 +285,6 @@ function jrst_custom_feeds_node_processor_targets_alter(&$targets, $content_type
   }
 }
 
-function jrst_custom_views_pre_render(&$view) {
-  if ($view->name == 'user_meta') {
-    $text = l(t('Give Feedback'), 'feedback/add', array('query' => drupal_get_destination()));
-    $view->display_handler->set_option('footer', $text);
-    $view->display_handler->set_option('footer_format', '2');
-    $view->display_handler->set_option('footer_empty', 0);
-  }
-}
-
 /*
  * Callback for jrst_custom_feeds_node_processor_targets_alter
  * 

@@ -43,6 +43,10 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
         'info' => t('JRST: User Login Text'),
         'cache' => BLOCK_NO_CACHE,
       );
+      $blocks['jrst_position_app'] = array(
+        'info' => t('JRST: Position Application Link'),
+        'cache' => BLOCK_NO_CACHE,
+      );
 
       return $blocks;
     case 'view':
@@ -97,6 +101,19 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
             }
           }
           break;
+        case 'jrst_position_app':
+          global $user;
+          if (arg(0) == 'node' && is_numeric(arg(1))) {
+            $node = node_load(arg(1));
+            if (($node->type == 'position') && $user->uid != 0) {
+              $block['subject'] = t('Apply for Position');
+              $block['content'] = l(t('Apply for Position'), 'node/add/position/' . $node->nid);
+            }
+          }
+          else {
+            return;
+          }
+
       }
       return $block;
   }
@@ -229,6 +246,13 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     // Make sure the taxonomy fieldset on nodes do not appear in a vertical tab
     case 'group_node_form':
       $form['taxonomy']['#group'] = FALSE;
+      break;
+    case 'application_node_form':
+      $nid = arg(3);
+      if ($nid && isset($form['field_app_position']['#default_value']['0']['nid']) &&
+        $form['field_app_position']['#default_value']['0']['nid'] == '') {
+        $form['field_app_position']['#default_value']['0']['nid'] = $nid;
+      }
       break;
   }
 }

@@ -254,6 +254,13 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
         $form['field_app_position']['#default_value']['0']['nid'] = $nid;
       }
       break;
+    case 'position_node_form':
+      $nid = arg(3);
+      if ($nid && isset($form['field_position_group']['#default_value']['0']['nid']) &&
+        $form['field_position_group']['#default_value']['0']['nid'] == '') {
+        $form['field_position_group']['#default_value']['0']['nid'] = $nid;
+      }
+      break;
   }
 }
 

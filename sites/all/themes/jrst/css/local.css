@@ -101,7 +101,7 @@ body {
 	background-color: #444;
 }
 .contextual-search-wrapper .contextual-search-launcher:hover,
-.contextual-search-processed .contextual-search-wrapper ul.contextual-search-list li a:hover{
+.contextual-search-processed .contextual-search-wrapper ul.contextual-search-list li a:hover {
 	background-color: #666;
 }
 .contextual-search-processed .contextual-search-wrapper ul.contextual-search-list li a {
@@ -115,6 +115,16 @@ body {
 h1.title{
 	font-size: 200%;
 }
+
+
+/* Menu */
+#primary-menu-inner .sf-menu > .first a {
+  background: url("/sites/all/themes/jrst/images/icons/home_new.png") no-repeat center;
+  text-indent: -9999px;
+  height: 21px;
+  width: 21px;
+}
+
 
 .node .inner .terms ul li, .node .inner .links ul li{
 	background: none;
@@ -240,7 +250,7 @@ legend{
 
 /* User Login/Register Link */
 #block-jrst_custom-jrst_user_login {
-  margin-top: 40px;
+  /*margin-top: 40px;*/
 }
 
 #view-id-frontpage_jrst-page_1 .views-field-title {

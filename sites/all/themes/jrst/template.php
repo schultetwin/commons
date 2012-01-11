@@ -24,3 +24,4 @@ function jrst_preprocess_comment($vars) {
 
   }
 }
+

@@ -32,7 +32,7 @@ function jrst_frontpage_views_default_views() {
         'target' => '',
         'help' => '',
         'trim' => 1,
-        'max_length' => '50',
+        'max_length' => '200',
         'word_boundary' => 1,
         'ellipsis' => 1,
         'html' => 0,
@@ -80,10 +80,48 @@ function jrst_frontpage_views_default_views() {
         'multiple_from' => '',
         'multiple_reversed' => FALSE,
       ),
-      'exclude' => 0,
+      'exclude' => 1,
       'id' => 'field_article_author_uid',
       'table' => 'node_data_field_article_author',
       'field' => 'field_article_author_uid',
+      'relationship' => 'none',
+    ),
+    'field_article_preprod_author_value' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_article_preprod_author_value',
+      'table' => 'node_data_field_article_preprod_author',
+      'field' => 'field_article_preprod_author_value',
       'relationship' => 'none',
     ),
   ));
@@ -280,14 +318,17 @@ if (!empty($args)) {
     'type' => 'none',
   ));
   $handler->override_option('title', 'Articles');
-  $handler->override_option('items_per_page', 3);
+  $handler->override_option('css_class', 'slide-article-list');
+  $handler->override_option('items_per_page', 8);
+  $handler->override_option('style_plugin', 'list');
   $handler->override_option('row_options', array(
     'inline' => array(
       'title' => 'title',
       'field_article_author_uid' => 'field_article_author_uid',
+      'field_article_preprod_author_value' => 'field_article_preprod_author_value',
     ),
-    'separator' => ' - ',
-    'hide_empty' => 0,
+    'separator' => ' ',
+    'hide_empty' => 1,
   ));
   $handler = $view->new_display('block', 'Inline On Frontpage', 'block_1');
   $handler->override_option('block_description', '');
@@ -365,7 +406,7 @@ if (!empty($args)) {
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'none',
-      'format' => 'Featured_default',
+      'format' => 'image_nodelink',
       'multiple' => array(
         'group' => TRUE,
         'multiple_number' => '',
@@ -461,7 +502,7 @@ if (!empty($args)) {
         'value' => NULL,
         'min' => NULL,
         'max' => NULL,
-        'default_date' => 'now',
+        'default_date' => 'now + 15 days',
         'default_to_date' => '',
       ),
       'group' => '0',
@@ -476,7 +517,7 @@ if (!empty($args)) {
       'date_method' => 'OR',
       'granularity' => 'month',
       'form_type' => 'date_select',
-      'default_date' => 'now',
+      'default_date' => 'now + 15 days',
       'default_to_date' => '',
       'year_range' => '-3:+3',
       'id' => 'field_issue_pub_date_value',
@@ -494,6 +535,7 @@ if (!empty($args)) {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
+  $handler->override_option('css_class', 'slide-cover-image');
   $handler->override_option('items_per_page', 5);
   $handler->override_option('style_plugin', 'slideshow');
   $handler->override_option('style_options', array(
@@ -619,7 +661,7 @@ if (!empty($args)) {
         'value' => NULL,
         'min' => NULL,
         'max' => NULL,
-        'default_date' => 'now -1 month',
+        'default_date' => 'now -5 months',
         'default_to_date' => '',
       ),
       'group' => '0',
@@ -634,7 +676,7 @@ if (!empty($args)) {
       'date_method' => 'OR',
       'granularity' => 'day',
       'form_type' => 'date_select',
-      'default_date' => 'now -1 month',
+      'default_date' => 'now -5 months',
       'default_to_date' => '',
       'year_range' => '-3:+3',
       'id' => 'date_filter',
@@ -645,6 +687,26 @@ if (!empty($args)) {
       ),
       'relationship' => 'none',
     ),
+    'field_notice_highlighted_value_many_to_one' => array(
+      'operator' => 'not',
+      'value' => array(
+        'highlighted' => 'highlighted',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'field_notice_highlighted_value_many_to_one',
+      'table' => 'node_data_field_notice_highlighted',
+      'field' => 'field_notice_highlighted_value_many_to_one',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+      'reduce_duplicates' => 0,
+    ),
   ));
   $handler->override_option('access', array(
     'type' => 'none',
@@ -652,10 +714,11 @@ if (!empty($args)) {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('title', 'Recent Notices');
+  $handler->override_option('css_class', 'frontpage-notices');
   $handler->override_option('empty', 'No Notices in the Last Month');
   $handler->override_option('empty_format', '1');
-  $handler->override_option('items_per_page', 2);
+  $handler->override_option('items_per_page', 3);
+  $handler->override_option('use_pager', '1');
   $handler->override_option('row_plugin', 'node');
   $handler->override_option('row_options', array(
     'relationship' => 'none',
@@ -664,6 +727,96 @@ if (!empty($args)) {
     'comments' => 0,
   ));
   $handler = $view->new_display('block', 'Frontpage Notices', 'block_1');
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
+  $handler = $view->new_display('block', 'Highlighted Notices', 'block_2');
+  $handler->override_option('filters', array(
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'notice' => 'notice',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+    'date_filter' => array(
+      'operator' => '>=',
+      'value' => array(
+        'value' => NULL,
+        'min' => NULL,
+        'max' => NULL,
+        'default_date' => 'now -5 months',
+        'default_to_date' => '',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'date_fields' => array(
+        'node.changed' => 'node.changed',
+      ),
+      'date_method' => 'OR',
+      'granularity' => 'day',
+      'form_type' => 'date_select',
+      'default_date' => 'now -5 months',
+      'default_to_date' => '',
+      'year_range' => '-3:+3',
+      'id' => 'date_filter',
+      'table' => 'node',
+      'field' => 'date_filter',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_notice_highlighted_value_many_to_one' => array(
+      'operator' => 'or',
+      'value' => array(
+        'highlighted' => 'highlighted',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'field_notice_highlighted_value_many_to_one',
+      'table' => 'node_data_field_notice_highlighted',
+      'field' => 'field_notice_highlighted_value_many_to_one',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+      'reduce_duplicates' => 0,
+    ),
+  ));
+  $handler->override_option('css_class', 'frontpage-notices highlighted clearfix');
+  $handler->override_option('empty', '');
+  $handler->override_option('items_per_page', 1);
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
 
@@ -934,6 +1087,20 @@ if ($user->uid != 0) {
       'field' => 'type',
       'relationship' => 'none',
     ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('access', array(
     'type' => 'none',
@@ -1079,12 +1246,34 @@ if ($user->uid != 0) {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('title', 'Recent Articles');
-  $handler->override_option('items_per_page', 3);
+  $handler->override_option('title', 'New Articles');
+  $handler->override_option('use_pager', '1');
+  $handler->override_option('use_more', 1);
+  $handler->override_option('use_more_always', 0);
   $handler->override_option('style_plugin', 'list');
+  $handler->override_option('row_plugin', 'node');
   $handler = $view->new_display('block', 'Frontpage Recent Articles', 'block_1');
+  $handler->override_option('items_per_page', 3);
+  $handler->override_option('use_pager', '0');
+  $handler->override_option('row_plugin', 'fields');
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
+  $handler = $view->new_display('page', 'Page', 'page_2');
+  $handler->override_option('path', 'articles/recent');
+  $handler->override_option('menu', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
 
   $views[$view->name] = $view;
 

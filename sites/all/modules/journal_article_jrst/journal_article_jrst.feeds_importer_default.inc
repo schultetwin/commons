@@ -201,5 +201,64 @@ revision',
   );
 
   $export['mail_impor'] = $feeds_importer;
+  $feeds_importer = new stdClass;
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'mail_import_unpublish';
+  $feeds_importer->config = array(
+    'name' => 'Mail Import Unpublish',
+    'description' => 'Seperate Feed To Unpublish',
+    'fetcher' => array(
+      'plugin_key' => 'MailhandlerFetcher',
+      'config' => array(
+        'filter' => 'nodes',
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'MailhandlerParser',
+      'config' => array(
+        'if_auth_fails' => 'remove',
+        'default_commands' => 'status: 0',
+        'available_commands' => 'status
+document_id',
+        'command_plugin' => array(
+          'MailhandlerCommandsHeaders' => 'MailhandlerCommandsHeaders',
+          'MailhandlerCommandsJRST' => 'MailhandlerCommandsJRST',
+          'MailhandlerCommandsFiles' => 'MailhandlerCommandsFiles',
+        ),
+        'authenticate_plugin' => 'MailhandlerAuthenticateDefault',
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'JRSTNodeProcessor',
+      'config' => array(
+        'content_type' => 'article',
+        'input_format' => '0',
+        'update_existing' => '2',
+        'expire' => '-1',
+        'mappings' => array(
+          0 => array(
+            'source' => 'document_id',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          1 => array(
+            'source' => 'status',
+            'target' => 'status',
+            'unique' => FALSE,
+          ),
+        ),
+        'author' => '7',
+        'authorize' => 0,
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '1800',
+    'expire_period' => 3600,
+    'import_on_create' => 1,
+  );
+
+  $export['mail_import_unpublish'] = $feeds_importer;
   return $export;
 }

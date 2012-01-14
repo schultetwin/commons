@@ -106,7 +106,8 @@ function jrst_base_user_default_permissions() {
   $permissions['edit field_poll_body'] = array(
     'name' => 'edit field_poll_body',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -194,7 +195,8 @@ function jrst_base_user_default_permissions() {
   $permissions['use realname'] = array(
     'name' => 'use realname',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -202,7 +204,9 @@ function jrst_base_user_default_permissions() {
   $permissions['view date repeats'] = array(
     'name' => 'view date repeats',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 
@@ -210,7 +214,9 @@ function jrst_base_user_default_permissions() {
   $permissions['view field_poll_body'] = array(
     'name' => 'view field_poll_body',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 
@@ -226,7 +232,9 @@ function jrst_base_user_default_permissions() {
   $permissions['view imagecache group_images_featured'] = array(
     'name' => 'view imagecache group_images_featured',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 
@@ -234,7 +242,9 @@ function jrst_base_user_default_permissions() {
   $permissions['view imagecache group_images_medium'] = array(
     'name' => 'view imagecache group_images_medium',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 

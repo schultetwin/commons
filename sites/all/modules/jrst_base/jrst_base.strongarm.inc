@@ -184,7 +184,7 @@ function jrst_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_bulkupdate';
-  $strongarm->value = 0;
+  $strongarm->value = FALSE;
 
   $export['pathauto_node_bulkupdate'] = $strongarm;
   $strongarm = new stdClass;
@@ -382,6 +382,35 @@ function jrst_base_strongarm() {
   $strongarm->name = 'vertical_tabs_forms';
   $strongarm->value = array(
     'comment_form' => FALSE,
+    'job_posting_node_form' => array(
+      'menu' => 'menu',
+      'author' => 'author',
+      'revision_information' => 'revision_information',
+      'options' => 'options',
+      'path' => 'path',
+      'comment_settings' => 'comment_settings',
+      'attachments' => 'attachments',
+    ),
+    'webform_node_form' => array(
+      'menu' => 'menu',
+      'author' => 'author',
+      'revision_information' => 'revision_information',
+      'options' => 'options',
+      'path' => 'path',
+      'comment_settings' => 'comment_settings',
+      'attachments' => 'attachments',
+    ),
+    'project_issue_node_form' => FALSE,
+    'support_ticket_node_form' => array(
+      'menu' => 'menu',
+      'revision_information' => 'revision_information',
+      'author' => 'author',
+      'options' => 'options',
+      'path' => 'path',
+      'comment_settings' => 'comment_settings',
+      'attachments' => 'attachments',
+      'support' => 0,
+    ),
   );
 
   $export['vertical_tabs_forms'] = $strongarm;
@@ -394,6 +423,7 @@ function jrst_base_strongarm() {
     'og_members_block' => TRUE,
     'og_my' => TRUE,
     'taxonomy_term' => FALSE,
+    'groups_main_listing' => TRUE,
   );
 
   $export['views_defaults'] = $strongarm;

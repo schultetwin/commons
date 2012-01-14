@@ -60,7 +60,8 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['delete own issue content'] = array(
     'name' => 'delete own issue content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -209,7 +210,8 @@ function journal_article_jrst_user_default_permissions() {
     'name' => 'edit field_article_resubmit',
     'roles' => array(
       '0' => 'associate editor',
-      '1' => 'site admin',
+      '1' => 'editor',
+      '2' => 'site admin',
     ),
   );
 
@@ -346,7 +348,9 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['import mail_impor feeds'] = array(
     'name' => 'import mail_impor feeds',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'associate editor',
+      '1' => 'editor',
+      '2' => 'site admin',
     ),
   );
 
@@ -402,7 +406,9 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['view field_article_country'] = array(
     'name' => 'view field_article_country',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'associate editor',
+      '1' => 'editor',
+      '2' => 'site admin',
     ),
   );
 
@@ -480,7 +486,9 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['view field_article_resubmit'] = array(
     'name' => 'view field_article_resubmit',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'associate editor',
+      '1' => 'editor',
+      '2' => 'site admin',
     ),
   );
 
@@ -528,9 +536,11 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['view field_article_wiley_id'] = array(
     'name' => 'view field_article_wiley_id',
     'roles' => array(
-      '0' => 'associate editor',
-      '1' => 'editor',
-      '2' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'associate editor',
+      '2' => 'authenticated user',
+      '3' => 'editor',
+      '4' => 'site admin',
     ),
   );
 
@@ -568,7 +578,9 @@ function journal_article_jrst_user_default_permissions() {
   $permissions['view field_issue_special'] = array(
     'name' => 'view field_issue_special',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 

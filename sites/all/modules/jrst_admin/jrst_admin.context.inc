@@ -14,7 +14,7 @@ function jrst_admin_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        '<front>' => '<front>',
+        'manuscripts' => 'manuscripts',
       ),
     ),
     'user' => array(
@@ -29,7 +29,7 @@ function jrst_admin_context_default_contexts() {
         'jrst_custom-import_now' => array(
           'module' => 'jrst_custom',
           'delta' => 'import_now',
-          'region' => 'sidebar_last',
+          'region' => 'content_top',
           'weight' => 0,
         ),
       ),

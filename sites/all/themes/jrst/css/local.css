@@ -71,7 +71,8 @@ h2 {
 	background-color: #d0d0d0;
 }
 
-.sidebar-last .block .inner, .sidebar-first .block .inner {
+.sidebar-last .block .inner, .sidebar-first .block .inner,
+.view-frontpage-jrst-notices.highlighted {
 	border-color: #a08080;
 }
 
@@ -306,4 +307,8 @@ legend{
 
 #pid-groups div.tags{
 	display: none;
+}
+
+.view-frontpage-jrst-notices.highlighted {
+  background: orange;
 }

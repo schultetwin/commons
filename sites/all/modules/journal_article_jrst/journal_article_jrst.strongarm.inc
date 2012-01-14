@@ -197,7 +197,6 @@ function journal_article_jrst_strongarm() {
   $strongarm->name = 'content_extra_weights_issue';
   $strongarm->value = array(
     'title' => '-5',
-    'body_field' => '1',
     'revision_information' => '4',
     'author' => '2',
     'options' => '5',
@@ -205,6 +204,8 @@ function journal_article_jrst_strongarm() {
     'menu' => '3',
     'path' => '6',
     'attachments' => '8',
+    'article_by_issue_node_content_1' => '10',
+    'workflow' => '10',
   );
 
   $export['content_extra_weights_issue'] = $strongarm;

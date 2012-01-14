@@ -1823,14 +1823,16 @@ input.list-add-to-cart:focus {
 }
 
 .sidebar-last .block .inner,
-.sidebar-first .block .inner {
+.sidebar-first .block .inner,
+.view-frontpage-jrst-notices.highlighted {
 	border: 1px solid #dedede;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
 }
 
 .sidebar-first .block .content,
-.sidebar-last .block .content {
+.sidebar-last .block .content,
+.view-frontpage-jrst-notices.highlighted {
 	padding: 10px;
 }
 

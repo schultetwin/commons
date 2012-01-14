@@ -598,7 +598,7 @@ if ($user->uid != 0) {
   $handler = $view->new_display('block', 'Suggested Articles', 'block_1');
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
-  $handler = $view->new_display('block', 'Block', 'block_2');
+  $handler = $view->new_display('block', 'Suggested Discussions Block', 'block_2');
   $handler->override_option('relationships', array(
     'field_discussion_article_nid' => array(
       'label' => 'Article',
@@ -755,6 +755,7 @@ if ($user->uid != 0) {
       ),
     ),
   ));
+  $handler->override_option('title', 'Suggested Discussions');
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
 

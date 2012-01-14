@@ -25,7 +25,8 @@ function journal_article_jrst_feeds_importer_default() {
         'default_commands' => 'status: 1
 document_status: Editorial Review
 special_issue_flag: 0
-resubmit: 0',
+resubmit: 0
+revision: 0',
         'available_commands' => 'status
 document_id
 wiley_manuscript_type
@@ -49,7 +50,8 @@ resubmit
 prev_id
 decision
 decision_date
-reviewer',
+reviewer
+revision',
         'command_plugin' => array(
           'MailhandlerCommandsHeaders' => 'MailhandlerCommandsHeaders',
           'MailhandlerCommandsJRST' => 'MailhandlerCommandsJRST',
@@ -179,6 +181,11 @@ reviewer',
           22 => array(
             'source' => 'document_status',
             'target' => 'workflow_state',
+            'unique' => FALSE,
+          ),
+          23 => array(
+            'source' => 'revision',
+            'target' => 'field_article_revision',
             'unique' => FALSE,
           ),
         ),

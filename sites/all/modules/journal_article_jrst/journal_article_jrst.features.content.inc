@@ -1802,6 +1802,78 @@ Not for JRST',
     ),
   );
 
+  // Exported field: field_issue_wiley_link
+  $fields['issue-field_issue_wiley_link'] = array(
+    'field_name' => 'field_issue_wiley_link',
+    'type_name' => 'issue',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'computed',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'computed_field',
+    'active' => '1',
+    'code' => 'if (isset($node->field_issue_issue[0][\'value\']) && isset($node->field_issue_volume[0][\'value\'])) {
+  $url = "http://onlinelibrary.wiley.com/doi/10.1002/tea.v" . $node->field_issue_volume[0][\'value\'] . "." . $node->field_issue_issue[0][\'value\'] . "/issuetoc";
+  $node_field[0][\'value\'] = \'<a href=\' . $url . \'>\' . $url . \'</a>\';
+}
+else {
+  $node_field[0][\'value\'] = "";
+}',
+    'display_format' => '$display = $node_field_item[\'value\'];',
+    'store' => 1,
+    'data_type' => 'varchar',
+    'data_length' => '255',
+    'data_not_NULL' => 0,
+    'data_default' => '',
+    'data_sortable' => 1,
+    'widget' => array(
+      'default_value' => NULL,
+      'default_value_php' => NULL,
+      'roles' => array(
+        '1' => 0,
+        '2' => 0,
+        '6' => 0,
+        '7' => 0,
+        '5' => 0,
+      ),
+      'label' => 'Wiley Link',
+      'weight' => '11',
+      'description' => '',
+      'type' => 'computed',
+      'module' => 'computed_field',
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Associate Editor');
@@ -1826,6 +1898,7 @@ Not for JRST',
   t('Type');
   t('Volume');
   t('Wiley Id');
+  t('Wiley Link');
 
   return $fields;
 }

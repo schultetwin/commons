@@ -5,15 +5,6 @@
  * Class definition of FeedsNodeProcessor.
  */
 
-// Create or delete FEEDS_NODE_BATCH_SIZE at a time.
-define('FEEDS_NODE_BATCH_SIZE', 50);
-
-// Deprecated. Use FEEDS_SKIPE_EXISTING, FEEDS_REPLACE_EXISTNG,
-// FEEDS_UPDATE_EXISTING instead.
-define('FEEDS_NODE_SKIP_EXISTING', 0);
-define('FEEDS_NODE_REPLACE_EXISTING', 1);
-define('FEEDS_NODE_UPDATE_EXISTING', 2);
-
 /**
  * Creates nodes from feed items.
  */

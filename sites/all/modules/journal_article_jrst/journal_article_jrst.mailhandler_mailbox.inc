@@ -28,5 +28,28 @@ function journal_article_jrst_default_mailhandler_mailbox() {
   );
 
   $export['auto_ejrst_net'] = $mailbox;
+  $mailbox = new stdClass;
+  $mailbox->disabled = FALSE; /* Edit this to true to make a default mailbox disabled initially */
+  $mailbox->api_version = 1;
+  $mailbox->mail = 'auto_unpublish_ejrst_net';
+  $mailbox->settings = array(
+    'mail' => 'auto-unpublish@ejrst.net',
+    'folder' => '',
+    'imap' => '0',
+    'domain' => 'mail.ejrst.net',
+    'port' => '110',
+    'name' => 'auto-unpublish@ejrst.net',
+    'pass' => '&rTX).;H^ODQ',
+    'extraimap' => '/tls/novalidate-cert/debug',
+    'limit' => '',
+    'encoding' => '',
+    'mime' => 'TEXT/PLAIN,TEXT/HTML',
+    'delete_after_read' => 1,
+    'fromheader' => '',
+    'security' => '0',
+    'replies' => '0',
+  );
+
+  $export['auto_unpublish_ejrst_net'] = $mailbox;
   return $export;
 }

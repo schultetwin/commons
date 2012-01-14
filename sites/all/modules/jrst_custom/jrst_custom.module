@@ -302,6 +302,24 @@ function jrst_custom_link($type, $object, $teaser = FALSE) {
 }
 
 /**
+ * Implementation of hook_feeds_plugins().
+ */
+function jrst_custom_feeds_plugins() {
+  $info = array();
+  $info['JRSTNodeProcessor'] = array(
+    'name' => 'JRST Node Processor',
+    'description' => 'Processes nodes with GUID singular between all feed handlers',
+    'handler' => array(
+      'parent' => 'FeedsNodeProcessor', // A plugin needs to derive either directly or indirectly from FeedsFetcher, FeedsParser or FeedsProcessor.
+      'class' => 'JRSTFeedsNodeProcessor',
+      'file' => 'JRSTFeedsNodeProcessor.inc',
+      'path' => drupal_get_path('module', 'jrst_custom') . '/plugins/feeds/',
+    ),
+  );
+  return $info; 
+}
+
+/**
  * Implements hook_feeds_node_processor_targets_alter().
  * 
  * Allows the workflow state to be set by a field coming from a mail handler

@@ -18,3 +18,11 @@ function jrst_install() {
 function jrst_uninstall() {
 
 }
+
+/**
+
+ * Implementation of hook_enable().
+ */
+function jrst_custom_enable() {
+  cache_clear_all('plugins:feeds:plugins', 'cache');
+}

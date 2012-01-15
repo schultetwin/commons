@@ -391,3 +391,9 @@ function jrst_custom_context_load_alter(&$context) {
     context_set('context', 'jrst-profile-global', context_load('jrst-profile-global'));
   }
 }
+
+function jrst_custom_commons_profile_action_links_alter(&$links, $account) {
+  if (isset($links["ur_action"])) {
+    unset($links["ur_action"]);
+  }
+}

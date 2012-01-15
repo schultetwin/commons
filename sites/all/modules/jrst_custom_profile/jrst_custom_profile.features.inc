@@ -5,7 +5,10 @@
  */
 function jrst_custom_profile_ctools_plugin_api() {
   list($module, $api) = func_get_args();
-  if ($module == "features_override" && $api == "features_override") {
+  if ($module == "context" && $api == "context") {
+    return array("version" => 3);
+  }
+  elseif ($module == "features_override" && $api == "features_override") {
     return array("version" => 1);
   }
 }

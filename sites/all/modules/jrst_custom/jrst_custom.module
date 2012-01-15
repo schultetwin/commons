@@ -382,3 +382,12 @@ function jrst_custom_workflow($op, $old_state, $new_state, $node) {
   }
 }
 
+/**
+ * Implementation of hook_context_load_alter().
+ */
+function jrst_custom_context_load_alter(&$context) {
+  if ($context->name == 'profile-about-me' || $context->name == 'profile-about-other') {
+    unset($context->reactions['block']);
+    context_set('context', 'jrst-profile-global', context_load('jrst-profile-global'));
+  }
+}

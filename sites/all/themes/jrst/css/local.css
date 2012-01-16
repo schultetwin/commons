@@ -254,6 +254,134 @@ legend{
   /*margin-top: 40px;*/
 }
 
+/* @group User Meta - logout/account links in header w/ profile pic */
+
+.view-jrst-user-meta {
+  float: right;
+  width: 180px;
+  font-family: "Helvetical Neue",Helvetica,Arial,Sans-serif;
+  margin-top: 10px;
+}
+
+.view-jrst-user-meta .views-field-name span {
+  display: block;
+  font-size: 1.1em;
+  line-height: 1.2em;
+  text-align: right;
+}
+
+.view-jrst-user-meta .views-field-name span.username a {
+  color: #69c;
+  font-weight: bold;
+}
+
+.view-jrst-user-meta .views-field-name span.full-name {
+  font-size: .9em;
+  font-style: normal;
+}
+
+.view-jrst-user-meta .views-field-picture {
+  float: right;
+  margin: 0 0 2px 12px;
+}
+
+.view-jrst-user-meta .views-field-nothing,
+.view-jrst-user-meta .views-field-nothing-1 {
+  float: right;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding: 0;
+}
+
+.view-jrst-user-meta .views-field-nothing a,
+.view-jrst-user-meta .views-field-nothing-1 a {
+  color: #333;
+  font-size: 11px;
+  line-height: 13px;
+  padding: 0;
+}
+
+.view-jrst-user-meta .views-field-nothing {
+  border-left: 1px solid #666;
+  clear: both;
+  margin-left: 8px;
+  padding-left: 8px;
+}
+
+.view-jrst-user-meta .views-field-name {
+  font-size: .9em;
+  line-height: 1em;
+}
+
+.view-jrst-user-meta .views-field-name a {
+  color: #333;
+}
+
+.view-jrst-user-meta .views-field-nothing {
+  margin-right: 6px;
+  padding-right: 6px;
+}
+
+.view-jrst-user-meta .views-field-points {
+  clear: both;
+  text-align: right;
+}
+
+.view-jrst-user-meta .views-row span.views-field-picture {
+  display: block;
+  float: right;
+}
+
+/*user meta block*/
+
+#block-views-jrst_user_meta-block_1 {
+	margin-top: 12px;
+}
+
+.view-jrst-user-meta .views-field-name span {
+  font-style: italic;
+  margin: 0;
+	padding: 0 10px 0 0;
+	width: 100%;
+}
+
+/* @end */
+
+/* User_meta view top banner */
+.view-jrst-user-meta .views-field-jrst-feedback,
+.view-jrst-user-meta .views-field-jrst-view-issues {
+  float: right;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding: 0;
+}
+
+.view-jrst-user-meta .views-field-jrst-feedback a,
+.view-jrst-user-meta .views-field-jrst-view-issues a {
+  color: #333;
+  font-size: 11px;
+  line-height: 13px;
+  padding: 0;
+}
+
+.view-jrst-user-meta .views-field-nothing,
+.view-jrst-user-meta .views-field-nothing-1,
+.view-jrst-user-meta .views-field-jrst-feedback {
+  border-left: 1px solid #666;
+  margin-left: 8px;
+  padding-left: 8px;
+}
+
+.view-jrst-user-meta .views-field-nothing,
+.view-jrst-user-meta .views-field-nothing-1,
+.view-jrst-user-meta .views-field-jrst-feedback {
+  /*margin-right: 6px;
+  padding-right: 6px;*/
+}
+
+/* @end */
+
+
 #view-id-frontpage_jrst-page_1 .views-field-title {
   font-size:2em;
 }

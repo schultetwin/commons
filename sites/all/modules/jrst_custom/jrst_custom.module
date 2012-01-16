@@ -397,3 +397,13 @@ function jrst_custom_commons_profile_action_links_alter(&$links, $account) {
     unset($links["ur_action"]);
   }
 }
+
+function jrst_custom_og_create_links($group) {
+  $links = array();
+
+  if (user_access('create application content')) {
+    $links['jrst_position'] = l(t('Create Group Position'), 'node/add/application/' . $node->nid);
+  }
+
+  return $links;
+}

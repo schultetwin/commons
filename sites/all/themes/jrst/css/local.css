@@ -440,3 +440,7 @@ legend{
 .view-frontpage-jrst-notices.highlighted {
   background: orange;
 }
+
+#block-commons_profile-image_links .picture {
+  overflow: hidden;
+}

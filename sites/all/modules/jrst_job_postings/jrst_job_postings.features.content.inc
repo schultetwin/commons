@@ -284,7 +284,7 @@ Other Non-Academic Organization
       'label' => 'Position Type',
       'weight' => '-4',
       'description' => 'Check as many categories as apply to this job.  For example an Open Rank position should select both the Faculty, tenure track (Assistant) and Faculty, tenured (Associate/Full) boxes.',
-      'type' => 'optionwidgets_buttons',
+      'type' => 'optionwidgets_select',
       'module' => 'optionwidgets',
     ),
   );

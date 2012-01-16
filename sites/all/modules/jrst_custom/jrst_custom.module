@@ -242,6 +242,13 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     case 'user_profile_form':
     case 'user_register':
       $form['account']['mail']['#description'] = t('A valid e-mail address. All e-mails will be sent to this address');
+      if (isset($form['user_terms'])) {
+        foreach ($form['user_terms'] as $name => $element) {
+          if (is_array($element) && strpos($name, '#') === FALSE) {
+            $element['type'] = 'checkboxes';
+          }
+        }
+      }
       break;
     // Make sure the taxonomy fieldset on nodes do not appear in a vertical tab
     case 'group_node_form':

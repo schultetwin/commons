@@ -83,6 +83,10 @@ function betterselect_elements() {
  * Form process callback; translates multiselect fields into checkboxes.
  */
 function betterselect_process($element, $edit, $form_state, $complete_form) {
+  if (isset($complete_form['#node']->type) && $complete_form['#node']->type == 'application') {
+    return $element;
+  }
+
   if (isset($element['#multiple']) && $element['#multiple'] == TRUE && !(variable_get('betterselect_node_form_only', FALSE) == TRUE && $complete_form['#id'] != 'node-form')) {
 
     // If we're dealing with taxonomy, fix the option titles.
@@ -192,6 +196,10 @@ function betterselect_process($element, $edit, $form_state, $complete_form) {
  */
 function betterselect_form_alter(&$form, $form_state, $form_id) {
   // Taxonomy stores its #options in a weird way; we need to move it back once we're done.
+  if (isset($form['#node']->type) && $form['#node']->type == 'application') {
+    return;
+  }
+
   if (($form['#id'] == 'node-form' && isset($form['taxonomy']))) {
     $form['#submit'][] = 'betterselect_taxonomy_from_checkboxes';
   }

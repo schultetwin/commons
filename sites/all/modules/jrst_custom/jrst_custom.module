@@ -296,6 +296,7 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
         $form['field_app_position']['#default_value']['0']['nid'] == '') {
         $form['field_app_position']['#default_value']['0']['nid'] = $nid;
       }
+      $form['#redirect'] = 'dashboard';
       break;
     case 'position_node_form':
       break;

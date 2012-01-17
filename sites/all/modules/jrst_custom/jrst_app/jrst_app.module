@@ -28,6 +28,9 @@ function jrst_app_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
       drupal_goto('node/' . $nnid . '/edit');
     }
   }
+  if ($op == 'update' || $op == 'insert') {
+    drupal_set_message(t('Your Application has been saved, thank you for applying.'));
+  }
 }
 function jrst_app_user_existing($type) {
   global $user;

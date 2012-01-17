@@ -1,3 +1,5 @@
+/* @override http://dev.ejrst.net/sites/all/themes/jrst/css/local.css */
+
 
 
 /****************************/
@@ -48,10 +50,6 @@ a, a:link, a:visited{
 
 .contextual-search-wrapper .contextual-search-launcher, .contextual-search-processed .contextual-search-wrapper ul.contextual-search-list li a {
 	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-}
-
-.contextual-search-inner {
-  display:none;
 }
 
 h1 {
@@ -483,12 +481,32 @@ legend{
 	text-align: center;
 }
 
+#block-views-jrst_app_pos_info-block_1 .inner {
+  border: 0px;
+}
+
 #block-views-positions_open-block_1 .content {
   height: 200px;
   overflow-y: scroll;
 }
 
-#block-views-jrst_app_pos_info-block_1 .inner {
-  border: 0px;
+.view-jrst-groups-main-listing img{
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
+.view-jrst-groups-main-listing .title{
+	font-weight: bold;
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	
+}
+
+.view-jrst-groups-main-listing .description p{
+	margin-top: 0;
+}
+
+.view-jrst-groups-main-listing .views-row{
+	margin-bottom: 10px;
+	border-bottom: 1px solid gray;
+}

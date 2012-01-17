@@ -1,6 +1,4 @@
-/* @override http://dev.ejrst.net/sites/all/themes/jrst/css/local.css */
 
-/* $Id: local-sample.css 6555 2010-02-24 20:21:15Z chris $ */
 
 /****************************/
 /* LOCAL CSS                */
@@ -124,6 +122,11 @@ h1.title{
   text-indent: -9999px;
   height: 21px;
   width: 21px;
+}
+
+#secondary-menu {
+	float: left;
+	color: black;
 }
 
 
@@ -444,11 +447,34 @@ legend{
 #block-commons_profile-image_links .picture {
   overflow: hidden;
 }
-/* @begin Position Applications */
 
-#view-id-applications_for_positions-page_1 .view-content caption {
-  text-align: center;
-  font-size: large;
-  margin-bottom: 15px;
-  margin-top: 10px;
+
+.article-page .item-list ul li.views-row-first{
+	background: none;
+	margin-top: 40px;
+}
+
+.article-page .item-list ul li{
+	width: 90%;
+	margin-left: 15px;
+}
+
+.article-page .imagecache-issue_cover_small{
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 5px;
+}
+
+.node-type-issue img{
+	float: right;
+}
+
+.node-type-issue .item-list ul li{
+	background: none;
+	margin-top: 10px;
+}
+
+.node-type-issue .view-title{
+	font: bold 1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-align: center;
 }

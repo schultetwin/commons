@@ -116,12 +116,12 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           }
         case 'jrst_narst_committee':
           global $user;
+          $block['subject'] = t('NARST Committee Application');
           if ($user->uid != 0) {
-            $block['subject'] = t('NARST Committee Application');
             $block['content'] = l(t('NARST Committee Application'), 'node/add/application');
           }
           else {
-            return;
+            $block['content'] = l(t('NARST Committee Application'), 'nominations');
           }
 
       }

@@ -2,6 +2,7 @@
 name = JRST Application Customizations
 description = Custom Module for JRST that defines some custom pulls
 package = Other
+dependencies[] = jrst_position_application
 version = 6.x-1.x-dev
 core = 6.x
 php = 

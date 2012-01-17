@@ -6,8 +6,6 @@
 
 // $Id$
 Drupal.behaviors.jrst_app = function (context) {
-  var myTimer = undefined;
-  var delayTime = 3000;
 
   $('a.jrstposLink', context).click(function () {
     // This function will get exceuted after the ajax request is completed successfully

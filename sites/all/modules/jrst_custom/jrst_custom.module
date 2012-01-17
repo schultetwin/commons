@@ -107,12 +107,12 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           break;
         case 'jrst_position_app':
           global $user;
+          $block['subject'] = t('Apply for Position');
           if ($user->uid != 0) {
-            $block['subject'] = t('Apply for Position');
             $block['content'] = l(t('Apply for Position'), 'node/add/application/');
           }
           else {
-            return;
+            $block['content'] = l(t('Login/Register to Apply'), 'user/login');
           }
         case 'jrst_narst_committee':
           global $user;

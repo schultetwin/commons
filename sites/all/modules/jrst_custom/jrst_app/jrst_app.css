@@ -27,9 +27,9 @@
 */
 
 a.jrstposLink {
-  padding-right: 10px;
+  padding-right: 20px;
 }
 
 .display-throbber {
-  background: transparent url('/misc/throbber.gif') no-repeat right center;
+  background: transparent url('/misc/throbber.gif') no-repeat right top;
 }

@@ -122,6 +122,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           else {
             $block['content'] = l(t('Login/Register to Apply'), 'user/login');
           }
+          break;
         case 'jrst_narst_committee':
           global $user;
           $block['subject'] = t('NARST Committee Application');

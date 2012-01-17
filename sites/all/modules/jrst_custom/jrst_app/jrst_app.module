@@ -31,7 +31,7 @@ function jrst_app_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
 }
 function jrst_app_user_existing($type) {
   global $user;
-  if ($user->uid == 1) {
+  if (user_access('administer nodes')) {
     return FALSE;
   }
   $sql = 'SELECT nid FROM {node} WHERE type = "%s" AND uid = %d';

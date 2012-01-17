@@ -8,8 +8,8 @@
 /**
  * Implementation of hook_install() 
  */
-function jrst_install() {
-
+function jrst_custom_install() {
+  db_query("UPDATE {system} SET weight = 10 WHERE type = 'module' AND name = 'jrst_custom'");
 }
 
 /**
@@ -25,4 +25,8 @@ function jrst_uninstall() {
  */
 function jrst_custom_enable() {
   cache_clear_all('plugins:feeds:plugins', 'cache');
+}
+
+function jrst_custom_update_6001() {
+  db_query("UPDATE {system} SET weight = 10 WHERE type = 'module' AND name = 'jrst_custom'");
 }

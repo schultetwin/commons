@@ -20,6 +20,7 @@ function jrst_app_menu() {
 
 function jrst_app_get_position_ajax($nid) {
   $args = array($nid);
+  dsm(array($args, $nid));
   return drupal_json(array('jrst_app_view' => views_embed_view('jrst_app_pos_info', 'default', $args)));
 }
 

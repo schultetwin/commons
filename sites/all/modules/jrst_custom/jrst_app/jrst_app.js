@@ -10,7 +10,7 @@ Drupal.behaviors.jrst_app = function (context) {
     // This function will get exceuted after the ajax request is completed successfully
     var jrstposInfo = function(data) {
       // The data parameter is a JSON object. The “products” property is the list of products items that was returned from the server response to the ajax request.
-      $('#block-views-jrst_app_pos_info-block_1 .view-jrst-app-pos-info').html(data.products);
+      $('#block-views-jrst_app_pos_info-block_1 .view-jrst-app-pos-info').html(data.jrst_app_view);
     }
     $.ajax({
       type: 'POST',

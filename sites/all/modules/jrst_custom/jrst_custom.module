@@ -253,15 +253,6 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     case 'user_register':
       $form['account']['mail']['#description'] = t('A valid e-mail address. All e-mails will be sent to this address');
       $form['locations']['#weight'] = 5;
-      
-      $form['Personal Information']['profile_aboutme']['#resizable'] = 'FALSE';
-      $form['Personal Information']['profile_aboutme']['#rows'] = '10';
-      $form['Personal Information']['profile_aboutme']['#cols'] = '60';
-      $form['Personal Information']['profile_aboutme']['#weight'] = '50';
-      $form['Personal Information']['profile_aboutme']['#after_build'] = 'wysiwyg_process_form';
-      //$form['Personal Information']['profile_aboutme']['format'] = filter_form($ckeditor_format, NULL, array('format'));
-     // $form = wysiwyg_process_form($form);
-      //$wysiwyg_profile = wysiwyg_get_profile(4);
       break;
     // Make sure the taxonomy fieldset on nodes do not appear in a vertical tab
     case 'group_node_form':

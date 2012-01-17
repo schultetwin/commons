@@ -1,0 +1,43 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function jrst_app_menu() {
+  $items['js/jrst-app/get/position'] = array(
+    'page callback' => 'jrst_app_get_position_ajax',
+    'type' => MENU_CALLBACK,
+    'access arguements' => array('access content'),
+  );
+
+  return $items;
+}
+
+function jrst_app_get_position_ajax($nid) {
+  $args = array($nid);
+  return drupal_json(array('jrst_app_view' => views_embed_view('jrst_app_pos_info', 'default', $args)));
+}
+
+/*
+ * Implementation of hook_theme().
+ */
+function jrst_app_theme() {
+  return array(
+    'jrst_app_javascript' => array(
+      'arguments' => array(),
+    ),
+  );
+}
+
+function jrst_app_init() {
+  theme('jrst_app_javascript');
+}
+
+function theme_jrst_app_javacript() {
+  drupal_add_js(drupal_get_path('module', 'jrst_app') . '/jrst_app.js');
+}

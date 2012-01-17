@@ -478,3 +478,12 @@ legend{
 	font: bold 1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	text-align: center;
 }
+
+#block-views-jrst_app_pos_info-block_1 .inner {
+  border: 0px;
+}
+
+#block-views-positions_open-block_1 .content {
+  height: 200px;
+  overflow-y: scroll;
+}

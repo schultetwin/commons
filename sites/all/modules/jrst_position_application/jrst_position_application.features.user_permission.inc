@@ -118,14 +118,6 @@ function jrst_position_application_user_default_permissions() {
     ),
   );
 
-  // Exported permission: edit field_position_group
-  $permissions['edit field_position_group'] = array(
-    'name' => 'edit field_position_group',
-    'roles' => array(
-      '0' => 'site admin',
-    ),
-  );
-
   // Exported permission: edit field_position_time
   $permissions['edit field_position_time'] = array(
     'name' => 'edit field_position_time',
@@ -212,14 +204,6 @@ function jrst_position_application_user_default_permissions() {
   // Exported permission: view field_position_deadline
   $permissions['view field_position_deadline'] = array(
     'name' => 'view field_position_deadline',
-    'roles' => array(
-      '0' => 'site admin',
-    ),
-  );
-
-  // Exported permission: view field_position_group
-  $permissions['view field_position_group'] = array(
-    'name' => 'view field_position_group',
     'roles' => array(
       '0' => 'site admin',
     ),

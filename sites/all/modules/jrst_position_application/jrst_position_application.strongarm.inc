@@ -16,7 +16,7 @@ function jrst_position_application_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ant_pattern_application';
-  $strongarm->value = '[author-name] application for [field_app_position-title]';
+  $strongarm->value = '[author-name] application';
 
   $export['ant_pattern_application'] = $strongarm;
   $strongarm = new stdClass;
@@ -142,7 +142,7 @@ function jrst_position_application_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_position';
-  $strongarm->value = '2';
+  $strongarm->value = '0';
 
   $export['comment_position'] = $strongarm;
   $strongarm = new stdClass;
@@ -179,13 +179,15 @@ function jrst_position_application_strongarm() {
   $strongarm->name = 'content_extra_weights_application';
   $strongarm->value = array(
     'title' => '-5',
-    'revision_information' => '2',
-    'author' => '1',
-    'options' => '3',
-    'comment_settings' => '5',
-    'menu' => '-1',
-    'path' => '4',
-    'workflow' => '0',
+    'body_field' => '-2',
+    'revision_information' => '3',
+    'author' => '2',
+    'options' => '4',
+    'comment_settings' => '6',
+    'menu' => '0',
+    'book' => '7',
+    'path' => '5',
+    'workflow' => '1',
   );
 
   $export['content_extra_weights_application'] = $strongarm;
@@ -196,14 +198,15 @@ function jrst_position_application_strongarm() {
   $strongarm->value = array(
     'title' => '-5',
     'body_field' => '-2',
-    'revision_information' => '2',
-    'author' => '1',
-    'options' => '3',
-    'comment_settings' => '4',
-    'menu' => '0',
-    'path' => '5',
-    'attachments' => '6',
-    'workflow' => '-1',
+    'revision_information' => '3',
+    'author' => '2',
+    'options' => '4',
+    'comment_settings' => '5',
+    'menu' => '1',
+    'book' => '8',
+    'path' => '6',
+    'attachments' => '7',
+    'workflow' => '0',
   );
 
   $export['content_extra_weights_position'] = $strongarm;
@@ -213,7 +216,6 @@ function jrst_position_application_strongarm() {
   $strongarm->name = 'node_options_application';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'revision',
   );
 
   $export['node_options_application'] = $strongarm;

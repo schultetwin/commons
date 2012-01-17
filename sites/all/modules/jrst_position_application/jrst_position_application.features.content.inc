@@ -42,7 +42,7 @@ function jrst_position_application_content_default_fields() {
     ),
     'widget_active' => '1',
     'type' => 'filefield',
-    'required' => '0',
+    'required' => '1',
     'multiple' => '0',
     'module' => 'filefield',
     'active' => '1',
@@ -52,8 +52,8 @@ function jrst_position_application_content_default_fields() {
     'filefield_private_downloads' => 0,
     'filefield_private_content_disposition' => '',
     'widget' => array(
-      'file_extensions' => 'pdf txt doc docx',
-      'file_path' => '[user]/[date-in-tz]/cv',
+      'file_extensions' => 'txt doc docx pdf pages odt',
+      'file_path' => 'applications/[user]/cv',
       'progress_indicator' => 'bar',
       'max_filesize_per_file' => '',
       'max_filesize_per_node' => '',
@@ -68,6 +68,7 @@ function jrst_position_application_content_default_fields() {
         'imagecache_group_images_medium' => 0,
         'imagecache_group_images_showcase' => 0,
         'imagecache_group_images_thumb' => 0,
+        'imagecache_issue_cover_small' => 0,
         'imagecache_issue_main_page' => 0,
         'imagecache_member_list_image' => 0,
         'imagecache_profile_pictures' => 0,
@@ -77,11 +78,6 @@ function jrst_position_application_content_default_fields() {
       'insert_default' => 'auto',
       'insert_class' => '',
       'insert_width' => '',
-      'label' => 'Curriculum vitae',
-      'weight' => '-2',
-      'description' => '',
-      'type' => 'filefield_widget',
-      'module' => 'filefield',
       'roles' => array(
         '1' => 0,
         '2' => 0,
@@ -89,6 +85,11 @@ function jrst_position_application_content_default_fields() {
         '7' => 0,
         '5' => 0,
       ),
+      'label' => 'Curriculum vitae',
+      'weight' => '-1',
+      'description' => '<br> Your application requires a cover letter describing your reasons for applying for the position(s), your vision for the NARST group you are applying for, and any other information you feel is relevant.  <br><br> You may attach your cover letter here, or type out your cover letter in the space below. ',
+      'type' => 'filefield_widget',
+      'module' => 'filefield',
     ),
   );
 
@@ -136,6 +137,7 @@ function jrst_position_application_content_default_fields() {
       'application' => 0,
       'article' => 0,
       'blog' => 0,
+      'book' => 0,
       'discussion' => 0,
       'document' => 0,
       'event' => 0,
@@ -160,7 +162,7 @@ function jrst_position_application_content_default_fields() {
       'size' => 60,
       'default_value' => array(
         '0' => array(
-          'nid' => '',
+          'nid' => NULL,
         ),
       ),
       'default_value_php' => NULL,
@@ -173,9 +175,9 @@ function jrst_position_application_content_default_fields() {
       ),
       'label' => 'Position',
       'weight' => '-4',
-      'description' => 'Select the positions you wish to apply for.',
-      'type' => 'nodereference_buttons',
-      'module' => 'nodereference',
+      'description' => 'Select the positions you wish to apply for, ordering them in your preferred order.',
+      'type' => 'multiselect_select',
+      'module' => 'multiselect',
     ),
   );
 
@@ -215,7 +217,7 @@ function jrst_position_application_content_default_fields() {
     ),
     'widget_active' => '1',
     'type' => 'filefield',
-    'required' => '1',
+    'required' => '0',
     'multiple' => '0',
     'module' => 'filefield',
     'active' => '1',
@@ -225,8 +227,8 @@ function jrst_position_application_content_default_fields() {
     'filefield_private_downloads' => 0,
     'filefield_private_content_disposition' => '',
     'widget' => array(
-      'file_extensions' => 'pdf txt doc docx',
-      'file_path' => '[user]/[date-in-tz]/resume',
+      'file_extensions' => 'txt doc docx pdf pages odt',
+      'file_path' => 'applications/[user]',
       'progress_indicator' => 'bar',
       'max_filesize_per_file' => '',
       'max_filesize_per_node' => '',
@@ -241,6 +243,7 @@ function jrst_position_application_content_default_fields() {
         'imagecache_group_images_medium' => 0,
         'imagecache_group_images_showcase' => 0,
         'imagecache_group_images_thumb' => 0,
+        'imagecache_issue_cover_small' => 0,
         'imagecache_issue_main_page' => 0,
         'imagecache_member_list_image' => 0,
         'imagecache_profile_pictures' => 0,
@@ -257,9 +260,9 @@ function jrst_position_application_content_default_fields() {
         '7' => 0,
         '5' => 0,
       ),
-      'label' => 'Resume',
-      'weight' => '-3',
-      'description' => 'Upload your pdf',
+      'label' => 'Cover Letter Upload',
+      'weight' => 0,
+      'description' => 'If you did not upload a cover letter, please type in your cover letter below.  PLEASE NOTE that if you cut and paste from Microsoft Word, you must click on the small clipboard with a "W" and follow the instructions to paste, rather than just pasting directly in the space provided (which will cause Word to add a bunch of garbage text).  If you\'re using Word, it is easier to upload the document above.',
       'type' => 'filefield_widget',
       'module' => 'filefield',
     ),
@@ -343,21 +346,25 @@ function jrst_position_application_content_default_fields() {
     ),
   );
 
-  // Exported field: field_position_group
-  $fields['position-field_position_group'] = array(
-    'field_name' => 'field_position_group',
+  // Exported field: field_position_qualifications
+  $fields['position-field_position_qualifications'] = array(
+    'field_name' => 'field_position_qualifications',
     'type_name' => 'position',
     'display_settings' => array(
-      'weight' => '-3',
+      'weight' => '-1',
       'parent' => '',
       'label' => array(
-        'format' => 'hidden',
+        'format' => 'above',
       ),
       'teaser' => array(
-        'format' => 'hidden',
+        'format' => 'default',
         'exclude' => 0,
       ),
       'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '5' => array(
         'format' => 'default',
         'exclude' => 0,
       ),
@@ -379,40 +386,22 @@ function jrst_position_application_content_default_fields() {
       ),
     ),
     'widget_active' => '1',
-    'type' => 'nodereference',
+    'type' => 'text',
     'required' => '0',
     'multiple' => '0',
-    'module' => 'nodereference',
+    'module' => 'text',
     'active' => '1',
-    'referenceable_types' => array(
-      'group' => 'group',
-      'application' => 0,
-      'article' => 0,
-      'blog' => 0,
-      'discussion' => 0,
-      'document' => 0,
-      'event' => 0,
-      'project_issue' => 0,
-      'job_posting' => 0,
-      'issue' => 0,
-      'notice' => 0,
-      'page' => 0,
-      'podcast' => 0,
-      'poll' => 0,
-      'position' => 0,
-      'project_project' => 0,
-      'support_ticket' => 0,
-      'webform' => 0,
-      'wiki' => 0,
-    ),
-    'advanced_view' => '--',
-    'advanced_view_args' => '',
+    'text_processing' => '1',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
     'widget' => array(
-      'autocomplete_match' => 'contains',
+      'rows' => '6',
       'size' => 60,
       'default_value' => array(
         '0' => array(
-          'nid' => '',
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_position_qualifications][0][value',
         ),
       ),
       'default_value_php' => NULL,
@@ -423,21 +412,21 @@ function jrst_position_application_content_default_fields() {
         '7' => 0,
         '5' => 0,
       ),
-      'label' => 'Group',
-      'weight' => '-3',
-      'description' => '(Optional) If this position is part of a group you may select that group here.',
-      'type' => 'nodereference_select',
-      'module' => 'nodereference',
+      'label' => 'Preferred Qualifications',
+      'weight' => '-1',
+      'description' => 'Enter a description of the qualifications for this position',
+      'type' => 'text_textarea',
+      'module' => 'text',
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Closing Date');
+  t('Cover Letter Upload');
   t('Curriculum vitae');
-  t('Group');
   t('Position');
-  t('Resume');
+  t('Preferred Qualifications');
 
   return $fields;
 }

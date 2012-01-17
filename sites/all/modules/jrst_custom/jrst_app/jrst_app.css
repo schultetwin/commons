@@ -25,6 +25,11 @@
   max-width: 280px;
 }
 */
+
+a.jrstposLink {
+  padding-right: 10px;
+}
+
 .display-throbber {
-  background: transparent url('/misc/throbber.gif') no-repeat center bottom;
+  background: transparent url('/misc/throbber.gif') no-repeat right center;
 }

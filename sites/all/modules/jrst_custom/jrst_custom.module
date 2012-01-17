@@ -268,6 +268,9 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
         $form['field_position_group']['#default_value']['0']['nid'] = $nid;
       }
       break;
+    case 'views_exposed_form':
+      //dsm($form);
+      break;
   }
 }
 

@@ -50,6 +50,10 @@ a, a:link, a:visited{
 	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
+.contextual-search-inner {
+  display:none;
+}
+
 h1 {
 	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }

@@ -103,12 +103,9 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           break;
         case 'jrst_position_app':
           global $user;
-          if (arg(0) == 'node' && is_numeric(arg(1))) {
-            $node = node_load(arg(1));
-            if (($node->type == 'position') && $user->uid != 0) {
-              $block['subject'] = t('Apply for Position');
-              $block['content'] = l(t('Apply for Position'), 'node/add/position/' . $node->nid);
-            }
+          if ($user->uid != 0) {
+            $block['subject'] = t('Apply for Position');
+            $block['content'] = l(t('Apply for Position'), 'node/add/position/');
           }
           else {
             return;
@@ -242,13 +239,6 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     case 'user_profile_form':
     case 'user_register':
       $form['account']['mail']['#description'] = t('A valid e-mail address. All e-mails will be sent to this address');
-      if (isset($form['user_terms'])) {
-        foreach ($form['user_terms'] as $name => $element) {
-          if (is_array($element) && strpos($name, '#') === FALSE) {
-            $element['type'] = 'checkboxes';
-          }
-        }
-      }
       break;
     // Make sure the taxonomy fieldset on nodes do not appear in a vertical tab
     case 'group_node_form':
@@ -262,11 +252,6 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
       }
       break;
     case 'position_node_form':
-      $nid = arg(3);
-      if ($nid && isset($form['field_position_group']['#default_value']['0']['nid']) &&
-        $form['field_position_group']['#default_value']['0']['nid'] == '') {
-        $form['field_position_group']['#default_value']['0']['nid'] = $nid;
-      }
       break;
     case 'views_exposed_form':
       //dsm($form);
@@ -412,7 +397,7 @@ function jrst_custom_og_create_links($group) {
   $links = array();
 
   if (user_access('create application content')) {
-    $links['jrst_position'] = l(t('Create Group Position'), 'node/add/application/' . $node->nid);
+    $links['jrst_position'] = l(t('Create Group Position'), 'node/add/application/');
   }
 
   return $links;

@@ -510,3 +510,7 @@ legend{
 	margin-bottom: 10px;
 	border-bottom: 1px solid gray;
 }
+
+.contextual-search-inner {
+  display: none;
+}

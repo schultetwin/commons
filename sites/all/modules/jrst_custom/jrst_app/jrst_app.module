@@ -38,6 +38,6 @@ function jrst_app_init() {
   theme('jrst_app_javascript');
 }
 
-function theme_jrst_app_javacript() {
+function theme_jrst_app_javascript() {
   drupal_add_js(drupal_get_path('module', 'jrst_app') . '/jrst_app.js');
 }

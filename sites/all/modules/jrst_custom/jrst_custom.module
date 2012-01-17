@@ -105,7 +105,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           global $user;
           if ($user->uid != 0) {
             $block['subject'] = t('Apply for Position');
-            $block['content'] = l(t('Apply for Position'), 'node/add/position/');
+            $block['content'] = l(t('Apply for Position'), 'node/add/application/');
           }
           else {
             return;

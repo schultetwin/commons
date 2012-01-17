@@ -118,7 +118,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           global $user;
           if ($user->uid != 0) {
             $block['subject'] = t('NARST Committee Application');
-            $block['content'] = l(t('NARST Committee Application'), '/node/add/application');
+            $block['content'] = l(t('NARST Committee Application'), 'node/add/application');
           }
           else {
             return;

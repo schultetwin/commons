@@ -47,6 +47,10 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
         'info' => t('JRST: Position Application Link'),
         'cache' => BLOCK_NO_CACHE,
       );
+      $blocks['jrst_narst_committee'] = array(
+        'info' => t('JRST: Narst Committee link'),
+        'cache' => BLOCK_NO_CACHE,
+      );
 
       return $blocks;
     case 'view':
@@ -106,6 +110,15 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           if ($user->uid != 0) {
             $block['subject'] = t('Apply for Position');
             $block['content'] = l(t('Apply for Position'), 'node/add/application/');
+          }
+          else {
+            return;
+          }
+        case 'jrst_narst_committee':
+          global $user;
+          if ($user->uid != 0) {
+            $block['subject'] = t('NARST Committee Application');
+            $block['content'] = l(t('NARST Committee Application'), '/node/add/application');
           }
           else {
             return;

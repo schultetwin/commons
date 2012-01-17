@@ -12,7 +12,7 @@ function jrst_app_menu() {
   $items['js/jrst-app/get/position'] = array(
     'page callback' => 'jrst_app_get_position_ajax',
     'type' => MENU_CALLBACK,
-    'access arguements' => array('access content'),
+    'access arguments' => array('access content'),
   );
 
   return $items;

@@ -284,7 +284,8 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     case 'user_profile_form':
     case 'user_register':
       $form['account']['mail']['#description'] = t('A valid e-mail address. All e-mails will be sent to this address');
-      $form['locations']['#weight'] = 5;
+      $form['locations']['#weight'] = 4;
+      $form['user_terms']['#weight'] = 5;
       break;
     // Make sure the taxonomy fieldset on nodes do not appear in a vertical tab
     case 'group_node_form':
@@ -530,3 +531,22 @@ function jrst_custom_preprocess_user_picture(&$variables) {
     }
   }
 }
+
+/**
+ * Implementation of hook_user().
+ */
+function jrst_custom_user($op, &$edit, &$account, $category = NULL) {
+  $display = TRUE;
+  if (module_exists('profile')) {
+    $profile_page = variable_get('user_terms_profile_path', 'account');
+    if ($category && ($category != $profile_page)) {
+      $display = FALSE;
+    }
+  }
+  switch ($op) {
+    case 'register':
+      return $display ? user_terms_form_profile($edit, $account, $category, TRUE) : '';
+      break;
+  }
+}
+

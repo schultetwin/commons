@@ -19,7 +19,7 @@ Drupal.behaviors.jrst_app = function (context) {
     }
     $.ajax({
       type: 'POST',
-      url: this.href, // Which url should be handle the ajax request. This is the url defined in the <a> html tag
+      url: 'js/jrst-app/get/position/' + parseInt(this.href), // Which url should be handle the ajax request. This is the url defined in the <a> html tag
       success: jrstposInfo, // The js function that will be called upon success request
       dataType: 'json', //define the type of data that is going to get back from the server
       data: 'js=' + $(this).attr("title") //Pass a key/value pair

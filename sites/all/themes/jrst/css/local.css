@@ -1,4 +1,4 @@
-
+/* @override http://ejrst.net/sites/all/themes/jrst/css/local.css */
 
 /****************************/
 /* LOCAL CSS                */
@@ -511,7 +511,7 @@ legend{
 
 .view-frontpage-jrst-notices.highlighted{
 	padding: 0;
-	background-color: silver;
+	background-color: #ededed;
 	border: 2px solid maroon;
 }
 
@@ -525,4 +525,27 @@ legend{
 
 .view-frontpage-jrst-notices.highlighted h2{
 	font-size: 1.3em;
+}
+
+.application-view caption{
+	text-align: center;
+	font-weight: bold;
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+.application-view .views-table{
+	margin-bottom: 20px;
+	border: 1px solid gray;
+}
+
+.application-view .views-row-first .views-field-delta{
+	width: 3em;
+}
+
+.application-view .views-field{
+	padding: 0;
+}
+
+.application-view thead{
+	background-color: silver;
 }

@@ -454,7 +454,7 @@ legend{
 	margin-top: 40px;
 }
 
-.article-page .item-list ul li{
+.article-page .view-content .item-list ul li{
 	width: 90%;
 	margin-left: 15px;
 }
@@ -549,3 +549,4 @@ legend{
 .application-view thead{
 	background-color: silver;
 }
+

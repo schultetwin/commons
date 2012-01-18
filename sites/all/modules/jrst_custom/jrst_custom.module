@@ -435,6 +435,15 @@ function jrst_custom_context_load_alter(&$context) {
   }
 }
 
+function jrst_custom_views_pre_render(&$view) {
+  global $user;
+  if ($view->name == 'profile_about_page') {
+    if ($user->uid == arg(1)) {
+      context_set('context', 'jrst-profile-me', context_load('jrst-profile-me'));
+    }
+  }
+}
+
 function jrst_custom_commons_profile_action_links_alter(&$links, $account) {
   if (isset($links["ur_action"])) {
     unset($links["ur_action"]);

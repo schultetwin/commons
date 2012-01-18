@@ -1,0 +1,20 @@
+diff --git a/realname_plugin_argument_validate_user.inc b/realname_plugin_argument_validate_user.inc
+index 0e24c63..694c3bb 100644
+--- a/realname_plugin_argument_validate_user.inc
++++ b/realname_plugin_argument_validate_user.inc
+@@ -9,8 +9,14 @@ class realname_plugin_argument_validate_user extends views_plugin_argument_valid
+   
+   function validate_argument($argument) {
+     $result = parent::validate_argument($argument);
++    if (is_numeric($argument)) {
++      $account = user_load(array('uid' => $argument));
++    }
++    else {
++      $account = $argument;
++    }
+     $this->argument->validated_title = realname_make_name($account);
+-    return TRUE;
++    return $result;
+   }
+ }
+ 

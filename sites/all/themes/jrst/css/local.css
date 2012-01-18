@@ -1,5 +1,6 @@
 /* @override http://ejrst.net/sites/all/themes/jrst/css/local.css */
 
+
 /****************************/
 /* LOCAL CSS                */
 /****************************/
@@ -550,3 +551,16 @@ legend{
 	background-color: silver;
 }
 
+div.content-help-inner div.help{background-color: #e8e8e8;border: 1px solid maroon;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.filefield-upload .form-submit{
+	background-color: maroon;
+	color: white;
+	width: 6em;
+	height: 1.7em;
+	border-style: outset;
+	border-color: silver;
+}

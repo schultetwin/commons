@@ -452,9 +452,15 @@ function jrst_custom_og_create_links($group) {
 }
 
 function jrst_custom_views_pre_render(&$view) {
+  global $user;
   if ($view->name == 'applications_for_positions') {
     foreach ($view->result as &$result) {
       $result->node_data_field_app_position_delta++;
+    }
+  }
+  if ($view->name == 'profile_about_page') {
+    if ($user->uid == arg(1)) {
+      context_set('context', 'jrst-profile-me', context_load('jrst-profile-me'));
     }
   }
 }

@@ -17,6 +17,7 @@ Drupal.behaviors.jrst_app = function (context) {
       $(this).removeClass('display-throbber');
       $('a.jrstposLink').removeClass('display-throbber');
     }
+    var uurl = 'js/jrst-app/get/position/' + this.attr('title');
     $.ajax({
       type: 'POST',
       url: 'js/jrst-app/get/position/' + parseInt(this.href), // Which url should be handle the ajax request. This is the url defined in the <a> html tag

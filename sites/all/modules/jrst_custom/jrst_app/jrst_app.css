@@ -31,5 +31,5 @@ a.jrstposLink {
 }
 
 .display-throbber {
-  background: transparent url('/misc/throbber.gif') no-repeat right top;
+  background: transparent url('/misc/throbber.gif') no-repeat 100% -18px;
 }

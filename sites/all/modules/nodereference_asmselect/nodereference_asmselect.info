@@ -1,0 +1,8 @@
+name = Node Reference ASM Select
+description = "Adds ASM Select as a Node Reference Widget"
+dependencies = content nodereference jquery_ui views
+package = CCK
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-1.x-dev"
+project = "nodereference_asmselect"
+

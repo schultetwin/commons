@@ -27,5 +27,6 @@ Drupal.behaviors.jrst_app = function (context) {
     });
 
     return false;  // return false so the navigation stops here and not continue to the page in the link
-}).removeClass('display-throbber');
+  }).removeClass('display-throbber');
+
 }

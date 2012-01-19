@@ -19,6 +19,16 @@ function jrst_app_menu() {
 }
 
 /**
+ * Implementation of hook_form_alter().
+ */
+function jrst_app_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'application_node_form') {
+    $one = 1;
+  }
+}
+
+
+/**
  * Implementation of hook_menu_alter().
  */
 function jrst_app_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {

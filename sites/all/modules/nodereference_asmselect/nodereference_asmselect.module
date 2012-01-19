@@ -1,0 +1,103 @@
+<?php
+// vim: syntax=php
+
+/**
+ * @file
+ * Integrates the ASM Select JQuery plugin as an additional NodeReference widget.
+ *
+ */
+
+
+function nodereference_asmselect_widget_settings_alter(&$settings, $op, $widget) {
+  switch ($op) {
+    case 'save':
+      $settings[] = 'asm_settings';
+      break;
+    case 'form':
+      if ($widget['type'] == 'nodereference_select') {
+        $settings['asm_settings'] = array(
+          '#type' => 'fieldset',
+          '#title' => t('ASM Select Settings'),
+          '#weight' => -1,
+          '#tree' => TRUE,
+        );
+        $settings['asm_settings']['asm_enable'] = array(
+          '#type' => 'checkbox',
+          '#title' => t('Enable ASM Select'),
+          '#default_value' => $widget['asm_settings']['asm_enable']
+        );
+
+        $settings['asm_settings']['add_item_target'] = array(
+          '#type' => 'select',
+          '#title' => t('Add Item Target'),
+          '#description' => t('Where to place new selected items that are added to the list.'),
+          '#options' => array(
+            'bottom' => t('Bottom'),
+            'top' => t('Top'),
+          ),
+          '#default_value' => isset($widget['asm_settings']['add_item_target']) ? $widget['asm_settings']['add_item_target'] : 'bottom',
+          '#required' => TRUE,
+        );
+
+        $settings['asm_settings']['sortable'] = array(
+          '#type' => 'checkbox',
+          '#title' => 'Sortable',
+          '#description' => t('May the user drag and drop to sort the list of elements they have selected?'),
+          '#default_value' => isset($widget['asm_settings']['sortable']) ? $widget['asm_settings']['sortable'] : false
+        );
+
+        $settings['asm_settings']['animate'] = array(
+          '#type' => 'checkbox',
+          '#title' => 'Animate',
+          '#description' => t('Animate the adding or removing of items from the list?'),
+          '#default_value' => isset($widget['asm_settings']['animate']) ? $widget['asm_settings']['animate'] : true
+        );
+
+        $settings['asm_settings']['highlight'] = array(
+          '#type' => 'checkbox',
+          '#title' => 'Highlight',
+          '#description' => t('Show a quick highlight of what item was added or removed?'),
+          '#default_value' => isset($widget['asm_settings']['highlight']) ? $widget['asm_settings']['highlight'] : true
+        );
+      }
+  }
+}
+
+/**
+ * Implementation of hook_elements.
+ */
+function nodereference_asmselect_elements() {
+  return array(
+    'nodereference_select' => array(
+      '#process' => array('nodereference_asmselect_process'),
+    ),
+  );
+}
+
+function nodereference_asmselect_process($element, $edit, $form_state, $form) {
+  $widget = $form['#field_info'][$element['#field_name']]['widget'];
+  if (isset($widget['asm_settings'])) {
+    if ($widget['asm_settings']['asm_enable']) {
+      $element['#attributes'] = array('class' => 'nodereference-asmselect');
+      $js_info = array(
+        'nodereferenceAsmselect' => array(
+          $element['#id'] => $widget['asm_settings'],
+        ),
+      );
+      drupal_add_css(drupal_get_path('module', 'nodereference_asmselect') . '/asmselect/jquery.asmselect.css');
+      drupal_add_js(drupal_get_path('module', 'nodereference_asmselect') . '/asmselect/jquery.asmselect.js');
+      drupal_add_js($js_info, 'setting');
+      drupal_add_js(drupal_get_path('module', 'nodereference_asmselect') . '/nodereference_asmselect.js');
+    }
+  }
+  return $element;
+}
+
+function nodereference_asmselect_after_build($element, &$form_state) {
+  return $element;
+}
+
+
+function nodereference_asmselect_form_alter(&$form, &$form_state, $form_id) {
+  $one = 1;
+}

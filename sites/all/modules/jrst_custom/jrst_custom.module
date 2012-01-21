@@ -286,6 +286,7 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
       $form['account']['mail']['#description'] = t('A valid e-mail address. All e-mails will be sent to this address');
       $form['locations']['#weight'] = 4;
       $form['user_terms']['#weight'] = 5;
+      $form['user_terms']['#title'] = t('Research Areas/Interests');
       break;
     // Make sure the taxonomy fieldset on nodes do not appear in a vertical tab
     case 'group_node_form':

@@ -4,7 +4,7 @@
 
 .asmSelect {
 	/* the newly created regular 'select' */
-	display: inline; 
+	display: inline;
 }
 
 .asmOptionDisabled {
@@ -24,7 +24,8 @@
 	position: relative;
 	display: block;
 	padding-left: 0; 
-	list-style: none; 
+	list-style: none;
+  margin-left: 0;
 }
 
 .asmListItem {

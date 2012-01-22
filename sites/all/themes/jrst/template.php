@@ -25,3 +25,6 @@ function jrst_preprocess_comment($vars) {
   }
 }
 
+function jrst_preprocess_maintenance_page(&$vars) {
+  template_preprocess_maintenance_page($vars);
+}

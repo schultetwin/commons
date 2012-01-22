@@ -108,6 +108,10 @@ body {
 	z-index: 30;
 }
 
+.contextual-search-inner {
+  display: none;
+}
+
 .node-type-article h1 {
 	font-size: 170%;
 }

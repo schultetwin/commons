@@ -23,8 +23,12 @@ function jrst_app_menu() {
  */
 function jrst_app_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'application_node_form') {
-    $one = 1;
+    $form['buttons']['submit']['#submit'][] = 'jrst_app_node_form_submit';
   }
+}
+
+function jrst_app_node_form_submit($form, &$form_state) {
+  $form_state['redirect'] = 'dashboard';
 }
 
 

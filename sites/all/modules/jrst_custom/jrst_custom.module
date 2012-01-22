@@ -292,19 +292,6 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
     case 'group_node_form':
       $form['taxonomy']['#group'] = FALSE;
       break;
-    case 'application_node_form':
-      $nid = arg(3);
-      if ($nid && isset($form['field_app_position']['#default_value']['0']['nid']) &&
-        $form['field_app_position']['#default_value']['0']['nid'] == '') {
-        $form['field_app_position']['#default_value']['0']['nid'] = $nid;
-      }
-      $form['#redirect'] = 'dashboard';
-      break;
-    case 'position_node_form':
-      break;
-    case 'views_exposed_form':
-      //dsm($form);
-      break;
   }
 }
 

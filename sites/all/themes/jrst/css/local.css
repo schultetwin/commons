@@ -109,7 +109,7 @@ body {
 }
 
 .contextual-search-inner {
-  display: none;
+    display: none;
 }
 
 .node-type-article h1 {
@@ -567,4 +567,40 @@ div.content-help-inner div.help{background-color: #e8e8e8;border: 1px solid maro
 	height: 1.7em;
 	border-style: outset;
 	border-color: silver;
+}
+
+.application-view .views-field-name,
+.application-view .views-field-delta{
+	display: inline;
+}
+.application-view .views-field-value,
+.application-view .views-field-value-1,
+.application-view .views-field-country{
+	display: inline;
+}
+
+.application-view .views-field-value-2,
+.application-view .views-field-value-3 {
+	display: inline;
+}
+
+.application-view .application-view-link
+{
+	vertical-align: top;
+	float: right;
+}
+
+.application-view .views-row{
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-right-style: groove;
+	border-bottom-style: groove;
+	border-left-style: groove;
+}
+
+.application-view .views-row-first{
+	border-top-style: groove;
 }

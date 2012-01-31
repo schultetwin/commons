@@ -7,6 +7,8 @@
 
 /**
  * Implementation of hook_menu_alter().
+ * 
+ * Make menu items hidden on the user profile page.
  */
 function jrst_custom_menu_alter(&$items) {
   $items['user/%user/view']['type'] = MENU_LOCAL_TASK;

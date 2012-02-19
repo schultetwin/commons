@@ -144,6 +144,16 @@ function jrst_position_application_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit field_position_qualifications
+  $permissions['edit field_position_qualifications'] = array(
+    'name' => 'edit field_position_qualifications',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
+    ),
+  );
+
   // Exported permission: edit field_position_time
   $permissions['edit field_position_time'] = array(
     'name' => 'edit field_position_time',
@@ -256,9 +266,39 @@ function jrst_position_application_user_default_permissions() {
     ),
   );
 
+  // Exported permission: view field_position_qualifications
+  $permissions['view field_position_qualifications'] = array(
+    'name' => 'view field_position_qualifications',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: view field_position_time
+  $permissions['view field_position_time'] = array(
+    'name' => 'view field_position_time',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
+    ),
+  );
+
   // Exported permission: view field_position_type
   $permissions['view field_position_type'] = array(
     'name' => 'view field_position_type',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: view field_position_website
+  $permissions['view field_position_website'] = array(
+    'name' => 'view field_position_website',
     'roles' => array(
       '0' => 'anonymous user',
       '1' => 'authenticated user',

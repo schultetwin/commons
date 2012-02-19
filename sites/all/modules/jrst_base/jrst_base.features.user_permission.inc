@@ -6,9 +6,41 @@
 function jrst_base_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: Allow Reordering
+  $permissions['Allow Reordering'] = array(
+    'name' => 'Allow Reordering',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
   // Exported permission: Use PHP input for field settings (dangerous - grant with care)
   $permissions['Use PHP input for field settings (dangerous - grant with care)'] = array(
     'name' => 'Use PHP input for field settings (dangerous - grant with care)',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: access backup and migrate
+  $permissions['access backup and migrate'] = array(
+    'name' => 'access backup and migrate',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: access backup files
+  $permissions['access backup files'] = array(
+    'name' => 'access backup files',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: access devel information
+  $permissions['access devel information'] = array(
+    'name' => 'access devel information',
     'roles' => array(
       '0' => 'site admin',
     ),
@@ -18,7 +50,8 @@ function jrst_base_user_default_permissions() {
   $permissions['access site-wide contact form'] = array(
     'name' => 'access site-wide contact form',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -30,9 +63,33 @@ function jrst_base_user_default_permissions() {
     ),
   );
 
+  // Exported permission: administer CAPTCHA settings
+  $permissions['administer CAPTCHA settings'] = array(
+    'name' => 'administer CAPTCHA settings',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: administer backup and migrate
+  $permissions['administer backup and migrate'] = array(
+    'name' => 'administer backup and migrate',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
   // Exported permission: administer chart
   $permissions['administer chart'] = array(
     'name' => 'administer chart',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: administer custom breadcrumbs
+  $permissions['administer custom breadcrumbs'] = array(
+    'name' => 'administer custom breadcrumbs',
     'roles' => array(
       '0' => 'site admin',
     ),
@@ -81,6 +138,16 @@ function jrst_base_user_default_permissions() {
   // Exported permission: create url aliases
   $permissions['create url aliases'] = array(
     'name' => 'create url aliases',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: delete backup files
+  $permissions['delete backup files'] = array(
+    'name' => 'delete backup files',
     'roles' => array(
       '0' => 'site admin',
     ),
@@ -135,11 +202,36 @@ function jrst_base_user_default_permissions() {
     ),
   );
 
+  // Exported permission: perform backup
+  $permissions['perform backup'] = array(
+    'name' => 'perform backup',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: restore from backup
+  $permissions['restore from backup'] = array(
+    'name' => 'restore from backup',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
   // Exported permission: schedule workflow transitions
   $permissions['schedule workflow transitions'] = array(
     'name' => 'schedule workflow transitions',
     'roles' => array(
       '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: skip CAPTCHA
+  $permissions['skip CAPTCHA'] = array(
+    'name' => 'skip CAPTCHA',
+    'roles' => array(
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -167,6 +259,14 @@ function jrst_base_user_default_permissions() {
     ),
   );
 
+  // Exported permission: upload files
+  $permissions['upload files'] = array(
+    'name' => 'upload files',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
   // Exported permission: upload files to comments
   $permissions['upload files to comments'] = array(
     'name' => 'upload files to comments',
@@ -186,6 +286,14 @@ function jrst_base_user_default_permissions() {
   // Exported permission: use default thumbnail
   $permissions['use default thumbnail'] = array(
     'name' => 'use default thumbnail',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
+  // Exported permission: use php in custom breadcrumbs
+  $permissions['use php in custom breadcrumbs'] = array(
+    'name' => 'use php in custom breadcrumbs',
     'roles' => array(
       '0' => 'site admin',
     ),
@@ -245,6 +353,14 @@ function jrst_base_user_default_permissions() {
       '0' => 'anonymous user',
       '1' => 'authenticated user',
       '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: view uploaded files
+  $permissions['view uploaded files'] = array(
+    'name' => 'view uploaded files',
+    'roles' => array(
+      '0' => 'site admin',
     ),
   );
 

@@ -30,7 +30,7 @@ function jrst_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'date_default_timezone';
-  $strongarm->value = -14400;
+  $strongarm->value = -18000;
 
   $export['date_default_timezone'] = $strongarm;
   $strongarm = new stdClass;
@@ -400,7 +400,6 @@ function jrst_base_strongarm() {
       'comment_settings' => 'comment_settings',
       'attachments' => 'attachments',
     ),
-    'project_issue_node_form' => FALSE,
     'support_ticket_node_form' => array(
       'menu' => 'menu',
       'revision_information' => 'revision_information',
@@ -411,6 +410,38 @@ function jrst_base_strongarm() {
       'attachments' => 'attachments',
       'support' => 0,
     ),
+    'page_node_form' => array(
+      'menu' => 'menu',
+      'book' => 'book',
+      'revision_information' => 'revision_information',
+      'author' => 'author',
+      'options' => 'options',
+      'comment_settings' => 'comment_settings',
+      'path' => 'path',
+      'attachments' => 'attachments',
+    ),
+    'application_node_form' => array(
+      'menu' => 'menu',
+      'book' => 'book',
+      'revision_information' => 'revision_information',
+      'author' => 'author',
+      'options' => 'options',
+      'comment_settings' => 'comment_settings',
+      'path' => 'path',
+      'group_app_position' => 0,
+      'group_application' => 0,
+    ),
+    'position_node_form' => array(
+      'menu' => 'menu',
+      'book' => 'book',
+      'revision_information' => 'revision_information',
+      'author' => 'author',
+      'options' => 'options',
+      'comment_settings' => 'comment_settings',
+      'path' => 'path',
+      'attachments' => 'attachments',
+    ),
+    'project_issue_node_form' => FALSE,
   );
 
   $export['vertical_tabs_forms'] = $strongarm;
@@ -424,6 +455,7 @@ function jrst_base_strongarm() {
     'og_my' => TRUE,
     'taxonomy_term' => FALSE,
     'groups_main_listing' => TRUE,
+    'application_list' => TRUE,
   );
 
   $export['views_defaults'] = $strongarm;

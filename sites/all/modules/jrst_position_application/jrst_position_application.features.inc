@@ -27,7 +27,7 @@ function jrst_position_application_node_info() {
       'has_body' => '1',
       'body_label' => t('Cover Letter'),
       'min_word_count' => '0',
-      'help' => t('Thank you for your interesting in applying to serve NARST.  To complete the application, first enter the position(s) you wish to apply for, ordering them according to your preference (list first choice first, etc.).  Then attach a cover letter and a short form CV as described.'),
+      'help' => t('Thank you for your interesting in applying to serve NARST.  To complete the application, first enter the position(s) you wish to apply for, ordering them according to your preference (list first choice first, etc.).  Then attach a cover letter and a short form CV as described. If you have any difficulty with the site, please contact Bob Geier (<A HREF="mailto:bobgeier@msu.edu">bobgeier@msu.edu</A>, 734-904-2984) for assistance.'),
     ),
     'position' => array(
       'name' => t('Position'),

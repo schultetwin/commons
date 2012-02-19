@@ -40,8 +40,41 @@ function jrst_position_application_views_default_views() {
     ),
   ));
   $handler->override_option('fields', array(
+    'nid' => array(
+      'label' => 'Nid',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'exclude' => 1,
+      'id' => 'nid',
+      'table' => 'node',
+      'field' => 'nid',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
     'delta' => array(
-      'label' => 'Preference',
+      'label' => 'Rank',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -74,6 +107,9 @@ function jrst_position_application_views_default_views() {
       'table' => 'node_data_field_app_position',
       'field' => 'delta',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
     'name' => array(
       'label' => 'Name',
@@ -211,8 +247,40 @@ function jrst_position_application_views_default_views() {
       'field' => 'field_app_position_nid',
       'relationship' => 'none',
     ),
+    'body' => array(
+      'label' => 'Cover Letter',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 1,
+        'path' => 'node/[nid]',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 1,
+        'max_length' => '75',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 1,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'body',
+      'table' => 'node_revisions',
+      'field' => 'body',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
     'field_app_resume_fid' => array(
-      'label' => 'Resume',
+      'label' => 'Cover Letter Upload',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -225,14 +293,14 @@ function jrst_position_application_views_default_views() {
         'target' => '',
         'help' => '',
         'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
+        'max_length' => '15',
+        'word_boundary' => 0,
+        'ellipsis' => 0,
         'html' => 0,
         'strip_tags' => 0,
       ),
       'empty' => '',
-      'hide_empty' => 0,
+      'hide_empty' => 1,
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'widget',
@@ -248,68 +316,12 @@ function jrst_position_application_views_default_views() {
       'table' => 'node_data_field_app_resume',
       'field' => 'field_app_resume_fid',
       'relationship' => 'none',
-    ),
-    'body' => array(
-      'label' => 'Cover Letter',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 1,
-        'max_length' => '300',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
+      'override' => array(
+        'button' => 'Override',
       ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'exclude' => 0,
-      'id' => 'body',
-      'table' => 'node_revisions',
-      'field' => 'body',
-      'relationship' => 'none',
-    ),
-    'view_node' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'text' => '(view)',
-      'exclude' => 0,
-      'id' => 'view_node',
-      'table' => 'node',
-      'field' => 'view_node',
-      'relationship' => 'none',
     ),
     'field_app_cv_fid' => array(
-      'label' => 'Curriculum vitae',
+      'label' => 'CV',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -322,9 +334,9 @@ function jrst_position_application_views_default_views() {
         'target' => '',
         'help' => '',
         'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
+        'max_length' => '15',
+        'word_boundary' => 0,
+        'ellipsis' => 0,
         'html' => 0,
         'strip_tags' => 0,
       ),
@@ -332,7 +344,7 @@ function jrst_position_application_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'link_to_node' => 0,
-      'label_type' => 'widget',
+      'label_type' => 'custom',
       'format' => 'default',
       'multiple' => array(
         'group' => TRUE,
@@ -345,6 +357,42 @@ function jrst_position_application_views_default_views() {
       'table' => 'node_data_field_app_cv',
       'field' => 'field_app_cv_fid',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
+    'view_node' => array(
+      'label' => 'Application',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'text' => 'View',
+      'exclude' => 0,
+      'id' => 'view_node',
+      'table' => 'node',
+      'field' => 'view_node',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
   ));
   $handler->override_option('filters', array(
@@ -389,8 +437,7 @@ function jrst_position_application_views_default_views() {
   $handler->override_option('access', array(
     'type' => 'role',
     'role' => array(
-      '6' => 6,
-      '7' => 7,
+      '9' => 9,
       '5' => 5,
     ),
   ));
@@ -404,59 +451,8 @@ function jrst_position_application_views_default_views() {
   $handler->override_option('header_empty', 1);
   $handler->override_option('items_per_page', 0);
   $handler->override_option('style_plugin', 'table');
-  $handler->override_option('style_options', array(
-    'grouping' => 'field_app_position_nid',
-    'override' => 1,
-    'sticky' => 0,
-    'order' => 'asc',
-    'columns' => array(
-      'delta' => 'delta',
-      'name' => 'name',
-      'value' => 'value',
-      'value_1' => 'value_1',
-      'field_app_position_nid' => 'field_app_position_nid',
-      'field_app_resume_fid' => 'field_app_resume_fid',
-      'body' => 'body',
-      'view_node' => 'name',
-      'field_app_cv_fid' => 'field_app_cv_fid',
-    ),
-    'info' => array(
-      'delta' => array(
-        'sortable' => 1,
-        'separator' => ' - ',
-      ),
-      'name' => array(
-        'sortable' => 0,
-        'separator' => '',
-      ),
-      'value' => array(
-        'sortable' => 0,
-        'separator' => '',
-      ),
-      'value_1' => array(
-        'sortable' => 0,
-        'separator' => '',
-      ),
-      'field_app_position_nid' => array(
-        'separator' => '',
-      ),
-      'field_app_resume_fid' => array(
-        'separator' => '',
-      ),
-      'body' => array(
-        'separator' => ' ',
-      ),
-      'view_node' => array(
-        'separator' => '',
-      ),
-      'field_app_cv_fid' => array(
-        'separator' => '',
-      ),
-    ),
-    'default' => 'delta',
-  ));
   $handler = $view->new_display('page', 'Page', 'page_1');
-  $handler->override_option('path', 'postions/applications');
+  $handler->override_option('path', 'postions/applicationsold');
   $handler->override_option('menu', array(
     'type' => 'none',
     'title' => '',
@@ -485,6 +481,75 @@ function jrst_position_application_views_default_views() {
   $view->api_version = 2;
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('fields', array(
+    'body' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 1,
+        'max_length' => '400',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'body',
+      'table' => 'node_revisions',
+      'field' => 'body',
+      'relationship' => 'none',
+    ),
+    'field_position_qualifications_value' => array(
+      'label' => 'Preferred Qualifications',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_position_qualifications_value',
+      'table' => 'node_data_field_position_qualifications',
+      'field' => 'field_position_qualifications_value',
+      'relationship' => 'none',
+    ),
+  ));
   $handler->override_option('arguments', array(
     'nid' => array(
       'default_action' => 'empty',
@@ -730,10 +795,9 @@ function jrst_position_application_views_default_views() {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('title', 'Position Information');
-  $handler->override_option('empty', 'No Position Selected');
+  $handler->override_option('title', 'Position Details');
+  $handler->override_option('empty', 'Click on Committee position above to display details');
   $handler->override_option('empty_format', '1');
-  $handler->override_option('row_plugin', 'node');
   $handler = $view->new_display('block', 'Position Information', 'block_1');
   $handler->override_option('block_description', 'Position Information for Application Page');
   $handler->override_option('block_caching', -1);
@@ -752,36 +816,6 @@ function jrst_position_application_views_default_views() {
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
-    'nid' => array(
-      'label' => 'Nid',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'exclude' => 1,
-      'id' => 'nid',
-      'table' => 'node',
-      'field' => 'nid',
-      'relationship' => 'none',
-    ),
     'title' => array(
       'label' => 'Title',
       'alter' => array(
@@ -812,8 +846,8 @@ function jrst_position_application_views_default_views() {
       'field' => 'title',
       'relationship' => 'none',
     ),
-    'field_position_close_date_value' => array(
-      'label' => 'Closing Date',
+    'body' => array(
+      'label' => 'Description',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -825,8 +859,8 @@ function jrst_position_application_views_default_views() {
         'suffix' => '',
         'target' => '',
         'help' => '',
-        'trim' => 0,
-        'max_length' => '',
+        'trim' => 1,
+        'max_length' => '500',
         'word_boundary' => 1,
         'ellipsis' => 1,
         'html' => 0,
@@ -835,53 +869,27 @@ function jrst_position_application_views_default_views() {
       'empty' => '',
       'hide_empty' => 0,
       'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'widget',
-      'format' => 'default',
-      'multiple' => array(
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_to' => '',
-        'group' => '',
-      ),
-      'repeat' => array(
-        'show_repeat_rule' => '',
-      ),
-      'fromto' => array(
-        'fromto' => 'both',
-      ),
       'exclude' => 0,
-      'id' => 'field_position_close_date_value',
-      'table' => 'node_data_field_position_close_date',
-      'field' => 'field_position_close_date_value',
+      'id' => 'body',
+      'table' => 'node_revisions',
+      'field' => 'body',
+      'override' => array(
+        'button' => 'Override',
+      ),
       'relationship' => 'none',
     ),
-    'nothing' => array(
-      'label' => 'Apply',
-      'alter' => array(
-        'text' => 'Apply for position',
-        'make_link' => 1,
-        'path' => 'node/add/application/[nid]',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
+  ));
+  $handler->override_option('sorts', array(
+    'title' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'override' => array(
+        'button' => 'Override',
       ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'exclude' => 0,
-      'id' => 'nothing',
-      'table' => 'views',
-      'field' => 'nothing',
       'relationship' => 'none',
     ),
   ));
@@ -900,6 +908,34 @@ function jrst_position_application_views_default_views() {
       'id' => 'type',
       'table' => 'node',
       'field' => 'type',
+      'relationship' => 'none',
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+    'views_or_begin' => array(
+      'operator' => '=',
+      'value' => '',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'views_or_begin',
+      'table' => 'node',
+      'field' => 'views_or_begin',
       'relationship' => 'none',
     ),
     'date_filter' => array(
@@ -931,18 +967,61 @@ function jrst_position_application_views_default_views() {
       'field' => 'date_filter',
       'relationship' => 'none',
     ),
-    'status' => array(
+    'views_or_next' => array(
       'operator' => '=',
-      'value' => '1',
+      'value' => '',
       'group' => '0',
       'exposed' => FALSE,
       'expose' => array(
         'operator' => FALSE,
         'label' => '',
       ),
-      'id' => 'status',
+      'id' => 'views_or_next',
       'table' => 'node',
-      'field' => 'status',
+      'field' => 'views_or_next',
+      'relationship' => 'none',
+    ),
+    'date_filter_1' => array(
+      'operator' => 'empty',
+      'value' => array(
+        'value' => NULL,
+        'min' => NULL,
+        'max' => NULL,
+        'default_date' => '',
+        'default_to_date' => '',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'date_fields' => array(
+        'node_data_field_position_close_date.field_position_close_date_value' => 'node_data_field_position_close_date.field_position_close_date_value',
+      ),
+      'date_method' => 'OR',
+      'granularity' => 'day',
+      'form_type' => 'date_select',
+      'default_date' => '',
+      'default_to_date' => '',
+      'year_range' => '-3:+3',
+      'id' => 'date_filter_1',
+      'table' => 'node',
+      'field' => 'date_filter',
+      'relationship' => 'none',
+    ),
+    'views_or_end' => array(
+      'operator' => '=',
+      'value' => '',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'views_or_end',
+      'table' => 'node',
+      'field' => 'views_or_end',
       'relationship' => 'none',
     ),
   ));
@@ -953,15 +1032,16 @@ function jrst_position_application_views_default_views() {
     'type' => 'none',
   ));
   $handler->override_option('title', 'Committee Positions');
-  $handler->override_option('header', 'This is a listing of the all positions available with in JRST. We are switching to a web based application. In order to apply you must create an account on the site. Read through the available positions, and then select <a href="/node/add/application">Apply for Position</a> to begin the process.');
+  $handler->override_option('css_class', 'position-list');
   $handler->override_option('header_format', '1');
-  $handler->override_option('header_empty', 1);
-  $handler->override_option('footer', '<a href="/node/add/application">Apply for Position</a>');
+  $handler->override_option('header_empty', 0);
   $handler->override_option('footer_format', '1');
   $handler->override_option('footer_empty', 0);
   $handler->override_option('empty', 'No open positions');
   $handler->override_option('empty_format', '1');
+  $handler->override_option('items_per_page', 0);
   $handler->override_option('use_pager', '1');
+  $handler->override_option('style_plugin', 'table');
   $handler->override_option('row_plugin', 'node');
   $handler->override_option('row_options', array(
     'relationship' => 'none',
@@ -972,19 +1052,22 @@ function jrst_position_application_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->override_option('path', 'opportunities/positions');
   $handler->override_option('menu', array(
-    'type' => 'tab',
+    'type' => 'none',
     'title' => 'Positions',
     'description' => '',
     'weight' => '4',
     'name' => 'navigation',
   ));
   $handler->override_option('tab_options', array(
-    'type' => 'none',
-    'title' => '',
+    'type' => 'normal',
+    'title' => 'Opportunities',
     'description' => '',
-    'weight' => 0,
-    'name' => 'navigation',
+    'weight' => '0',
+    'name' => 'primary-links',
   ));
+  $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->override_option('block_description', 'Position Information Full Block');
+  $handler->override_option('block_caching', -1);
 
   $views[$view->name] = $view;
 
@@ -1028,6 +1111,20 @@ function jrst_position_application_views_default_views() {
       'id' => 'title',
       'table' => 'node',
       'field' => 'title',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'title' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'override' => array(
+        'button' => 'Override',
+      ),
       'relationship' => 'none',
     ),
   ));
@@ -1228,7 +1325,7 @@ function jrst_position_application_views_default_views() {
         'alter_text' => 0,
         'text' => '',
         'make_link' => 1,
-        'path' => 'js/jrst-app/get/position/[nid]',
+        'path' => 'node/[nid]',
         'link_class' => 'jrstposLink',
         'alt' => '[nid]',
         'prefix' => '',

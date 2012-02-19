@@ -10,7 +10,10 @@ function jrst_position_application_user_default_permissions() {
   $permissions['create application content'] = array(
     'name' => 'create application content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'site admin',
     ),
   );
 
@@ -18,7 +21,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['create position content'] = array(
     'name' => 'create position content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -26,7 +31,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['delete any application content'] = array(
     'name' => 'delete any application content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -34,7 +41,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['delete any position content'] = array(
     'name' => 'delete any position content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -42,7 +51,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['delete own application content'] = array(
     'name' => 'delete own application content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -50,7 +61,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['delete own position content'] = array(
     'name' => 'delete own position content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -58,7 +71,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit any application content'] = array(
     'name' => 'edit any application content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -66,7 +81,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit any position content'] = array(
     'name' => 'edit any position content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -74,7 +91,8 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit field_app_cv'] = array(
     'name' => 'edit field_app_cv',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -82,7 +100,8 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit field_app_position'] = array(
     'name' => 'edit field_app_position',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -90,7 +109,8 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit field_app_resume'] = array(
     'name' => 'edit field_app_resume',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -98,7 +118,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit field_position_close_date'] = array(
     'name' => 'edit field_position_close_date',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -106,7 +128,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit field_position_contact'] = array(
     'name' => 'edit field_position_contact',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -114,7 +138,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit field_position_deadline'] = array(
     'name' => 'edit field_position_deadline',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -149,7 +175,8 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit own application content'] = array(
     'name' => 'edit own application content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -157,7 +184,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['edit own position content'] = array(
     'name' => 'edit own position content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -165,7 +194,11 @@ function jrst_position_application_user_default_permissions() {
   $permissions['view field_app_cv'] = array(
     'name' => 'view field_app_cv',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'narst staff',
+      '4' => 'site admin',
     ),
   );
 
@@ -173,7 +206,11 @@ function jrst_position_application_user_default_permissions() {
   $permissions['view field_app_position'] = array(
     'name' => 'view field_app_position',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'narst staff',
+      '4' => 'site admin',
     ),
   );
 
@@ -181,7 +218,11 @@ function jrst_position_application_user_default_permissions() {
   $permissions['view field_app_resume'] = array(
     'name' => 'view field_app_resume',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'narst staff',
+      '4' => 'site admin',
     ),
   );
 
@@ -189,7 +230,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['view field_position_close_date'] = array(
     'name' => 'view field_position_close_date',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 
@@ -197,7 +240,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['view field_position_contact'] = array(
     'name' => 'view field_position_contact',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 
@@ -205,7 +250,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['view field_position_deadline'] = array(
     'name' => 'view field_position_deadline',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 

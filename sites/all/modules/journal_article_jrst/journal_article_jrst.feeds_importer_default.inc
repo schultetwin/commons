@@ -23,7 +23,6 @@ function journal_article_jrst_feeds_importer_default() {
       'config' => array(
         'if_auth_fails' => 'remove',
         'default_commands' => 'status: 1
-document_status: Editorial Review
 special_issue_flag: 0
 resubmit: 0
 revision: 0',
@@ -46,12 +45,11 @@ science_content_area
 number_pages
 wiley_number_tables
 editor_rec
-resubmit
 prev_id
 decision
 decision_date
-reviewer
-revision',
+revision
+resubmit',
         'command_plugin' => array(
           'MailhandlerCommandsHeaders' => 'MailhandlerCommandsHeaders',
           'MailhandlerCommandsJRST' => 'MailhandlerCommandsJRST',
@@ -114,76 +112,71 @@ revision',
             'unique' => FALSE,
           ),
           9 => array(
-            'source' => 'document_status',
-            'target' => 'field_article_status',
-            'unique' => FALSE,
-          ),
-          10 => array(
             'source' => 'special_issue_flag',
             'target' => 'field_article_special_issue',
             'unique' => FALSE,
           ),
-          11 => array(
+          10 => array(
             'source' => 'conceptual_area',
             'target' => 'taxonomy:features_concept_area',
             'unique' => FALSE,
           ),
-          12 => array(
+          11 => array(
             'source' => 'methodology',
             'target' => 'taxonomy:features_methodology',
             'unique' => FALSE,
           ),
-          13 => array(
+          12 => array(
             'source' => 'grade_level',
             'target' => 'taxonomy:features_grade_level',
             'unique' => FALSE,
           ),
-          14 => array(
+          13 => array(
             'source' => 'science_content_area',
             'target' => 'taxonomy:features_science_topic',
             'unique' => FALSE,
           ),
-          15 => array(
+          14 => array(
             'source' => 'editor_rec',
             'target' => 'field_article_editor_projection',
             'unique' => FALSE,
           ),
-          16 => array(
+          15 => array(
             'source' => 'resubmit',
             'target' => 'field_article_resubmit',
             'unique' => FALSE,
           ),
-          17 => array(
+          16 => array(
             'source' => 'prev_id',
             'target' => 'field_article_previous_article:guid',
             'unique' => FALSE,
           ),
-          18 => array(
+          17 => array(
             'source' => 'decision',
             'target' => 'field_article_decision',
             'unique' => FALSE,
           ),
-          19 => array(
+          18 => array(
             'source' => 'decision_date',
             'target' => 'field_article_decision_date:start',
             'unique' => FALSE,
           ),
-          20 => array(
+          19 => array(
             'source' => 'editor',
             'target' => 'field_article_editor:uid',
             'unique' => FALSE,
           ),
-          21 => array(
+          20 => array(
             'source' => 'assoc_editor',
             'target' => 'field_article_assoc_editor:uid',
             'unique' => FALSE,
           ),
-          22 => array(
+          21 => array(
             'source' => 'document_status',
             'target' => 'workflow_state',
             'unique' => FALSE,
           ),
-          23 => array(
+          22 => array(
             'source' => 'revision',
             'target' => 'field_article_revision',
             'unique' => FALSE,

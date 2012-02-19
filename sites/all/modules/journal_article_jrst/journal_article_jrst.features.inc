@@ -27,6 +27,21 @@ function journal_article_jrst_ctools_plugin_api() {
  */
 function journal_article_jrst_imagecache_default_presets() {
   $items = array(
+    'issue_cover_small' => array(
+      'presetname' => 'issue_cover_small',
+      'actions' => array(
+        '0' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_scale',
+          'data' => array(
+            'width' => '33%',
+            'height' => '33%',
+            'upscale' => 0,
+          ),
+        ),
+      ),
+    ),
     'issue_main_page' => array(
       'presetname' => 'issue_main_page',
       'actions' => array(

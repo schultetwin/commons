@@ -1457,11 +1457,11 @@ Not for JRST',
         'format' => 'hidden',
       ),
       'teaser' => array(
-        'format' => 'Featured_default',
+        'format' => 'issue_cover_small_default',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'issue_main_page_imagelink',
+        'format' => 'image_plain',
         'exclude' => 0,
       ),
       '4' => array(
@@ -1518,6 +1518,7 @@ Not for JRST',
         'imagecache_group_images_medium' => 0,
         'imagecache_group_images_showcase' => 0,
         'imagecache_group_images_thumb' => 0,
+        'imagecache_issue_main_page' => 0,
         'imagecache_member_list_image' => 0,
         'imagecache_profile_pictures' => 0,
         'imagecache_Small' => 0,
@@ -1530,11 +1531,7 @@ Not for JRST',
         '1' => 0,
         '2' => 0,
         '6' => 0,
-        '3' => 0,
-        '4' => 0,
-        '9' => 0,
         '7' => 0,
-        '8' => 0,
         '5' => 0,
       ),
       'label' => 'Cover Art',
@@ -1557,11 +1554,11 @@ Not for JRST',
       ),
       'teaser' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       '4' => array(
         'format' => 'default',
@@ -1620,11 +1617,11 @@ Not for JRST',
       ),
       'teaser' => array(
         'format' => 'hidden',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'hidden',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       '4' => array(
         'format' => 'default',
@@ -1751,11 +1748,11 @@ Not for JRST',
       ),
       'teaser' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       '4' => array(
         'format' => 'default',
@@ -1807,9 +1804,10 @@ Not for JRST',
     'field_name' => 'field_issue_wiley_link',
     'type_name' => 'issue',
     'display_settings' => array(
+      'weight' => '1',
+      'parent' => '',
       'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
+        'format' => 'inline',
       ),
       'teaser' => array(
         'format' => 'default',
@@ -1866,8 +1864,8 @@ else {
         '7' => 0,
         '5' => 0,
       ),
-      'label' => 'Wiley Link',
-      'weight' => '11',
+      'label' => 'Full Issue Online',
+      'weight' => '1',
       'description' => '',
       'type' => 'computed',
       'module' => 'computed_field',
@@ -1888,6 +1886,7 @@ else {
   t('EB Reviewer');
   t('Editor');
   t('Editor\'s Projection');
+  t('Full Issue Online');
   t('Issue');
   t('Previous Submission');
   t('Publication date');
@@ -1898,7 +1897,6 @@ else {
   t('Type');
   t('Volume');
   t('Wiley Id');
-  t('Wiley Link');
 
   return $fields;
 }

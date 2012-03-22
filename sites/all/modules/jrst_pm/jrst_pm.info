@@ -1,0 +1,8 @@
+core = "6.x"
+dependencies[] = "features"
+dependencies[] = "support"
+dependencies[] = "support_overview"
+description = "Issue Management System for JRST"
+features[user_permission][] = "access jrst tickets"
+name = "JRST Project Management"
+package = "Features"

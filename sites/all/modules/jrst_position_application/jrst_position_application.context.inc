@@ -8,6 +8,44 @@ function jrst_position_application_context_default_contexts() {
   $context = new stdClass;
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'jrst_nominations_page';
+  $context->description = '';
+  $context->tag = 'JRST';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'nominations' => 'nominations',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'jrst_custom-jrst_position_app' => array(
+          'module' => 'jrst_custom',
+          'delta' => 'jrst_position_app',
+          'region' => 'sidebar_last',
+          'weight' => 0,
+        ),
+        'views-positions_listing-block_1' => array(
+          'module' => 'views',
+          'delta' => 'positions_listing-block_1',
+          'region' => 'content',
+          'weight' => 0,
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('JRST');
+
+  $export['jrst_nominations_page'] = $context;
+  $context = new stdClass;
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'jrst_position_app';
   $context->description = '';
   $context->tag = 'JRST';

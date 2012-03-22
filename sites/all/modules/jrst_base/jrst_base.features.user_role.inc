@@ -11,11 +11,6 @@ function jrst_base_user_default_roles() {
     'name' => 'anonymous user',
   );
 
-  // Exported role: associate editor
-  $roles['associate editor'] = array(
-    'name' => 'associate editor',
-  );
-
   // Exported role: authenticated user
   $roles['authenticated user'] = array(
     'name' => 'authenticated user',

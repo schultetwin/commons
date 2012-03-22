@@ -202,10 +202,11 @@ function journal_article_jrst_strongarm() {
     'options' => '5',
     'comment_settings' => '7',
     'menu' => '3',
+    'book' => '11',
     'path' => '6',
     'attachments' => '8',
     'article_by_issue_node_content_1' => '10',
-    'workflow' => '10',
+    'workflow' => '9',
   );
 
   $export['content_extra_weights_issue'] = $strongarm;

@@ -11,9 +11,10 @@ function jrst_position_application_content_default_fields() {
     'field_name' => 'field_app_cv',
     'type_name' => 'application',
     'display_settings' => array(
+      'weight' => '-1',
+      'parent' => 'group_application',
       'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
+        'format' => 'inline',
       ),
       'teaser' => array(
         'format' => 'default',
@@ -42,7 +43,7 @@ function jrst_position_application_content_default_fields() {
     ),
     'widget_active' => '1',
     'type' => 'filefield',
-    'required' => '1',
+    'required' => '0',
     'multiple' => '0',
     'module' => 'filefield',
     'active' => '1',
@@ -81,8 +82,9 @@ function jrst_position_application_content_default_fields() {
       'roles' => array(
         '1' => 0,
         '2' => 0,
-        '6' => 0,
         '7' => 0,
+        '8' => 0,
+        '9' => 0,
         '5' => 0,
       ),
       'label' => 'Curriculum vitae',
@@ -98,9 +100,10 @@ function jrst_position_application_content_default_fields() {
     'field_name' => 'field_app_position',
     'type_name' => 'application',
     'display_settings' => array(
+      'weight' => '-3',
+      'parent' => 'group_app_position',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -142,7 +145,6 @@ function jrst_position_application_content_default_fields() {
       'document' => 0,
       'event' => 0,
       'group' => 0,
-      'project_issue' => 0,
       'job_posting' => 0,
       'issue' => 0,
       'notice' => 0,
@@ -150,7 +152,6 @@ function jrst_position_application_content_default_fields() {
       'podcast' => 0,
       'poll' => 0,
       'position' => 0,
-      'project_project' => 0,
       'support_ticket' => 0,
       'webform' => 0,
       'wiki' => 0,
@@ -162,22 +163,30 @@ function jrst_position_application_content_default_fields() {
       'size' => 60,
       'default_value' => array(
         '0' => array(
-          'nid' => NULL,
+          'nid' => '',
         ),
       ),
       'default_value_php' => NULL,
       'roles' => array(
         '1' => 0,
         '2' => 0,
-        '6' => 0,
         '7' => 0,
+        '8' => 0,
+        '9' => 0,
         '5' => 0,
       ),
+      'asm_settings' => array(
+        'asm_enable' => 1,
+        'add_item_target' => 'bottom',
+        'sortable' => 1,
+        'animate' => 0,
+        'highlight' => 0,
+      ),
       'label' => 'Position',
-      'weight' => '-4',
-      'description' => 'Select the positions you wish to apply for, ordering them in your preferred order.',
-      'type' => 'multiselect_select',
-      'module' => 'multiselect',
+      'weight' => '-3',
+      'description' => 'Select the positions you wish to apply for, ordering them in your preferred order.  Select a position from the drop down select list.  Continue to add more positions by selecting more positions from the select list.  You may drag the positions in the order you wish them to appear. ',
+      'type' => 'nodereference_select',
+      'module' => 'nodereference',
     ),
   );
 
@@ -186,9 +195,10 @@ function jrst_position_application_content_default_fields() {
     'field_name' => 'field_app_resume',
     'type_name' => 'application',
     'display_settings' => array(
+      'weight' => 0,
+      'parent' => 'group_application',
       'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
+        'format' => 'inline',
       ),
       'teaser' => array(
         'format' => 'default',
@@ -256,13 +266,14 @@ function jrst_position_application_content_default_fields() {
       'roles' => array(
         '1' => 0,
         '2' => 0,
-        '6' => 0,
         '7' => 0,
+        '8' => 0,
+        '9' => 0,
         '5' => 0,
       ),
       'label' => 'Cover Letter Upload',
       'weight' => 0,
-      'description' => 'If you did not upload a cover letter, please type in your cover letter below.  PLEASE NOTE that if you cut and paste from Microsoft Word, you must click on the small clipboard with a "W" and follow the instructions to paste, rather than just pasting directly in the space provided (which will cause Word to add a bunch of garbage text).  If you\'re using Word, it is easier to upload the document above.',
+      'description' => 'If you did not upload a cover letter, please type in your cover letter below.  Please note that if you cut and paste from Microsoft Word, you should click on <img src="http://ejrst.net/sites/default/files/Wordclip.png"> and follow the instructions to paste, to avoid garbage that Microsoft Word occasionally adds when you paste.',
       'type' => 'filefield_widget',
       'module' => 'filefield',
     ),
@@ -280,7 +291,7 @@ function jrst_position_application_content_default_fields() {
       ),
       'teaser' => array(
         'format' => 'hidden',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',
@@ -358,7 +369,7 @@ function jrst_position_application_content_default_fields() {
       ),
       'teaser' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',

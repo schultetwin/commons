@@ -1,4 +1,3 @@
-/* @override http://ejrst.net/sites/all/themes/jrst/css/local.css */
 
 
 /****************************/
@@ -603,4 +602,17 @@ div.content-help-inner div.help{background-color: #e8e8e8;border: 1px solid maro
 
 .application-view .views-row-first{
 	border-top-style: groove;
+}
+
+.application-view .views-field-tid{
+	font: italic .75em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-align: left;
+	margin-left: 80px;
+	margin-bottom: 3px;
+}
+.application-view .summary{
+	border-top-style: solid;
+}
+.application-view .summary td{
+	vertical-align: top;
 }

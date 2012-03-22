@@ -1,0 +1,13 @@
+name = Views summarize
+description = Provides a style plugin for Views allowing tables to summarized.
+core = 6.x
+package = Views
+php = 5.1
+dependencies[] = views
+
+; Information added by drupal.org packaging script on 2011-05-05
+version = "6.x-1.1"
+core = "6.x"
+project = "views_summarize"
+datestamp = "1304629318"
+

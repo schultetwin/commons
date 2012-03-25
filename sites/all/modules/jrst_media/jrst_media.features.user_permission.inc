@@ -18,7 +18,8 @@ function jrst_media_user_default_permissions() {
   $permissions['convert on submission'] = array(
     'name' => 'convert on submission',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -27,7 +28,9 @@ function jrst_media_user_default_permissions() {
     'name' => 'create podcast content',
     'roles' => array(
       '0' => 'authenticated user',
-      '1' => 'site admin',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'site admin',
     ),
   );
 
@@ -35,7 +38,9 @@ function jrst_media_user_default_permissions() {
   $permissions['delete any podcast content'] = array(
     'name' => 'delete any podcast content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -43,7 +48,10 @@ function jrst_media_user_default_permissions() {
   $permissions['delete own podcast content'] = array(
     'name' => 'delete own podcast content',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'site admin',
     ),
   );
 
@@ -51,8 +59,8 @@ function jrst_media_user_default_permissions() {
   $permissions['edit any podcast content'] = array(
     'name' => 'edit any podcast content',
     'roles' => array(
-      '0' => 'associate editor',
-      '1' => 'editor',
+      '0' => 'editor',
+      '1' => 'jrst staff',
       '2' => 'site admin',
     ),
   );
@@ -61,7 +69,8 @@ function jrst_media_user_default_permissions() {
   $permissions['edit field_document_article'] = array(
     'name' => 'edit field_document_article',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -88,7 +97,9 @@ function jrst_media_user_default_permissions() {
     'name' => 'edit own podcast content',
     'roles' => array(
       '0' => 'authenticated user',
-      '1' => 'site admin',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'site admin',
     ),
   );
 
@@ -96,7 +107,8 @@ function jrst_media_user_default_permissions() {
   $permissions['override player dimensions'] = array(
     'name' => 'override player dimensions',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -104,7 +116,8 @@ function jrst_media_user_default_permissions() {
   $permissions['use default thumb'] = array(
     'name' => 'use default thumb',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'site admin',
     ),
   );
 
@@ -112,7 +125,9 @@ function jrst_media_user_default_permissions() {
   $permissions['view field_document_article'] = array(
     'name' => 'view field_document_article',
     'roles' => array(
-      '0' => 'site admin',
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 

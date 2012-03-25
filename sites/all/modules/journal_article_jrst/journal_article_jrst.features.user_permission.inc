@@ -6,9 +6,55 @@
 function journal_article_jrst_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: article: comment on any article content
+  $permissions['article: comment on any article content'] = array(
+    'name' => 'article: comment on any article content',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'site admin',
+    ),
+  );
+
+  // Exported permission: article: comment without approval on any article content
+  $permissions['article: comment without approval on any article content'] = array(
+    'name' => 'article: comment without approval on any article content',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'site admin',
+    ),
+  );
+
+  // Exported permission: article: comment without approval on own article content
+  $permissions['article: comment without approval on own article content'] = array(
+    'name' => 'article: comment without approval on own article content',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'site admin',
+    ),
+  );
+
+  // Exported permission: article: edit own comments on article content
+  $permissions['article: edit own comments on article content'] = array(
+    'name' => 'article: edit own comments on article content',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'site admin',
+    ),
+  );
+
   // Exported permission: clear mail_impor feeds
   $permissions['clear mail_impor feeds'] = array(
     'name' => 'clear mail_impor feeds',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: clear mail_import_unpublish feeds
+  $permissions['clear mail_import_unpublish feeds'] = array(
+    'name' => 'clear mail_import_unpublish feeds',
     'roles' => array(
       '0' => 'editor',
       '1' => 'jrst staff',
@@ -156,6 +202,15 @@ function journal_article_jrst_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit field_article_eb_reviewer
+  $permissions['edit field_article_eb_reviewer'] = array(
+    'name' => 'edit field_article_eb_reviewer',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'site admin',
+    ),
+  );
+
   // Exported permission: edit field_article_editor
   $permissions['edit field_article_editor'] = array(
     'name' => 'edit field_article_editor',
@@ -204,6 +259,15 @@ function journal_article_jrst_user_default_permissions() {
   // Exported permission: edit field_article_resubmit
   $permissions['edit field_article_resubmit'] = array(
     'name' => 'edit field_article_resubmit',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'site admin',
+    ),
+  );
+
+  // Exported permission: edit field_article_revision
+  $permissions['edit field_article_revision'] = array(
+    'name' => 'edit field_article_revision',
     'roles' => array(
       '0' => 'editor',
       '1' => 'site admin',
@@ -314,6 +378,16 @@ function journal_article_jrst_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit field_issue_wiley_link
+  $permissions['edit field_issue_wiley_link'] = array(
+    'name' => 'edit field_issue_wiley_link',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
+    ),
+  );
+
   // Exported permission: edit own article content
   $permissions['edit own article content'] = array(
     'name' => 'edit own article content',
@@ -340,6 +414,24 @@ function journal_article_jrst_user_default_permissions() {
       '0' => 'editor',
       '1' => 'jrst staff',
       '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: import mail_import_unpublish feeds
+  $permissions['import mail_import_unpublish feeds'] = array(
+    'name' => 'import mail_import_unpublish feeds',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: tamper mail_import_unpublish
+  $permissions['tamper mail_import_unpublish'] = array(
+    'name' => 'tamper mail_import_unpublish',
+    'roles' => array(
+      '0' => 'site admin',
     ),
   );
 
@@ -428,6 +520,16 @@ function journal_article_jrst_user_default_permissions() {
     ),
   );
 
+  // Exported permission: view field_article_eb_reviewer
+  $permissions['view field_article_eb_reviewer'] = array(
+    'name' => 'view field_article_eb_reviewer',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
+    ),
+  );
+
   // Exported permission: view field_article_editor
   $permissions['view field_article_editor'] = array(
     'name' => 'view field_article_editor',
@@ -483,6 +585,16 @@ function journal_article_jrst_user_default_permissions() {
   // Exported permission: view field_article_resubmit
   $permissions['view field_article_resubmit'] = array(
     'name' => 'view field_article_resubmit',
+    'roles' => array(
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: view field_article_revision
+  $permissions['view field_article_revision'] = array(
+    'name' => 'view field_article_revision',
     'roles' => array(
       '0' => 'editor',
       '1' => 'jrst staff',
@@ -585,6 +697,36 @@ function journal_article_jrst_user_default_permissions() {
   // Exported permission: view field_issue_volume
   $permissions['view field_issue_volume'] = array(
     'name' => 'view field_issue_volume',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: view field_issue_wiley_link
+  $permissions['view field_issue_wiley_link'] = array(
+    'name' => 'view field_issue_wiley_link',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: view imagecache issue_cover_small
+  $permissions['view imagecache issue_cover_small'] = array(
+    'name' => 'view imagecache issue_cover_small',
+    'roles' => array(
+      '0' => 'anonymous user',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
+    ),
+  );
+
+  // Exported permission: view imagecache issue_main_page
+  $permissions['view imagecache issue_main_page'] = array(
+    'name' => 'view imagecache issue_main_page',
     'roles' => array(
       '0' => 'anonymous user',
       '1' => 'authenticated user',

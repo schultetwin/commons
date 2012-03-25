@@ -674,6 +674,387 @@ function journal_article_jrst_views_default_views() {
 
   $views[$view->name] = $view;
 
+  // Exported view: articles_by_issue_list
+  $view = new view;
+  $view->name = 'articles_by_issue_list';
+  $view->description = 'List of articles grouped by multiple issues';
+  $view->tag = 'JRST';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('relationships', array(
+    'field_article_issue_nid' => array(
+      'label' => 'Issue',
+      'required' => 1,
+      'delta' => -1,
+      'id' => 'field_article_issue_nid',
+      'table' => 'node_data_field_article_issue',
+      'field' => 'field_article_issue_nid',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('fields', array(
+    'title' => array(
+      'label' => 'Title',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
+    'field_article_wiley_id_value' => array(
+      'label' => 'Full Article',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'jrst_custom_wiley_link',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_article_wiley_id_value',
+      'table' => 'node_data_field_article_wiley_id',
+      'field' => 'field_article_wiley_id_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_issue_cover_fid' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'issue_cover_small_linked',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 1,
+      'id' => 'field_issue_cover_fid',
+      'table' => 'node_data_field_issue_cover',
+      'field' => 'field_issue_cover_fid',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_article_issue_nid',
+    ),
+    'field_issue_pub_date_value' => array(
+      'label' => 'Publication date',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_to' => '',
+        'group' => '',
+      ),
+      'repeat' => array(
+        'show_repeat_rule' => '',
+      ),
+      'fromto' => array(
+        'fromto' => 'both',
+      ),
+      'exclude' => 0,
+      'id' => 'field_issue_pub_date_value',
+      'table' => 'node_data_field_issue_pub_date',
+      'field' => 'field_issue_pub_date_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_article_issue_nid',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'field_issue_issue_value' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'delta' => -1,
+      'id' => 'field_issue_issue_value',
+      'table' => 'node_data_field_issue_issue',
+      'field' => 'field_issue_issue_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_article_issue_nid',
+    ),
+    'field_issue_volume_value' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'delta' => -1,
+      'id' => 'field_issue_volume_value',
+      'table' => 'node_data_field_issue_volume',
+      'field' => 'field_issue_volume_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_article_issue_nid',
+    ),
+    'value0' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'id' => 'value0',
+      'table' => 'draggableviews_structure_node0',
+      'field' => 'value0',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'article' => 'article',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
+    'views_or_begin' => array(
+      'operator' => '=',
+      'value' => '',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'views_or_begin',
+      'table' => 'node',
+      'field' => 'views_or_begin',
+      'relationship' => 'none',
+    ),
+    'sid' => array(
+      'operator' => 'in',
+      'value' => array(
+        '11' => '11',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'sid',
+      'table' => 'workflow_node',
+      'field' => 'sid',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
+    'views_or_next' => array(
+      'operator' => '=',
+      'value' => '',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'views_or_next',
+      'table' => 'node',
+      'field' => 'views_or_next',
+      'relationship' => 'none',
+    ),
+    'field_article_decision_value_many_to_one' => array(
+      'operator' => 'or',
+      'value' => array(
+        'Accept' => 'Accept',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'field_article_decision_value_many_to_one',
+      'table' => 'node_data_field_article_decision',
+      'field' => 'field_article_decision_value_many_to_one',
+      'relationship' => 'none',
+      'reduce_duplicates' => 0,
+    ),
+    'views_or_end' => array(
+      'operator' => '=',
+      'value' => '',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'views_or_end',
+      'table' => 'node',
+      'field' => 'views_or_end',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('title', 'Articles');
+  $handler->override_option('css_class', 'article-page');
+  $handler->override_option('header', 'Recent articles published in JRST.  Clicking on the article will take you to the eJRST discussion / information page about the article.  Clicking on the link for full text will take you to the JRST Wiley page where you can view the full article.  Click on the Issue to go to the issue page with complete article abstracts.');
+  $handler->override_option('header_format', '1');
+  $handler->override_option('header_empty', 0);
+  $handler->override_option('items_per_page', 15);
+  $handler->override_option('use_pager', '1');
+  $handler->override_option('style_plugin', 'list');
+  $handler->override_option('style_options', array(
+    'grouping' => 'field_issue_cover_fid',
+    'type' => 'ul',
+  ));
+  $handler->override_option('row_options', array(
+    'inline' => array(
+      'field_article_author_uid' => 'field_article_author_uid',
+      'field_article_coauthor_uid' => 'field_article_coauthor_uid',
+    ),
+    'separator' => ', ',
+    'hide_empty' => 0,
+  ));
+  $handler = $view->new_display('page', 'Articles', 'page_1');
+  $handler->override_option('path', 'articles');
+  $handler->override_option('menu', array(
+    'type' => 'normal',
+    'title' => 'Articles',
+    'description' => 'Recent JRST Published Articles',
+    'weight' => '0',
+    'name' => 'primary-links',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+
+  $views[$view->name] = $view;
+
   // Exported view: articles_needing_eb_members
   $view = new view;
   $view->name = 'articles_needing_eb_members';
@@ -1439,6 +1820,323 @@ return arg(1);
     ),
   ));
   $handler->override_option('title', 'Author Podcast');
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
+
+  $views[$view->name] = $view;
+
+  // Exported view: issue_list
+  $view = new view;
+  $view->name = 'issue_list';
+  $view->description = 'List of Issues';
+  $view->tag = 'JRST';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('fields', array(
+    'field_issue_wiley_link_value' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 1,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 1,
+      'id' => 'field_issue_wiley_link_value',
+      'table' => 'node_data_field_issue_wiley_link',
+      'field' => 'field_issue_wiley_link_value',
+      'relationship' => 'none',
+    ),
+    'field_issue_cover_fid' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => 'http://onlinelibrary.wiley.com/doi/10.1002/tea.v[field_issue_volume_value].[field_issue_issue_value]/issuetoc',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'issue_cover_small_default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_issue_cover_fid',
+      'table' => 'node_data_field_issue_cover',
+      'field' => 'field_issue_cover_fid',
+      'relationship' => 'none',
+    ),
+    'title' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'field_issue_pub_date_value' => array(
+      'exposed' => FALSE,
+      'order' => 'DESC',
+      'identifier' => 'unsorted',
+      'delta' => -1,
+      'id' => 'field_issue_pub_date_value',
+      'table' => 'node_data_field_issue_pub_date',
+      'field' => 'field_issue_pub_date_value',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'issue' => 'issue',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('use_pager', 'mini');
+  $handler->override_option('row_options', array(
+    'inline' => array(),
+    'separator' => '',
+    'hide_empty' => 0,
+  ));
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->override_option('path', 'issues');
+  $handler->override_option('menu', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+
+  $views[$view->name] = $view;
+
+  // Exported view: jrst_article_rating
+  $view = new view;
+  $view->name = 'jrst_article_rating';
+  $view->description = 'List of articles by rating';
+  $view->tag = '';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('relationships', array(
+    'flag_count_rel' => array(
+      'label' => 'counter',
+      'required' => 1,
+      'flag' => 'article_plus_1',
+      'id' => 'flag_count_rel',
+      'table' => 'node',
+      'field' => 'flag_count_rel',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('fields', array(
+    'title' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+    ),
+    'count' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'set_precision' => FALSE,
+      'precision' => 0,
+      'decimal' => '.',
+      'separator' => ',',
+      'prefix' => '',
+      'suffix' => '',
+      'exclude' => 0,
+      'id' => 'count',
+      'table' => 'flag_counts',
+      'field' => 'count',
+      'relationship' => 'flag_count_rel',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'count' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'id' => 'count',
+      'table' => 'flag_counts',
+      'field' => 'count',
+      'relationship' => 'flag_count_rel',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('title', 'Recommended Articles');
+  $handler->override_option('distinct', 0);
+  $handler->override_option('style_plugin', 'list');
+  $handler->override_option('row_options', array(
+    'inline' => array(
+      'title' => 'title',
+      'count' => 'count',
+    ),
+    'separator' => ' - ',
+    'hide_empty' => 0,
+  ));
+  $handler = $view->new_display('block', 'Block', 'block_1');
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
 
@@ -3589,6 +4287,837 @@ EB Reviewer: [field_article_eb_reviewer_uid]',
     'weight' => 0,
     'name' => 'navigation',
   ));
+
+  $views[$view->name] = $view;
+
+  // Exported view: jrst_production_plan
+  $view = new view;
+  $view->name = 'jrst_production_plan';
+  $view->description = 'View to help the production planning queue';
+  $view->tag = 'JRST';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('relationships', array(
+    'field_article_issue_nid' => array(
+      'label' => 'Issue',
+      'required' => 0,
+      'delta' => -1,
+      'id' => 'field_article_issue_nid',
+      'table' => 'node_data_field_article_issue',
+      'field' => 'field_article_issue_nid',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('fields', array(
+    'field_article_issue_nid' => array(
+      'label' => 'Issue',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 1,
+      'id' => 'field_article_issue_nid',
+      'table' => 'node_data_field_article_issue',
+      'field' => 'field_article_issue_nid',
+      'relationship' => 'none',
+    ),
+    'field_article_scholarone_id_value' => array(
+      'label' => 'ScholarOne ID',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_article_scholarone_id_value',
+      'table' => 'node_data_field_article_scholarone_id',
+      'field' => 'field_article_scholarone_id_value',
+      'relationship' => 'none',
+    ),
+    'field_article_type_value' => array(
+      'label' => 'Type',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_article_type_value',
+      'table' => 'node_data_field_article_type',
+      'field' => 'field_article_type_value',
+      'relationship' => 'none',
+    ),
+    'title' => array(
+      'label' => 'Title',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+    ),
+    'field_article_preprod_author_value' => array(
+      'label' => 'Author',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_article_preprod_author_value',
+      'table' => 'node_data_field_article_preprod_author',
+      'field' => 'field_article_preprod_author_value',
+      'relationship' => 'none',
+    ),
+    'field_article_submitted_date_value' => array(
+      'label' => 'Date Submitted',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'short',
+      'multiple' => array(
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_to' => '',
+        'group' => '',
+      ),
+      'repeat' => array(
+        'show_repeat_rule' => '',
+      ),
+      'fromto' => array(
+        'fromto' => 'both',
+      ),
+      'exclude' => 0,
+      'id' => 'field_article_submitted_date_value',
+      'table' => 'node_data_field_article_submitted_date',
+      'field' => 'field_article_submitted_date_value',
+      'relationship' => 'none',
+    ),
+    'field_article_decision_date_value' => array(
+      'label' => 'Decision Date',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_to' => '',
+        'group' => '',
+      ),
+      'repeat' => array(
+        'show_repeat_rule' => '',
+      ),
+      'fromto' => array(
+        'fromto' => 'both',
+      ),
+      'exclude' => 0,
+      'id' => 'field_article_decision_date_value',
+      'table' => 'node_data_field_article_decision_date',
+      'field' => 'field_article_decision_date_value',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'field_issue_volume_value' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'delta' => -1,
+      'id' => 'field_issue_volume_value',
+      'table' => 'node_data_field_issue_volume',
+      'field' => 'field_issue_volume_value',
+      'relationship' => 'field_article_issue_nid',
+    ),
+    'field_issue_issue_value' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'delta' => -1,
+      'id' => 'field_issue_issue_value',
+      'table' => 'node_data_field_issue_issue',
+      'field' => 'field_issue_issue_value',
+      'relationship' => 'field_article_issue_nid',
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'article' => 'article',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'role',
+    'role' => array(
+      '6' => 6,
+      '7' => 7,
+      '5' => 5,
+    ),
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('title', 'Manuscripts in Production');
+  $handler->override_option('empty', 'There are no current manuscripts.');
+  $handler->override_option('empty_format', '1');
+  $handler->override_option('style_plugin', 'table');
+
+  $views[$view->name] = $view;
+
+  // Exported view: jrst_project_issue_all_projects
+  $view = new view;
+  $view->name = 'jrst_project_issue_all_projects';
+  $view->description = 'Project issues for all projects';
+  $view->tag = 'JRST';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('relationships', array(
+    'assigned' => array(
+      'label' => 'Assigned user',
+      'required' => 1,
+      'id' => 'assigned',
+      'table' => 'project_issues',
+      'field' => 'assigned',
+      'relationship' => 'none',
+    ),
+    'rid' => array(
+      'label' => 'Version',
+      'required' => 0,
+      'id' => 'rid',
+      'table' => 'project_issues',
+      'field' => 'rid',
+      'relationship' => 'none',
+    ),
+    'pid' => array(
+      'label' => 'Project node',
+      'required' => 1,
+      'id' => 'pid',
+      'table' => 'project_issues',
+      'field' => 'pid',
+    ),
+  ));
+  $handler->override_option('fields', array(
+    'project_issue_queue' => array(
+      'label' => 'Project',
+      'link_type' => 'issues',
+      'exclude' => 0,
+      'id' => 'project_issue_queue',
+      'table' => 'node',
+      'field' => 'project_issue_queue',
+      'relationship' => 'pid',
+    ),
+    'title' => array(
+      'label' => 'Summary',
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+    ),
+    'timestamp' => array(
+      'label' => '',
+      'alter' => array(),
+      'link_to_node' => 0,
+      'comments' => 0,
+      'exclude' => 0,
+      'id' => 'timestamp',
+      'table' => 'history_user',
+      'field' => 'timestamp',
+      'relationship' => 'none',
+    ),
+    'sid' => array(
+      'id' => 'sid',
+      'table' => 'project_issues',
+      'field' => 'sid',
+    ),
+    'priority' => array(
+      'id' => 'priority',
+      'table' => 'project_issues',
+      'field' => 'priority',
+    ),
+    'category' => array(
+      'label' => 'Category',
+      'link_to_node' => 0,
+      'exclude' => 0,
+      'id' => 'category',
+      'table' => 'project_issues',
+      'field' => 'category',
+      'relationship' => 'none',
+    ),
+    'comment_count' => array(
+      'label' => 'Replies',
+      'set_precision' => FALSE,
+      'precision' => 0,
+      'decimal' => '.',
+      'separator' => ',',
+      'prefix' => '',
+      'suffix' => '',
+      'exclude' => 0,
+      'id' => 'comment_count',
+      'table' => 'node_comment_statistics',
+      'field' => 'comment_count',
+      'relationship' => 'none',
+    ),
+    'new_comments' => array(
+      'label' => 'New replies',
+      'set_precision' => FALSE,
+      'precision' => 0,
+      'decimal' => '.',
+      'separator' => ',',
+      'prefix' => '',
+      'suffix' => ' new',
+      'link_to_comment' => 1,
+      'no_empty' => 1,
+      'exclude' => 0,
+      'id' => 'new_comments',
+      'table' => 'node',
+      'field' => 'new_comments',
+      'relationship' => 'none',
+    ),
+    'last_comment_timestamp' => array(
+      'label' => 'Last updated',
+      'date_format' => 'raw time ago',
+      'custom_date_format' => '',
+      'exclude' => 0,
+      'id' => 'last_comment_timestamp',
+      'table' => 'node_comment_statistics',
+      'field' => 'last_comment_timestamp',
+      'relationship' => 'none',
+    ),
+    'name' => array(
+      'label' => 'Assigned to',
+      'link_to_user' => 1,
+      'overwrite_anonymous' => 1,
+      'anonymous_text' => '',
+      'exclude' => 0,
+      'id' => 'name',
+      'table' => 'users',
+      'field' => 'name',
+      'relationship' => 'assigned',
+    ),
+    'created' => array(
+      'label' => 'Created',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'date_format' => 'raw time ago',
+      'custom_date_format' => '',
+      'exclude' => 0,
+      'id' => 'created',
+      'table' => 'node',
+      'field' => 'created',
+      'relationship' => 'none',
+    ),
+    'score' => array(
+      'label' => 'Score',
+      'alter' => array(),
+      'set_precision' => 1,
+      'precision' => '3',
+      'decimal' => '.',
+      'separator' => ',',
+      'prefix' => '',
+      'suffix' => '',
+      'alternate_sort' => 'last_comment_timestamp',
+      'alternate_order' => 'desc',
+      'exclude' => 0,
+      'id' => 'score',
+      'table' => 'search_index',
+      'field' => 'score',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'last_comment_timestamp' => array(
+      'order' => 'DESC',
+      'granularity' => 'second',
+      'id' => 'last_comment_timestamp',
+      'table' => 'node_comment_statistics',
+      'field' => 'last_comment_timestamp',
+      'relationship' => 'none',
+    ),
+    'score' => array(
+      'order' => 'DESC',
+      'id' => 'score',
+      'table' => 'search_index',
+      'field' => 'score',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'keys' => array(
+      'operator' => 'optional',
+      'value' => '',
+      'group' => '0',
+      'exposed' => TRUE,
+      'expose' => array(
+        'use_operator' => 0,
+        'operator' => 'keys_op',
+        'identifier' => 'text',
+        'label' => 'Search for',
+        'optional' => 1,
+        'remember' => 0,
+      ),
+      'id' => 'keys',
+      'table' => 'search_index',
+      'field' => 'keys',
+      'relationship' => 'none',
+    ),
+    'status_extra' => array(
+      'operator' => '=',
+      'value' => '',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status_extra',
+      'table' => 'node',
+      'field' => 'status_extra',
+      'relationship' => 'none',
+    ),
+    'pid' => array(
+      'operator' => 'in',
+      'value' => '',
+      'group' => '0',
+      'exposed' => TRUE,
+      'expose' => array(
+        'operator' => 'pid_op',
+        'label' => 'Project',
+        'use_operator' => 0,
+        'identifier' => 'projects',
+        'optional' => 1,
+        'single' => 1,
+        'remember' => 0,
+        'reduce' => 0,
+      ),
+      'widget' => 'textfield',
+      'project_source' => 'all',
+      'project_uid_argument' => '',
+      'id' => 'pid',
+      'table' => 'project_issues',
+      'field' => 'pid',
+      'relationship' => 'none',
+    ),
+    'sid' => array(
+      'operator' => 'in',
+      'value' => array(),
+      'group' => '0',
+      'exposed' => TRUE,
+      'expose' => array(
+        'use_operator' => 0,
+        'operator' => 'sid_op',
+        'identifier' => 'status',
+        'label' => 'Status',
+        'optional' => 1,
+        'single' => 1,
+        'remember' => 0,
+        'reduce' => 0,
+      ),
+      'id' => 'sid',
+      'table' => 'project_issues',
+      'field' => 'sid',
+      'relationship' => 'none',
+    ),
+    'priority' => array(
+      'operator' => 'in',
+      'value' => array(),
+      'group' => '0',
+      'exposed' => TRUE,
+      'expose' => array(
+        'use_operator' => 0,
+        'operator' => 'priority_op',
+        'identifier' => 'priorities',
+        'label' => 'Priority',
+        'optional' => 1,
+        'single' => 1,
+        'remember' => 0,
+        'reduce' => 0,
+      ),
+      'id' => 'priority',
+      'table' => 'project_issues',
+      'field' => 'priority',
+      'relationship' => 'none',
+    ),
+    'category' => array(
+      'operator' => 'in',
+      'value' => array(),
+      'group' => '0',
+      'exposed' => TRUE,
+      'expose' => array(
+        'use_operator' => 0,
+        'operator' => 'category_op',
+        'identifier' => 'categories',
+        'label' => 'Category',
+        'optional' => 1,
+        'single' => 1,
+        'remember' => 0,
+        'reduce' => 0,
+      ),
+      'id' => 'category',
+      'table' => 'project_issues',
+      'field' => 'category',
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'role',
+    'role' => array(
+      '5' => 5,
+    ),
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('title', 'Issues for all projects');
+  $handler->override_option('header', '<a href="/node/add/project_issue">Add New Issues</a>');
+  $handler->override_option('header_format', '1');
+  $handler->override_option('header_empty', 1);
+  $handler->override_option('empty', 'No issues match your criteria.');
+  $handler->override_option('empty_format', '1');
+  $handler->override_option('items_per_page', 50);
+  $handler->override_option('use_pager', '1');
+  $handler->override_option('style_plugin', 'project_issue_table');
+  $handler->override_option('style_options', array(
+    'grouping' => '',
+    'override' => 1,
+    'sticky' => 1,
+    'order' => 'desc',
+    'columns' => array(
+      'project_issue_queue' => 'project_issue_queue',
+      'title' => 'title',
+      'timestamp' => 'title',
+      'sid' => 'sid',
+      'priority' => 'priority',
+      'category' => 'category',
+      'comment_count' => 'comment_count',
+      'new_comments' => 'comment_count',
+      'last_comment_timestamp' => 'last_comment_timestamp',
+      'name' => 'name',
+      'created' => 'created',
+      'score' => 'score',
+    ),
+    'info' => array(
+      'project_issue_queue' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'title' => array(
+        'sortable' => 1,
+        'separator' => ' ',
+      ),
+      'timestamp' => array(
+        'separator' => '',
+      ),
+      'sid' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'priority' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'category' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'comment_count' => array(
+        'sortable' => 1,
+        'separator' => '<br />',
+      ),
+      'new_comments' => array(
+        'separator' => '',
+      ),
+      'last_comment_timestamp' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'name' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'created' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'score' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+    ),
+    'default' => 'score',
+  ));
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->override_option('path', 'tracking/issues/all');
+  $handler->override_option('menu', array(
+    'type' => 'default tab',
+    'title' => 'All Issues',
+    'description' => '',
+    'weight' => '0',
+    'name' => 'navigation',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'normal',
+    'title' => 'Issues',
+    'description' => '',
+    'weight' => '0',
+    'name' => 'primary-links',
+  ));
+  $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->override_option('sorts', array(
+    'last_comment_timestamp' => array(
+      'order' => 'DESC',
+      'granularity' => 'second',
+      'id' => 'last_comment_timestamp',
+      'table' => 'node_comment_statistics',
+      'field' => 'last_comment_timestamp',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('style_plugin', 'rss');
+  $handler->override_option('style_options', array(
+    'mission_description' => FALSE,
+    'description' => '',
+  ));
+  $handler->override_option('row_plugin', 'node_rss');
+  $handler->override_option('path', 'tracking/issues/rss');
+  $handler->override_option('menu', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => '',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $handler->override_option('displays', array(
+    'page_1' => 'page_1',
+    'default' => 0,
+  ));
+  $handler->override_option('sitename_title', FALSE);
 
   $views[$view->name] = $view;
 

@@ -176,6 +176,20 @@ function journal_article_jrst_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_upload_images_issue';
+  $strongarm->value = 'none';
+
+  $export['comment_upload_images_issue'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_upload_issue';
+  $strongarm->value = '0';
+
+  $export['comment_upload_issue'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'content_extra_weights_article';
   $strongarm->value = array(
     'title' => '31',
@@ -353,10 +367,80 @@ function journal_article_jrst_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'enable_revisions_page_article_import';
+  $strongarm->name = 'date:issue:full:field_issue_pub_date_fromto';
+  $strongarm->value = 'both';
+
+  $export['date:issue:full:field_issue_pub_date_fromto'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:full:field_issue_pub_date_multiple_from';
+  $strongarm->value = '';
+
+  $export['date:issue:full:field_issue_pub_date_multiple_from'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:full:field_issue_pub_date_multiple_number';
+  $strongarm->value = '';
+
+  $export['date:issue:full:field_issue_pub_date_multiple_number'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:full:field_issue_pub_date_multiple_to';
+  $strongarm->value = '';
+
+  $export['date:issue:full:field_issue_pub_date_multiple_to'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:full:field_issue_pub_date_show_repeat_rule';
+  $strongarm->value = 'show';
+
+  $export['date:issue:full:field_issue_pub_date_show_repeat_rule'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:teaser:field_issue_pub_date_fromto';
+  $strongarm->value = 'both';
+
+  $export['date:issue:teaser:field_issue_pub_date_fromto'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:teaser:field_issue_pub_date_multiple_from';
+  $strongarm->value = '';
+
+  $export['date:issue:teaser:field_issue_pub_date_multiple_from'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:teaser:field_issue_pub_date_multiple_number';
+  $strongarm->value = '';
+
+  $export['date:issue:teaser:field_issue_pub_date_multiple_number'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:teaser:field_issue_pub_date_multiple_to';
+  $strongarm->value = '';
+
+  $export['date:issue:teaser:field_issue_pub_date_multiple_to'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date:issue:teaser:field_issue_pub_date_show_repeat_rule';
+  $strongarm->value = 'show';
+
+  $export['date:issue:teaser:field_issue_pub_date_show_repeat_rule'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'enable_revisions_page_article';
   $strongarm->value = 1;
 
-  $export['enable_revisions_page_article_import'] = $strongarm;
+  $export['enable_revisions_page_article'] = $strongarm;
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;

@@ -113,7 +113,7 @@ function jrst_job_postings_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->override_option('path', 'opportunities/jobpostings');
   $handler->override_option('menu', array(
-    'type' => 'default tab',
+    'type' => 'tab',
     'title' => 'Job Postings',
     'description' => '',
     'weight' => '50',

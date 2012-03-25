@@ -11,7 +11,9 @@ function jrst_job_postings_user_default_permissions() {
     'name' => 'create job_posting content',
     'roles' => array(
       '0' => 'authenticated user',
-      '1' => 'site admin',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'site admin',
     ),
   );
 
@@ -19,8 +21,9 @@ function jrst_job_postings_user_default_permissions() {
   $permissions['delete any job_posting content'] = array(
     'name' => 'delete any job_posting content',
     'roles' => array(
-      '0' => 'associate editor',
-      '1' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -37,8 +40,8 @@ function jrst_job_postings_user_default_permissions() {
   $permissions['edit any job_posting content'] = array(
     'name' => 'edit any job_posting content',
     'roles' => array(
-      '0' => 'associate editor',
-      '1' => 'editor',
+      '0' => 'editor',
+      '1' => 'jrst staff',
       '2' => 'site admin',
     ),
   );
@@ -48,7 +51,9 @@ function jrst_job_postings_user_default_permissions() {
     'name' => 'edit own job_posting content',
     'roles' => array(
       '0' => 'authenticated user',
-      '1' => 'site admin',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'site admin',
     ),
   );
 

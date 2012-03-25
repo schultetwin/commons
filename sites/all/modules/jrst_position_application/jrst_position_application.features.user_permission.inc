@@ -96,6 +96,14 @@ function jrst_position_application_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit field_app_eb_approved
+  $permissions['edit field_app_eb_approved'] = array(
+    'name' => 'edit field_app_eb_approved',
+    'roles' => array(
+      '0' => 'site admin',
+    ),
+  );
+
   // Exported permission: edit field_app_position
   $permissions['edit field_app_position'] = array(
     'name' => 'edit field_app_position',
@@ -209,6 +217,14 @@ function jrst_position_application_user_default_permissions() {
       '2' => 'jrst staff',
       '3' => 'narst staff',
       '4' => 'site admin',
+    ),
+  );
+
+  // Exported permission: view field_app_eb_approved
+  $permissions['view field_app_eb_approved'] = array(
+    'name' => 'view field_app_eb_approved',
+    'roles' => array(
+      '0' => 'site admin',
     ),
   );
 

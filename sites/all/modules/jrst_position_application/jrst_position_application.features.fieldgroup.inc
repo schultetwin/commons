@@ -102,7 +102,7 @@ function jrst_position_application_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '-2',
+    'weight' => '-3',
     'fields' => array(
       '0' => 'field_app_cv',
       '1' => 'field_app_resume',

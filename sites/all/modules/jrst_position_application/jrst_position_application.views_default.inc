@@ -437,7 +437,6 @@ function jrst_position_application_views_default_views() {
   $handler->override_option('access', array(
     'type' => 'role',
     'role' => array(
-      '9' => 9,
       '5' => 5,
     ),
   ));
@@ -738,7 +737,7 @@ function jrst_position_application_views_default_views() {
       'override' => array(
         'button' => 'Override',
       ),
-      'relationship' => 'uid',
+      'relationship' => 'none',
     ),
     'value_1' => array(
       'label' => '',
@@ -771,7 +770,7 @@ function jrst_position_application_views_default_views() {
       'override' => array(
         'button' => 'Override',
       ),
-      'relationship' => 'uid',
+      'relationship' => 'none',
     ),
     'country' => array(
       'label' => '',
@@ -874,7 +873,10 @@ function jrst_position_application_views_default_views() {
       'id' => 'value_2',
       'table' => 'profile_values_profile_ethnicity',
       'field' => 'value',
-      'relationship' => 'uid',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
     'value_3' => array(
       'label' => 'Gender',
@@ -903,7 +905,10 @@ function jrst_position_application_views_default_views() {
       'id' => 'value_3',
       'table' => 'profile_values_profile_gender',
       'field' => 'value',
-      'relationship' => 'uid',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
     'field_app_position_nid' => array(
       'label' => '',
@@ -987,26 +992,22 @@ function jrst_position_application_views_default_views() {
       'field' => 'type',
       'relationship' => 'none',
     ),
-    'field_app_position_nid' => array(
-      'operator' => 'or',
-      'value' => array(),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
       'group' => '0',
-      'exposed' => TRUE,
+      'exposed' => FALSE,
       'expose' => array(
-        'use_operator' => 0,
-        'operator' => 'field_app_position_nid_op',
-        'identifier' => 'field_app_position_nid',
-        'label' => 'Position',
-        'optional' => 1,
-        'single' => 1,
-        'remember' => 0,
-        'reduce' => 0,
+        'operator' => FALSE,
+        'label' => '',
       ),
-      'id' => 'field_app_position_nid',
-      'table' => 'node_data_field_app_position',
-      'field' => 'field_app_position_nid',
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Override',
+      ),
       'relationship' => 'none',
-      'reduce_duplicates' => 0,
     ),
   ));
   $handler->override_option('access', array(
@@ -1734,118 +1735,6 @@ function jrst_position_application_views_default_views() {
       'id' => 'type',
       'table' => 'node',
       'field' => 'type',
-      'relationship' => 'none',
-    ),
-    'views_or_begin' => array(
-      'operator' => '=',
-      'value' => '',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'views_or_begin',
-      'table' => 'node',
-      'field' => 'views_or_begin',
-      'override' => array(
-        'button' => 'Override',
-      ),
-      'relationship' => 'none',
-    ),
-    'date_filter' => array(
-      'operator' => '>',
-      'value' => array(
-        'value' => NULL,
-        'min' => NULL,
-        'max' => NULL,
-        'default_date' => 'now',
-        'default_to_date' => '',
-      ),
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'date_fields' => array(
-        'node_data_field_position_close_date.field_position_close_date_value' => 'node_data_field_position_close_date.field_position_close_date_value',
-      ),
-      'date_method' => 'OR',
-      'granularity' => 'day',
-      'form_type' => 'date_popup',
-      'default_date' => 'now',
-      'default_to_date' => '',
-      'year_range' => '-3:+3',
-      'id' => 'date_filter',
-      'table' => 'node',
-      'field' => 'date_filter',
-      'relationship' => 'none',
-    ),
-    'views_or_next' => array(
-      'operator' => '=',
-      'value' => '',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'views_or_next',
-      'table' => 'node',
-      'field' => 'views_or_next',
-      'override' => array(
-        'button' => 'Override',
-      ),
-      'relationship' => 'none',
-    ),
-    'date_filter_1' => array(
-      'operator' => 'empty',
-      'value' => array(
-        'value' => NULL,
-        'min' => NULL,
-        'max' => NULL,
-        'default_date' => '',
-        'default_to_date' => '',
-      ),
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'date_fields' => array(
-        'node_data_field_position_close_date.field_position_close_date_value' => 'node_data_field_position_close_date.field_position_close_date_value',
-      ),
-      'date_method' => 'OR',
-      'granularity' => 'day',
-      'form_type' => 'date_select',
-      'default_date' => '',
-      'default_to_date' => '',
-      'year_range' => '-3:+3',
-      'id' => 'date_filter_1',
-      'table' => 'node',
-      'field' => 'date_filter',
-      'override' => array(
-        'button' => 'Override',
-      ),
-      'relationship' => 'none',
-    ),
-    'views_or_end' => array(
-      'operator' => '=',
-      'value' => '',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'views_or_end',
-      'table' => 'node',
-      'field' => 'views_or_end',
-      'override' => array(
-        'button' => 'Override',
-      ),
       'relationship' => 'none',
     ),
   ));

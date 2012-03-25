@@ -95,6 +95,75 @@ function jrst_position_application_content_default_fields() {
     ),
   );
 
+  // Exported field: field_app_eb_approved
+  $fields['application-field_app_eb_approved'] = array(
+    'field_name' => 'field_app_eb_approved',
+    'type_name' => 'application',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      '5' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => 'No
+Yes',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'asm_settings' => NULL,
+      'default_value' => NULL,
+      'default_value_php' => NULL,
+      'label' => 'EB Approved',
+      'weight' => '-1',
+      'description' => '',
+      'type' => 'optionwidgets_onoff',
+      'module' => 'optionwidgets',
+      'roles' => array(
+        '2' => 2,
+        '1' => 0,
+        '7' => 0,
+        '8' => 0,
+        '9' => 0,
+        '5' => 0,
+      ),
+    ),
+  );
+
   // Exported field: field_app_position
   $fields['application-field_app_position'] = array(
     'field_name' => 'field_app_position',
@@ -273,7 +342,7 @@ function jrst_position_application_content_default_fields() {
       ),
       'label' => 'Cover Letter Upload',
       'weight' => 0,
-      'description' => 'If you did not upload a cover letter, please type in your cover letter below.  Please note that if you cut and paste from Microsoft Word, you should click on <img src="http://ejrst.net/sites/default/files/Wordclip.png"> and follow the instructions to paste, to avoid garbage that Microsoft Word occasionally adds when you paste.',
+      'description' => 'If you did not upload a cover letter, please type in your cover letter below.',
       'type' => 'filefield_widget',
       'module' => 'filefield',
     ),
@@ -436,6 +505,7 @@ function jrst_position_application_content_default_fields() {
   t('Closing Date');
   t('Cover Letter Upload');
   t('Curriculum vitae');
+  t('EB Approved');
   t('Position');
   t('Preferred Qualifications');
 

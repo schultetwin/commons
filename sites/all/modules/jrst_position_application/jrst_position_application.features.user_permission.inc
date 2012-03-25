@@ -10,10 +10,9 @@ function jrst_position_application_user_default_permissions() {
   $permissions['create application content'] = array(
     'name' => 'create application content',
     'roles' => array(
-      '0' => 'authenticated user',
-      '1' => 'editor',
-      '2' => 'jrst staff',
-      '3' => 'site admin',
+      '0' => 'editor',
+      '1' => 'jrst staff',
+      '2' => 'site admin',
     ),
   );
 
@@ -51,9 +50,10 @@ function jrst_position_application_user_default_permissions() {
   $permissions['delete own application content'] = array(
     'name' => 'delete own application content',
     'roles' => array(
-      '0' => 'editor',
-      '1' => 'jrst staff',
-      '2' => 'site admin',
+      '0' => 'authenticated user',
+      '1' => 'editor',
+      '2' => 'jrst staff',
+      '3' => 'site admin',
     ),
   );
 

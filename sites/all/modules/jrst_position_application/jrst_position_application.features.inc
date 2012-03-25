@@ -57,8 +57,7 @@ function jrst_position_application_rules_defaults() {
         '#active' => 1,
         '#weight' => '0',
         '#categories' => array(
-          '0' => 'JRST',
-          '1' => 'jrst_app',
+          '0' => 'jrst_app',
           'jrst_position_application' => 'jrst_position_application',
         ),
         '#status' => 'default',

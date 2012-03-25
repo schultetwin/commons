@@ -50,8 +50,9 @@ function jrst_base_user_default_permissions() {
   $permissions['access site-wide contact form'] = array(
     'name' => 'access site-wide contact form',
     'roles' => array(
-      '0' => 'authenticated user',
-      '1' => 'site admin',
+      '0' => 'PAC-NARSTBoD',
+      '1' => 'authenticated user',
+      '2' => 'site admin',
     ),
   );
 

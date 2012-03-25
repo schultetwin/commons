@@ -92,55 +92,11 @@ function jrst_overrides_views_default_views() {
         'button' => 'Override',
       ),
     ),
-    'tid' => array(
-      'label' => 'Tags',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 1,
-      'empty_zero' => 0,
-      'type' => 'separator',
-      'separator' => ', ',
-      'link_to_taxonomy' => 1,
-      'limit' => 0,
-      'vids' => array(
-        '5' => 0,
-        '2' => 0,
-        '3' => 0,
-        '6' => 0,
-        '4' => 0,
-      ),
-      'exclude' => 1,
-      'id' => 'tid',
-      'table' => 'term_node',
-      'field' => 'tid',
-      'override' => array(
-        'button' => 'Override',
-      ),
-      'relationship' => 'none',
-    ),
     'description' => array(
       'label' => '',
       'alter' => array(
         'alter_text' => 1,
         'text' => '<div class="title">[title]</div>
-<div class="tags">Tags: [tid] </div>
 <div class="description">[description] </div>',
         'make_link' => 0,
         'path' => '',
@@ -176,6 +132,18 @@ function jrst_overrides_views_default_views() {
       'id' => 'score',
       'table' => 'search_index',
       'field' => 'score',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'sticky' => array(
+      'exposed' => FALSE,
+      'order' => 'DESC',
+      'identifier' => 'unsorted',
+      'id' => 'sticky',
+      'table' => 'node',
+      'field' => 'sticky',
       'override' => array(
         'button' => 'Override',
       ),
@@ -244,6 +212,8 @@ function jrst_overrides_views_default_views() {
     'type' => 'none',
   ));
   $handler->override_option('title', 'Groups');
+  $handler->override_option('css_class', 'group-page');
+  $handler->override_option('header', 'Groups within eJRST are collections of science education colleagues who are collaborating on Journal or NARST business, or on other things!  If you would like us to consider adding a new group, please contact us at jrst@msu.edu');
   $handler->override_option('header_format', '1');
   $handler->override_option('header_empty', 1);
   $handler->override_option('empty', 'There are currently no groups');

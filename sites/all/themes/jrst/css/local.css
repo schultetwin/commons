@@ -228,6 +228,11 @@ legend{
   clear: none;
 }
 
+
+.views_slideshow_singleframe_pager .pager-item.activeSlide a {
+  color: black;
+}
+
 /* Issue Page Theming */
 .content .node-type-issue .field-field-issue-cover {
   float:right;

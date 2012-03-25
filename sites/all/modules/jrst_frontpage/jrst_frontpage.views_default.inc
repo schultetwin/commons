@@ -555,7 +555,7 @@ if (!empty($args)) {
       'controls' => '1',
       'pager' => '2',
       'pager_type' => 'Numbered',
-      'pager_hover' => '1',
+      'pager_hover' => '2',
       'pager_click_to_page' => 0,
       'image_count' => '0',
       'items_per_slide' => '1',

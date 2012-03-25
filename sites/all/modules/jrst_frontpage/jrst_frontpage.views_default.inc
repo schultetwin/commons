@@ -126,6 +126,18 @@ function jrst_frontpage_views_default_views() {
     ),
   ));
   $handler->override_option('sorts', array(
+    'value0' => array(
+      'exposed' => FALSE,
+      'order' => 'ASC',
+      'identifier' => 'unsorted',
+      'id' => 'value0',
+      'table' => 'draggableviews_structure_node0',
+      'field' => 'value0',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
     'php' => array(
       'exposed' => FALSE,
       'order' => 'DESC',
@@ -292,22 +304,6 @@ if (!empty($args)) {
       'id' => 'type',
       'table' => 'node',
       'field' => 'type',
-      'relationship' => 'none',
-    ),
-    'sid' => array(
-      'operator' => 'in',
-      'value' => array(
-        '11' => '11',
-      ),
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'sid',
-      'table' => 'workflow_node',
-      'field' => 'sid',
       'relationship' => 'none',
     ),
   ));
@@ -536,7 +532,7 @@ if (!empty($args)) {
     'type' => 'none',
   ));
   $handler->override_option('css_class', 'slide-cover-image');
-  $handler->override_option('items_per_page', 5);
+  $handler->override_option('items_per_page', 4);
   $handler->override_option('style_plugin', 'slideshow');
   $handler->override_option('style_options', array(
     'type' => 'ul',
@@ -544,14 +540,14 @@ if (!empty($args)) {
     'views_slideshow_singleframe-prefix' => '',
     'views_slideshow_singleframe' => array(
       'timeout' => '5000',
-      'delay' => '0',
+      'delay' => '2000',
       'speed' => '700',
-      'start_paused' => 1,
+      'start_paused' => 0,
       'fixed_height' => '1',
       'random' => '0',
       'pause' => '1',
-      'pause_on_click' => '0',
-      'pause_when_hidden' => 0,
+      'pause_on_click' => '1',
+      'pause_when_hidden' => 1,
       'pause_when_hidden_type' => 'full',
       'amount_allowed_visible' => '',
       'remember_slide' => 0,

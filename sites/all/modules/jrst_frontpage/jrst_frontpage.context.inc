@@ -21,6 +21,18 @@ function jrst_frontpage_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'views-frontpage_jrst_notices-block_2' => array(
+          'module' => 'views',
+          'delta' => 'frontpage_jrst_notices-block_2',
+          'region' => 'content_top',
+          'weight' => 0,
+        ),
+        'views-frontpage_jrst_notices-block_1' => array(
+          'module' => 'views',
+          'delta' => 'frontpage_jrst_notices-block_1',
+          'region' => 'content_bottom',
+          'weight' => 0,
+        ),
         'views-jrst_hot_discuscussions-block_1' => array(
           'module' => 'views',
           'delta' => 'jrst_hot_discuscussions-block_1',
@@ -38,18 +50,6 @@ function jrst_frontpage_context_default_contexts() {
           'delta' => 'jrst_frontpage_poll-block_1',
           'region' => 'sidebar_last',
           'weight' => 2,
-        ),
-        'views-frontpage_jrst_notices-block_2' => array(
-          'module' => 'views',
-          'delta' => 'frontpage_jrst_notices-block_2',
-          'region' => 'content_bottom',
-          'weight' => 0,
-        ),
-        'views-frontpage_jrst_notices-block_1' => array(
-          'module' => 'views',
-          'delta' => 'frontpage_jrst_notices-block_1',
-          'region' => 'content_bottom',
-          'weight' => 1,
         ),
       ),
     ),

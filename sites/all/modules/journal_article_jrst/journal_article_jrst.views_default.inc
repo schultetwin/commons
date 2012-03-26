@@ -810,8 +810,8 @@ function journal_article_jrst_views_default_views() {
       ),
       'relationship' => 'field_article_issue_nid',
     ),
-    'field_issue_pub_date_value' => array(
-      'label' => 'Publication date',
+    'title_1' => array(
+      'label' => '',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -833,25 +833,11 @@ function journal_article_jrst_views_default_views() {
       'empty' => '',
       'hide_empty' => 0,
       'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'widget',
-      'format' => 'default',
-      'multiple' => array(
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_to' => '',
-        'group' => '',
-      ),
-      'repeat' => array(
-        'show_repeat_rule' => '',
-      ),
-      'fromto' => array(
-        'fromto' => 'both',
-      ),
-      'exclude' => 0,
-      'id' => 'field_issue_pub_date_value',
-      'table' => 'node_data_field_issue_pub_date',
-      'field' => 'field_issue_pub_date_value',
+      'link_to_node' => 1,
+      'exclude' => 1,
+      'id' => 'title_1',
+      'table' => 'node',
+      'field' => 'title',
       'override' => array(
         'button' => 'Override',
       ),
@@ -1020,7 +1006,7 @@ function journal_article_jrst_views_default_views() {
   $handler->override_option('use_pager', '1');
   $handler->override_option('style_plugin', 'list');
   $handler->override_option('style_options', array(
-    'grouping' => 'field_issue_cover_fid',
+    'grouping' => 'title_1',
     'type' => 'ul',
   ));
   $handler->override_option('row_options', array(

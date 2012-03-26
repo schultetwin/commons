@@ -91,7 +91,7 @@ function jrst_custom_block($op = 'list', $delta = 0, $edit = array()) {
           global $user;
           if (arg(0) == 'node' && is_numeric(arg(1))) {
             $node = node_load(arg(1));
-            if ($node->type == 'article' && $node->field_article_author[0]['uid'] == $user->uid || user_access('administer nodes')) {
+            if ($node->type == 'article' && (( $user->uid != 0 && $node->field_article_author[0]['uid'] == $user->uid) || user_access('administer nodes'))) {
               $podcast = db_result(db_query('SELECT nid FROM {content_type_podcast} WHERE field_podcast_article_nid = %d', $node->nid));
 
               if (!is_numeric($podcast)) {
@@ -457,6 +457,12 @@ function jrst_custom_views_pre_render(&$view) {
   if ($view->name == 'profile_about_page') {
     if ($user->uid == arg(1)) {
       context_set('context', 'jrst-profile-me', context_load('jrst-profile-me'));
+    }
+  }
+  if ($view->name == 'related_discussions') {
+    if ($user->uid == 0) {
+      $handler = &$view->display['block_1']->handler;
+      $handler->set_option('footer', '');
     }
   }
 }

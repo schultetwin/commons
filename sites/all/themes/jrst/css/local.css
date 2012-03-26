@@ -391,6 +391,16 @@ legend{
   padding-right: 6px;*/
 }
 
+/* User form */
+.back-to-home {
+  background: #FFFFFF url('../images/gray-arrow-left.png') no-repeat;
+  padding-left: 20px;
+}
+.back-to-home a {
+  position: relative;
+  top: -7px;
+}
+
 /* @end */
 
 
@@ -483,7 +493,7 @@ legend{
 	margin-top: 10px;
 }
 
-.node-type-issue .view-title{
+.node-type-issue .views-field-title{
 	font: bold 1.3em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	text-align: center;
 }

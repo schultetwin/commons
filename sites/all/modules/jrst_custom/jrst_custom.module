@@ -284,6 +284,11 @@ function jrst_custom_form_alter(&$form, &$form_state, $form_id) {
   switch ($form_id) {
     // Change the description for the email address field here to something more appropriate.
     case 'user_profile_form':
+      $form['back_to_home']['#type'] = 'markup';
+      $form['back_to_home']['#value'] = l('Back to profile', 'user/' . $form['#uid']);
+      $form['back_to_home']['#weight'] = -100;
+      $form['back_to_home']['#prefix'] = '<div class="back-to-home">';
+      $form['back_to_home']['#suffix'] = '</div>';
     case 'user_register':
       $form['account']['mail']['#description'] = t('A valid e-mail address. All e-mails will be sent to this address');
       $form['account']['pass']['#prefix'] = '';

@@ -113,7 +113,7 @@ function journal_article_jrst_views_default_views() {
         'strip_tags' => 0,
       ),
       'empty' => '',
-      'hide_empty' => 0,
+      'hide_empty' => 1,
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'widget',
@@ -154,7 +154,7 @@ function journal_article_jrst_views_default_views() {
         'strip_tags' => 0,
       ),
       'empty' => '',
-      'hide_empty' => 0,
+      'hide_empty' => 1,
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'none',
@@ -205,11 +205,6 @@ function journal_article_jrst_views_default_views() {
       'override' => array(
         'button' => 'Override',
       ),
-    ),
-    'value0' => array(
-      'id' => 'value0',
-      'table' => 'draggableviews_structure_node0',
-      'field' => 'value0',
     ),
   ));
   $handler->override_option('sorts', array(

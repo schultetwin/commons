@@ -18,7 +18,7 @@ function journal_article_jrst_fieldgroup_default_groups() {
         'description' => '',
       ),
       'display' => array(
-        'weight' => '33',
+        'weight' => '34',
         'label' => 'above',
         'teaser' => array(
           'format' => 'simple',
@@ -71,7 +71,7 @@ function journal_article_jrst_fieldgroup_default_groups() {
         'description' => '',
       ),
       'display' => array(
-        'weight' => '34',
+        'weight' => '35',
         'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
@@ -122,7 +122,7 @@ function journal_article_jrst_fieldgroup_default_groups() {
         'description' => '',
       ),
       'display' => array(
-        'weight' => '32',
+        'weight' => '33',
         'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
@@ -172,7 +172,7 @@ function journal_article_jrst_fieldgroup_default_groups() {
         'description' => '',
       ),
       'display' => array(
-        'weight' => '35',
+        'weight' => '36',
         'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',

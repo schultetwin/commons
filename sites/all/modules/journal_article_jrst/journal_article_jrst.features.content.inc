@@ -987,7 +987,7 @@ Not for JRST',
     'field_name' => 'field_article_resubmit',
     'type_name' => 'article',
     'display_settings' => array(
-      'weight' => '57',
+      'weight' => '58',
       'parent' => 'group_article_status',
       'label' => array(
         'format' => 'inline',
@@ -1059,13 +1059,14 @@ Not for JRST',
     'field_name' => 'field_article_revision',
     'type_name' => 'article',
     'display_settings' => array(
+      'weight' => '57',
+      'parent' => 'group_article_status',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
-        'exclude' => 0,
+        'exclude' => 1,
       ),
       'full' => array(
         'format' => 'default',
